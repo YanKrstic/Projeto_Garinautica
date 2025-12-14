@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://coavd3dc6ynhr"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_nowl1"]
+[ext_resource type="Script" path="res://Player/CameraHolder.gd" id="2_kgwof"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_irsfd"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_nowl1")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_irsfd")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59673, 0)
+script = ExtResource("2_kgwof")
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraHolder/Camera3D"]
+target_position = Vector3(0, 0, -3.5)
+
+[node name="HoldPosition" type="Node3D" parent="CameraHolder/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)

@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://cicxv4n4faeob"]
+
+[ext_resource type="Script" path="res://Scripts/objeto_interativo.gd" id="1_pnuv8"]
+[ext_resource type="PackedScene" uid="uid://c4r31xcpixdwo" path="res://Itens/lixo_teste2.tscn" id="2_od8w7"]
+[ext_resource type="PackedScene" uid="uid://rtxdhdes5xt0" path="res://ModeloItens/CaixaPapelaoFechada.glb" id="2_x7wpg"]
+[ext_resource type="PackedScene" uid="uid://c4n0qvnsxnego" path="res://ModeloItens/CaixaPapelaoAberta.glb" id="3_kfeuw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8boo"]
+size = Vector3(1.49386, 1, 0.989614)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8exw"]
+size = Vector3(1.00009, 0.0309011, 0.680006)
+
+[node name="LixoTeste" type="RigidBody3D" node_paths=PackedStringArray("modelo_fechado", "modelo_aberto", "shapes_fechados", "shapes_abertos")]
+script = ExtResource("1_pnuv8")
+modelo_fechado = NodePath("CaixaPapelaoFechada")
+modelo_aberto = NodePath("CaixaPapelaoAberta")
+shapes_fechados = [NodePath("CollisionShape3D2")]
+shapes_abertos = [NodePath("Shape_Ab"), NodePath("Shape_Ab2"), NodePath("Shape_Ab3"), NodePath("Shape_Ab4"), NodePath("Shape_Ab5"), NodePath("Shape_Ab6"), NodePath("Shape_Ab7"), NodePath("Shape_Ab8"), NodePath("Shape_Ab9")]
+loot_dentro = Array[PackedScene]([ExtResource("2_od8w7")])
+
+[node name="CaixaPapelaoFechada" parent="." instance=ExtResource("2_x7wpg")]
+transform = Transform3D(0.342567, 0, 0, 0, 0.342567, 0, 0, 0, 0.342567, -0.410006, 0, 0)
+visible = false
+
+[node name="CaixaPapelaoAberta" parent="." instance=ExtResource("3_kfeuw")]
+transform = Transform3D(0.341373, 0, 0, 0, 0.341373, 0, 0, 0, 0.341373, -0.405444, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.691985, 0, 0, 0, 0.691985, 0, 0, 0, 0.691985, -0.239753, 0, 0)
+visible = false
+shape = SubResource("BoxShape3D_d8boo")
+
+[node name="Shape_Ab" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22429, -0.281858, 0.000726551)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.22429, 0.0156534, 0.325196)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab6" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.680081, -0.366568, 0, 0.733137, 0.340041, -0.235985, 0.473181, -0.449532)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab7" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.656638, -0.377103, 0, 0.754205, 0.328319, -0.232809, 0.216634, 0.450865)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab8" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.0598e-08, -0.75471, -0.32803, 0, 0.656059, -0.377355, 0.7, -3.29894e-08, -1.43386e-08, -0.821558, 0.233583, 0.00395358)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab9" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.0598e-08, 0.75471, 0.32803, 0, 0.656059, -0.377355, -0.7, -3.29894e-08, -1.43386e-08, 0.353781, 0.233583, 0.00395358)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.22429, 0.0156534, -0.325871)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.84124e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -0.65, -4.37114e-08, 1.91069e-15, 0.24804, 0.0156534, -0.0285407)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[node name="Shape_Ab5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.84124e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -0.65, -4.37114e-08, 1.91069e-15, -0.719324, 0.0156534, -0.0285407)
+shape = SubResource("BoxShape3D_u8exw")
+disabled = true
+
+[editable path="CaixaPapelaoFechada"]
+[editable path="CaixaPapelaoAberta"]
