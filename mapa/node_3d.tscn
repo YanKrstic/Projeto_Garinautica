@@ -3737,22 +3737,7 @@ light_energy = 1.47
 shadow_enabled = true
 
 [node name="LixoTeste" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.46137, 7.58025, -4.12414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2934, 3.42193, 0)
 
 [node name="LixoTeste2" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63629, 7.58025, 0.573521)
-
-[node name="LixoTeste3" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0259, 7.58025, -2.22602)
-
-[node name="LixoTeste4" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.32069, 7.58025, -5.55738)
-
-[node name="LixoTeste5" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.39026, 7.58025, -2.10642)
-
-[node name="LixoTeste6" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8138, 7.58025, 1.7285)
-
-[node name="LixoTeste7" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.11056, 1.65288, -4.08397)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, -3)

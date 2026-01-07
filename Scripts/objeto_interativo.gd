@@ -15,6 +15,8 @@ class_name InteractableObject
 @export_group("Loot / Itens")
 @export var loot_dentro: Array[PackedScene] = []
 @export var tabela_de_loot: Array[PackedScene] = []
+@export var qtd_minima_loot: int = 1
+@export var qtd_maxima_loot: int = 3
 
 # VARIÁVEIS DE ESTADO
 var esta_segurado: bool = false
@@ -37,7 +39,7 @@ func _ready():
 	alternar_lista_colisores(shapes_abertos, false)
 	
 	if loot_dentro.size() == 0 and tabela_de_loot.size() > 0:
-		var qtd = randi_range(1, 3)
+		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
 		for i in range(qtd):
 			loot_dentro.append(tabela_de_loot.pick_random())
 
@@ -71,10 +73,25 @@ func set_focado(estado: bool):
 func ao_ser_pego():
 	esta_segurado = true
 	atualizar_outline()
+	
+	# MODO ESTÁTICO:
+	# Troca para modo Kinematic/Freeze. O objeto para de cair e atravessa tudo,
+	# mas ainda colide se o Player empurrar ele contra algo (processado no Player).
+	freeze = true
+	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+	
+	# Desliga colisão com Player para evitar empurrões indesejados
+	set_collision_mask_value(2, false)
 
 func ao_ser_solto():
 	esta_segurado = false
 	atualizar_outline()
+	
+	# VOLTA PARA FÍSICA NORMAL:
+	freeze = false
+	
+	# Restaura colisão com Player
+	set_collision_mask_value(2, true)
 
 func atualizar_outline():
 	if esta_segurado:

@@ -2,44 +2,43 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const ARREMESSO_FORCA = 8.0 
-const EMPURRAO_FORCA = 2.0 
+const ARREMESSO_FORCA = 10.0 
+const EMPURRAO_FORCA = 1.0
+const INERCIA_AO_SOLTAR = 0.35
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var joint: Generic6DOFJoint3D
-var hand_body: StaticBody3D 
-var hold_relative_transform: Transform3D 
+# --- SISTEMA DE SEGURAR (ESTÁTICO) ---
+# Removemos Joints e HandBody. Agora é pura matemática.
+var hold_distance: float = 0.0
+var hold_relative_rotation: Quaternion
 
 @onready var camera = $CameraHolder/Camera3D
 @onready var raycast = $CameraHolder/Camera3D/RayCast3D
 
 var objeto_na_mao: InteractableObject = null
-
-# --- NOVO: Variável para lembrar o que estávamos olhando antes ---
 var ultimo_objeto_focado: InteractableObject = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hand_body = StaticBody3D.new()
-	hand_body.top_level = true 
-	hand_body.collision_layer = 0
-	hand_body.collision_mask = 0
-	add_child(hand_body)
-	joint = Generic6DOFJoint3D.new()
-	add_child(joint)
-	_configurar_joint_travado()
+	# Não precisamos mais criar HandBody nem Joint aqui
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(event.relative.x * -0.11))
+		# Opcional: Rotacionar a câmera verticalmente (se ainda não tiver no CameraHolder)
+		# camera.rotate_x(deg_to_rad(event.relative.y * -0.11))
+	
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+		
 	if event.is_action_pressed("mouse_left"): 
 		if objeto_na_mao: soltar_objeto(0.0)
 		else: tentar_pegar_objeto()
+		
 	if event.is_action_pressed("mouse_right"): 
 		if objeto_na_mao: soltar_objeto(ARREMESSO_FORCA)
+		
 	if event.is_action_pressed("interact"): 
 		if objeto_na_mao: 
 			if objeto_na_mao.has_method("interagir_abrir"): objeto_na_mao.interagir_abrir()
@@ -48,9 +47,10 @@ func _input(event):
 			if corpo.has_method("interagir_abrir"): corpo.interagir_abrir()
 
 func _physics_process(delta):
-	# ... (Código de movimento e gravidade continua igual) ...
+	# --- MOVIMENTO DO PLAYER ---
 	if not is_on_floor(): velocity.y -= gravity * delta
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor(): velocity.y = JUMP_VELOCITY
+	
 	var input_dir = Input.get_vector("a", "d", "w", "s")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -61,88 +61,91 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
 	
-	# Empurrar objetos (igual antes)
+	# Empurrar objetos no chão (Mantido)
 	for i in get_slide_collision_count():
 		var colisao = get_slide_collision(i)
 		var corpo = colisao.get_collider()
 		if corpo is RigidBody3D and corpo != objeto_na_mao:
 			corpo.apply_central_impulse(-colisao.get_normal() * EMPURRAO_FORCA)
 
-	# Atualizar Mão
+	# --- ATUALIZAR POSIÇÃO DO OBJETO NA MÃO ---
 	if objeto_na_mao:
-		hand_body.global_transform = camera.global_transform * hold_relative_transform
+		atualizar_posicao_objeto()
 
-	# --- NOVO: LÓGICA DE SILHUETA (HOVER) ---
+	# Silhueta
 	_processar_silhueta()
 
-func _processar_silhueta():
-	# 1. Verifica o que o Raycast está olhando
-	var objeto_atual: InteractableObject = null
+func atualizar_posicao_objeto():
+	# 1. Calcula onde o objeto "quer" estar (Baseado na distância original)
+	var target_global_pos = camera.global_position - (camera.global_transform.basis.z * hold_distance)
 	
-	if raycast.is_colliding():
-		var colisor = raycast.get_collider()
-		if colisor is InteractableObject:
-			objeto_atual = colisor
+	# 2. SISTEMA ANTI-CLIPPING (Evita atravessar paredes)
+	# Fazemos um raio da câmera até o ponto de destino.
+	# Se tiver parede no meio, puxamos o objeto para antes da parede.
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(camera.global_position, target_global_pos)
 	
-	# 2. Se mudou de objeto (ou parou de olhar), desliga o antigo
-	if ultimo_objeto_focado and ultimo_objeto_focado != objeto_atual:
-		ultimo_objeto_focado.set_focado(false)
+	# O raio deve ignorar o próprio player e o objeto na mão
+	query.exclude = [self, objeto_na_mao]
+	query.collision_mask = 1 # Considera apenas o mundo (Layer 1)
 	
-	# 3. Se tem um objeto novo, liga ele
-	if objeto_atual and objeto_atual != ultimo_objeto_focado:
-		objeto_atual.set_focado(true)
-		
-	# Atualiza a referência
-	ultimo_objeto_focado = objeto_atual
+	var result = space_state.intersect_ray(query)
+	if result:
+		# Se bateu na parede, coloca o objeto um pouco antes do ponto de impacto
+		objeto_na_mao.global_position = result.position + (result.normal * 0.1) # 0.1 de margem
+	else:
+		# Se livre, vai para o alvo
+		objeto_na_mao.global_position = target_global_pos
+	
+	# 3. Rotação: Mantém a rotação relativa à câmera (para virar junto com você)
+	objeto_na_mao.global_transform.basis = camera.global_transform.basis * Basis(hold_relative_rotation)
 
-# ... (Funções tentar_pegar_objeto, soltar_objeto e _configurar_joint continuam iguais) ...
 func tentar_pegar_objeto():
 	if raycast.is_colliding():
 		var corpo = raycast.get_collider()
 		if corpo is InteractableObject:
 			objeto_na_mao = corpo
-			add_collision_exception_with(objeto_na_mao)
-			hold_relative_transform = camera.global_transform.affine_inverse() * objeto_na_mao.global_transform
-			hand_body.global_transform = objeto_na_mao.global_transform
-			joint.node_a = hand_body.get_path()
-			joint.node_b = objeto_na_mao.get_path()
-			objeto_na_mao.ao_ser_pego() # Isso já vai atualizar a silhueta pra ficar grossa
+			
+			# Calcula a distância e rotação atuais para manter relativo
+			hold_distance = camera.global_position.distance_to(objeto_na_mao.global_position)
+			# Limita a distância máxima para não pegar coisas muito longe e elas ficarem longe
+			hold_distance = clamp(hold_distance, 1.0, 3.0) 
+			
+			# Guarda a rotação relativa
+			hold_relative_rotation = (camera.global_transform.basis.inverse() * objeto_na_mao.global_transform.basis).get_rotation_quaternion()
+			
+			# Manda o objeto congelar
+			objeto_na_mao.ao_ser_pego()
 
 func soltar_objeto(forca: float):
 	if objeto_na_mao:
-		remove_collision_exception_with(objeto_na_mao)
-		joint.node_a = NodePath("")
-		joint.node_b = NodePath("")
-		objeto_na_mao.ao_ser_solto() # Isso já vai tirar a silhueta grossa
+		# Primeiro descongela o objeto (volta a ter física)
+		objeto_na_mao.ao_ser_solto()
+		
+		# CASO 1: ARREMESSO FORTE (Botão Direito)
 		if forca > 0:
 			var direcao = -camera.global_transform.basis.z
 			objeto_na_mao.apply_central_impulse(direcao * forca)
+			objeto_na_mao.apply_torque_impulse(Vector3(randf(), randf(), randf()) * 2.0)
+		
+		# CASO 2: SOLTAR SUAVE (Botão Esquerdo)
+		else:
+			# AQUI ESTÁ A MÁGICA:
+			# Pegamos a velocidade que o Godot calculou e reduzimos drasticamente
+			objeto_na_mao.linear_velocity *= INERCIA_AO_SOLTAR
+			objeto_na_mao.angular_velocity *= INERCIA_AO_SOLTAR
+		
 		objeto_na_mao = null
-func _configurar_joint_travado():
-	# Eixo X
-	joint.set_flag_x(Generic6DOFJoint3D.FLAG_ENABLE_LINEAR_LIMIT, true)
-	joint.set_param_x(Generic6DOFJoint3D.PARAM_LINEAR_UPPER_LIMIT, 0)
-	joint.set_param_x(Generic6DOFJoint3D.PARAM_LINEAR_LOWER_LIMIT, 0)
-	
-	# Eixo Y
-	joint.set_flag_y(Generic6DOFJoint3D.FLAG_ENABLE_LINEAR_LIMIT, true)
-	joint.set_param_y(Generic6DOFJoint3D.PARAM_LINEAR_UPPER_LIMIT, 0)
-	joint.set_param_y(Generic6DOFJoint3D.PARAM_LINEAR_LOWER_LIMIT, 0)
-	
-	# Eixo Z
-	joint.set_flag_z(Generic6DOFJoint3D.FLAG_ENABLE_LINEAR_LIMIT, true)
-	joint.set_param_z(Generic6DOFJoint3D.PARAM_LINEAR_UPPER_LIMIT, 0)
-	joint.set_param_z(Generic6DOFJoint3D.PARAM_LINEAR_LOWER_LIMIT, 0)
-	
-	# Angular
-	joint.set_flag_x(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
-	joint.set_param_x(Generic6DOFJoint3D.PARAM_ANGULAR_UPPER_LIMIT, 0)
-	joint.set_param_x(Generic6DOFJoint3D.PARAM_ANGULAR_LOWER_LIMIT, 0)
-	
-	joint.set_flag_y(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
-	joint.set_param_y(Generic6DOFJoint3D.PARAM_ANGULAR_UPPER_LIMIT, 0)
-	joint.set_param_y(Generic6DOFJoint3D.PARAM_ANGULAR_LOWER_LIMIT, 0)
 
-	joint.set_flag_z(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
-	joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_UPPER_LIMIT, 0)
-	joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_LOWER_LIMIT, 0)
+func _processar_silhueta():
+	# (Mesmo código anterior)
+	var objeto_atual: InteractableObject = null
+	if raycast.is_colliding():
+		var colisor = raycast.get_collider()
+		if colisor is InteractableObject:
+			objeto_atual = colisor
+	if ultimo_objeto_focado and ultimo_objeto_focado != objeto_atual:
+		ultimo_objeto_focado.set_focado(false)
+	if objeto_atual and objeto_atual != ultimo_objeto_focado:
+		objeto_atual.set_focado(true)
+	ultimo_objeto_focado = objeto_atual

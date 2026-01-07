@@ -12,7 +12,7 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_8jjie")
 pode_ser_aberto = false
-modelo_fechado = NodePath("CollisionShape3D")
+modelo_fechado = NodePath("Latinha")
 shapes_fechados = [NodePath("CollisionShape3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

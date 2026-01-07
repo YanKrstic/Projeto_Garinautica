@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq1en0g0e2bi"]
 
 [ext_resource type="Script" path="res://Scripts/objeto_interativo.gd" id="1_qcj7a"]
-[ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="2_8vdu6"]
 [ext_resource type="PackedScene" uid="uid://b0nb61oylhng5" path="res://ModeloItens/SacoLixoAberto.glb" id="2_83tcb"]
+[ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="2_f1g55"]
 [ext_resource type="PackedScene" uid="uid://b8jasces3jqnc" path="res://ModeloItens/SacoLixoFechado.glb" id="3_yx6m5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ip20i"]
@@ -21,7 +21,8 @@ modelo_fechado = NodePath("SacoLixoFechado")
 modelo_aberto = NodePath("SacoLixoAberto")
 shapes_fechados = [NodePath("fe")]
 shapes_abertos = [NodePath("ab")]
-loot_dentro = Array[PackedScene]([ExtResource("2_8vdu6"), ExtResource("2_8vdu6"), ExtResource("2_8vdu6")])
+tabela_de_loot = Array[PackedScene]([ExtResource("2_f1g55")])
+qtd_maxima_loot = 4
 
 [node name="SacoLixoAberto" parent="." instance=ExtResource("2_83tcb")]
 transform = Transform3D(0.297, 0, 0, 0, 0.297, 0, 0, 0, 0.297, 0, 0, 0)
