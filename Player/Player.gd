@@ -106,6 +106,8 @@ func tentar_pegar_objeto():
 		if corpo is InteractableObject:
 			objeto_na_mao = corpo
 			
+			add_collision_exception_with(objeto_na_mao)
+			
 			# Calcula a distância e rotação atuais para manter relativo
 			hold_distance = camera.global_position.distance_to(objeto_na_mao.global_position)
 			# Limita a distância máxima para não pegar coisas muito longe e elas ficarem longe
@@ -121,6 +123,8 @@ func soltar_objeto(forca: float):
 	if objeto_na_mao:
 		# Primeiro descongela o objeto (volta a ter física)
 		objeto_na_mao.ao_ser_solto()
+		
+		remove_collision_exception_with(objeto_na_mao)
 		
 		# CASO 1: ARREMESSO FORTE (Botão Direito)
 		if forca > 0:
