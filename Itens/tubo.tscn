@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgu17ybgjkakp"]
+
+[ext_resource type="PackedScene" uid="uid://dd2xr71u070pd" path="res://ModeloItens/Tubo.glb" id="1_5ixhu"]
+
+[node name="Tubo" type="StaticBody3D"]
+
+[node name="TuboModelos" parent="." instance=ExtResource("1_5ixhu")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
