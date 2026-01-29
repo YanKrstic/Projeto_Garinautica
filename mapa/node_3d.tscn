@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dua73pywmhtul"]
+[gd_scene load_steps=17 format=3 uid="uid://dua73pywmhtul"]
 
 [ext_resource type="Texture2D" uid="uid://c3frc5aa6j1nv" path="res://Assets/cobre_enf.jpeg" id="5_b0hhb"]
-[ext_resource type="PackedScene" uid="uid://dd2xr71u070pd" path="res://ModeloItens/Tubo.glb" id="6_7vqhq"]
+[ext_resource type="Script" path="res://Scripts/spawner_lixo.gd" id="7_k86or"]
+[ext_resource type="PackedScene" uid="uid://umpjmjpyudj" path="res://Itens/Garrafa.tscn" id="8_tk3da"]
 [ext_resource type="PackedScene" uid="uid://coavd3dc6ynhr" path="res://Player/Player.tscn" id="9_6l010"]
+[ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="9_53jov"]
+[ext_resource type="PackedScene" uid="uid://bq1en0g0e2bi" path="res://Itens/saco_de_lixo.tscn" id="10_3wgij"]
+[ext_resource type="PackedScene" uid="uid://bgu17ybgjkakp" path="res://Itens/tubo.tscn" id="10_5frv6"]
 [ext_resource type="Texture2D" uid="uid://d2o7hoe62y2ed" path="res://Assets/007.JPG" id="10_8jdvu"]
 [ext_resource type="PackedScene" uid="uid://cicxv4n4faeob" path="res://Itens/lixo_teste.tscn" id="11_14jja"]
 [ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
@@ -51,26 +55,9 @@ light_color = Color(0, 0.592157, 0.309804, 1)
 light_energy = 1.47
 shadow_enabled = true
 
-[node name="LixoTeste" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.631, 2.42193, 0)
-
-[node name="LixoTeste2" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3376, 2, -3)
-
-[node name="LixoTeste3" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3376, 4, -4.00781)
-
-[node name="LixoTeste4" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3376, 4, 1.95414)
-
-[node name="LixoTeste5" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.21942, 4, -2.26736)
-
-[node name="LixoTeste6" parent="." instance=ExtResource("11_14jja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67352, 4, 0)
-
-[node name="Alavanca" parent="." instance=ExtResource("12_6pd0d")]
-transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 7, -0.0050393, 0)
+[node name="Alavanca" parent="." node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("12_6pd0d")]
+transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, -0.00222838, -0.875538)
+spawner_alvo = NodePath("../SpawnLixo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(11.835, 0, 0, 0, 11.835, 0, 0, 0, 11.835, 0, 0.536869, 0)
@@ -86,5 +73,19 @@ lod_bias = 0.001
 mesh = SubResource("PlaneMesh_miv3u")
 skeleton = NodePath("../..")
 
-[node name="Tubo" parent="." instance=ExtResource("6_7vqhq")]
-transform = Transform3D(-0.907189, -1.1555, -1.7697, -0.933069, -1.50904, 1.46362, -1.89642, 1.29523, 0.126446, 13.0905, 6.99578, -10.4996)
+[node name="SpawnLixo" type="Node3D" parent="." node_paths=PackedStringArray("mira_raycast")]
+transform = Transform3D(1, 0, 0, 0, 0.359736, -0.933054, 0, 0.933054, 0.359736, 10.1334, 7.08091, -11.1393)
+script = ExtResource("7_k86or")
+lista_de_lixos = Array[PackedScene]([ExtResource("8_tk3da"), ExtResource("9_53jov"), ExtResource("11_14jja"), ExtResource("10_3wgij")])
+quantidade_minima = 5
+quantidade_maxima = 9
+intervalo_entre_spawns = 0.05
+forca_expulsao = 14.0
+mira_raycast = NodePath("RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="SpawnLixo"]
+transform = Transform3D(0.796223, 0.0291757, 0.604299, -0.137735, -0.963866, 0.228015, 0.589116, -0.264784, -0.763434, 0, 0, 0)
+target_position = Vector3(0, -1, -2)
+
+[node name="Tubo" parent="." instance=ExtResource("10_5frv6")]
+transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 10.5103, 7.57057, -11.3197)

@@ -4,6 +4,9 @@ extends StaticBody3D
 @export_group("Referências")
 @export var mesh_cabo: Node3D 
 
+@export_group("Conexões")
+@export var spawner_alvo: Node3D
+
 @export_group("Animação")
 @export var angulo_desligado: float = 60.0
 @export var angulo_ligado: float = -60.0
@@ -83,3 +86,9 @@ func acionar():
 
 func funcao_do_spawn():
 	print("CLACK! Alavanca ativada.")
+	
+	# --- NOVO: CHAMA O SPAWNER ---
+	if spawner_alvo and spawner_alvo.has_method("spawnar_lote"):
+		spawner_alvo.spawnar_lote()
+	else:
+		print("ERRO: Nenhum spawner conectado na alavanca!")
