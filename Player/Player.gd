@@ -17,7 +17,7 @@ var hold_relative_rotation: Quaternion
 @onready var raycast = $CameraHolder/Camera3D/RayCast3D
 
 var objeto_na_mao: InteractableObject = null
-var ultimo_objeto_focado: InteractableObject = null
+var ultimo_objeto_focado = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -143,10 +143,10 @@ func soltar_objeto(forca: float):
 
 func _processar_silhueta():
 	# (Mesmo código anterior)
-	var objeto_atual: InteractableObject = null
+	var objeto_atual = null
 	if raycast.is_colliding():
 		var colisor = raycast.get_collider()
-		if colisor is InteractableObject:
+		if colisor.has_method("set_focado"):
 			objeto_atual = colisor
 	if ultimo_objeto_focado and ultimo_objeto_focado != objeto_atual:
 		ultimo_objeto_focado.set_focado(false)

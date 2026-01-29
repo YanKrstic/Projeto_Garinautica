@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://8gvlos15g7bt"]
+
+[ext_resource type="PackedScene" uid="uid://cfnxlah5ftxaq" path="res://ModeloItens/Alavanca.glb" id="1_apol5"]
+[ext_resource type="Script" path="res://Scripts/Alavanca.gd" id="1_sj286"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcivf"]
+size = Vector3(0.964823, 0.395609, 0.81628)
+
+[node name="Alavanca" type="StaticBody3D" node_paths=PackedStringArray("mesh_cabo")]
+script = ExtResource("1_sj286")
+mesh_cabo = NodePath("AlavancaModelo/Haste")
+
+[node name="AlavancaModelo" parent="." instance=ExtResource("1_apol5")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Haste" parent="AlavancaModelo" index="1"]
+transform = Transform3D(0.866025, -5.85622e-09, -0.5, -0.5, -2.18557e-08, -0.866025, -5.85622e-09, 1, -2.18557e-08, 0, 0.36338, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19778, 0)
+shape = SubResource("BoxShape3D_hcivf")
+
+[editable path="AlavancaModelo"]

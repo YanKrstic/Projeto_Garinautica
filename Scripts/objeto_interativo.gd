@@ -18,7 +18,6 @@ class_name InteractableObject
 @export var qtd_minima_loot: int = 1
 @export var qtd_maxima_loot: int = 3
 
-# VARIÁVEIS DE ESTADO
 var esta_segurado: bool = false
 var ja_foi_aberto: bool = false
 var esta_focado: bool = false

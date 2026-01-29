@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=3 uid="uid://dua73pywmhtul"]
+[gd_scene load_steps=210 format=3 uid="uid://dua73pywmhtul"]
 
 [ext_resource type="Texture2D" uid="uid://bcah3ivkll4oo" path="res://Assets/AssetsMap/prisongame_environment_concept_0.png" id="1_leu3w"]
 [ext_resource type="Texture2D" uid="uid://cigtkxyth585r" path="res://Assets/AssetsMap/prisongame_environment_concept_1.png" id="2_mbmp4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://coavd3dc6ynhr" path="res://Player/Player.tscn" id="9_6l010"]
 [ext_resource type="Texture2D" uid="uid://d2o7hoe62y2ed" path="res://Assets/007.JPG" id="10_8jdvu"]
 [ext_resource type="PackedScene" uid="uid://cicxv4n4faeob" path="res://Itens/lixo_teste.tscn" id="11_14jja"]
+[ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edm7m"]
 resource_name = "lambert25"
@@ -3753,3 +3754,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 0)
 
 [node name="LixoTeste6" parent="." instance=ExtResource("11_14jja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 0)
+
+[node name="Alavanca" parent="." instance=ExtResource("12_6pd0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.6523, 0)
