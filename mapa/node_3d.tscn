@@ -1,18 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dua73pywmhtul"]
+[gd_scene load_steps=18 format=3 uid="uid://dua73pywmhtul"]
 
-[ext_resource type="Texture2D" uid="uid://c3frc5aa6j1nv" path="res://Assets/cobre_enf.jpeg" id="5_b0hhb"]
+[ext_resource type="Texture2D" uid="uid://bwti4jl44u4p4" path="res://Assets/underwater-scene-deep-sea-sunbeam-260nw-544043314.webp" id="2_5ldo5"]
+[ext_resource type="Texture2D" uid="uid://7ldmopsihm3s" path="res://Assets/sand2.JPG" id="4_qpqfk"]
 [ext_resource type="Script" path="res://Scripts/spawner_lixo.gd" id="7_k86or"]
 [ext_resource type="PackedScene" uid="uid://umpjmjpyudj" path="res://Itens/Garrafa.tscn" id="8_tk3da"]
 [ext_resource type="PackedScene" uid="uid://coavd3dc6ynhr" path="res://Player/Player.tscn" id="9_6l010"]
 [ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="9_53jov"]
 [ext_resource type="PackedScene" uid="uid://bq1en0g0e2bi" path="res://Itens/saco_de_lixo.tscn" id="10_3wgij"]
 [ext_resource type="PackedScene" uid="uid://bgu17ybgjkakp" path="res://Itens/tubo.tscn" id="10_5frv6"]
-[ext_resource type="Texture2D" uid="uid://d2o7hoe62y2ed" path="res://Assets/007.JPG" id="10_8jdvu"]
 [ext_resource type="PackedScene" uid="uid://cicxv4n4faeob" path="res://Itens/lixo_teste.tscn" id="11_14jja"]
+[ext_resource type="PackedScene" uid="uid://bkxvvstyha10p" path="res://ObjetosCena/Pedra.tscn" id="11_mjl8b"]
 [ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5ifxw"]
-panorama = ExtResource("10_8jdvu")
+panorama = ExtResource("2_5ldo5")
 
 [sub_resource type="Sky" id="Sky_a8qsv"]
 sky_material = SubResource("PanoramaSkyMaterial_5ifxw")
@@ -25,11 +26,11 @@ ambient_light_sky_contribution = 0.31
 fog_density = 0.0471
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knip1"]
-size = Vector3(1.92712, 0.001, 1.98707)
+size = Vector3(1.927, 0, 1.987)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvvyk"]
-albedo_texture = ExtResource("5_b0hhb")
-uv1_scale = Vector3(4.815, 4.815, 4.815)
+albedo_texture = ExtResource("4_qpqfk")
+uv1_scale = Vector3(30, 30, 30)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_miv3u"]
@@ -42,45 +43,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90153, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_13x8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5716, 0)
-visible = false
-light_energy = 2.561
-shadow_enabled = true
-omni_range = 104.849
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.524417, -0.0105509, 0.851396, -0.780865, 0.392695, 0.48584, -0.339465, -0.919608, 0.197697, 0, 10.2677, 0)
-light_color = Color(0, 0.592157, 0.309804, 1)
+transform = Transform3D(0.524417, -0.0105508, 0.851396, -0.771429, 0.417347, 0.480333, -0.360395, -0.908686, 0.210725, 2.2217, 23.7465, 18.6548)
+light_color = Color(0.72549, 1, 1, 1)
 light_energy = 1.47
 shadow_enabled = true
 
 [node name="Alavanca" parent="." node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("12_6pd0d")]
-transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, -0.00222838, -0.875538)
+transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, 0.535849, -0.875538)
 spawner_alvo = NodePath("../SpawnLixo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(11.835, 0, 0, 0, 11.835, 0, 0, 0, 11.835, 0, 0.536869, 0)
+[node name="chao" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.536869, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0453628, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chao"]
 shape = SubResource("BoxShape3D_knip1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0453628, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="chao"]
 material_override = SubResource("StandardMaterial3D_pvvyk")
 lod_bias = 0.001
 mesh = SubResource("PlaneMesh_miv3u")
 skeleton = NodePath("../..")
 
 [node name="SpawnLixo" type="Node3D" parent="." node_paths=PackedStringArray("mira_raycast")]
-transform = Transform3D(1, 0, 0, 0, 0.359736, -0.933054, 0, 0.933054, 0.359736, 10.1334, 7.08091, -11.1393)
+transform = Transform3D(1, 0, 0, 0, 0.359736, -0.933054, 0, 0.933054, 0.359736, 7.0313, 7.61248, -13.5735)
 script = ExtResource("7_k86or")
 lista_de_lixos = Array[PackedScene]([ExtResource("8_tk3da"), ExtResource("9_53jov"), ExtResource("11_14jja"), ExtResource("10_3wgij")])
 quantidade_minima = 5
 quantidade_maxima = 9
 intervalo_entre_spawns = 0.05
-forca_expulsao = 14.0
+forca_expulsao = 16.0
 mira_raycast = NodePath("RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="SpawnLixo"]
@@ -88,4 +80,13 @@ transform = Transform3D(0.796223, 0.0291757, 0.604299, -0.137735, -0.963866, 0.2
 target_position = Vector3(0, -1, -2)
 
 [node name="Tubo" parent="." instance=ExtResource("10_5frv6")]
-transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 10.5103, 7.57057, -11.3197)
+transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 7.40814, 7.95233, -13.7538)
+
+[node name="Pedra1" parent="." instance=ExtResource("11_mjl8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0004, 0, 0)
+
+[node name="Pedra2" parent="." instance=ExtResource("11_mjl8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0974, 0, -7.15615)
+
+[node name="Pedra3" parent="." instance=ExtResource("11_mjl8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5381, 0, 6.70292)

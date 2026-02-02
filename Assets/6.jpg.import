@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nwnfh72rvctj"
-path.s3tc="res://.godot/imported/bolsonaro.png-27c1ed6694783c3aecbbf56fbf455cf4.s3tc.ctex"
+uid="uid://byxhogeqb65ou"
+path.s3tc="res://.godot/imported/6.jpg-847ce03b07360fbcc5dad73b289ca486.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/bolsonaro.png"
-dest_files=["res://.godot/imported/bolsonaro.png-27c1ed6694783c3aecbbf56fbf455cf4.s3tc.ctex"]
+source_file="res://Assets/6.jpg"
+dest_files=["res://.godot/imported/6.jpg-847ce03b07360fbcc5dad73b289ca486.s3tc.ctex"]
 
 [params]
 

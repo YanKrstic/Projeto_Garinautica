@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fuanog0nj3au"
-path.s3tc="res://.godot/imported/kiwi2.jpg-d44c7a9088bdc402a5d8739f4f421224.s3tc.ctex"
+uid="uid://cxjgxq4absp42"
+path.s3tc="res://.godot/imported/sand.webp-5e817c2aa47eaa132ad9a38bd94c5c93.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/kiwi2.jpg"
-dest_files=["res://.godot/imported/kiwi2.jpg-d44c7a9088bdc402a5d8739f4f421224.s3tc.ctex"]
+source_file="res://Assets/sand.webp"
+dest_files=["res://.godot/imported/sand.webp-5e817c2aa47eaa132ad9a38bd94c5c93.s3tc.ctex"]
 
 [params]
 
