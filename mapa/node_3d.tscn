@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bq1en0g0e2bi" path="res://Itens/saco_de_lixo.tscn" id="10_3wgij"]
 [ext_resource type="PackedScene" uid="uid://bgu17ybgjkakp" path="res://Itens/tubo.tscn" id="10_5frv6"]
 [ext_resource type="PackedScene" uid="uid://cicxv4n4faeob" path="res://Itens/lixo_teste.tscn" id="11_14jja"]
-[ext_resource type="PackedScene" uid="uid://bkxvvstyha10p" path="res://ObjetosCena/Pedra.tscn" id="11_mjl8b"]
 [ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
+[ext_resource type="PackedScene" uid="uid://bn7pl72m7qtmn" path="res://mapa/trajetoria_cenario.tscn" id="12_ovh4m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5ifxw"]
 panorama = ExtResource("2_5ldo5")
@@ -82,11 +82,33 @@ target_position = Vector3(0, -1, -2)
 [node name="Tubo" parent="." instance=ExtResource("10_5frv6")]
 transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 7.40814, 7.95233, -13.7538)
 
-[node name="Pedra1" parent="." instance=ExtResource("11_mjl8b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0004, 0, 0)
+[node name="TrajetoriaCenario" parent="." instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.9742, 0, 0)
 
-[node name="Pedra2" parent="." instance=ExtResource("11_mjl8b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0974, 0, -7.15615)
+[node name="PontoPartida" parent="TrajetoriaCenario" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
 
-[node name="Pedra3" parent="." instance=ExtResource("11_mjl8b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5381, 0, 6.70292)
+[node name="PontoFinal" parent="TrajetoriaCenario" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario2" parent="." instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.93, 0, 0)
+
+[node name="PontoPartida" parent="TrajetoriaCenario2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="TrajetoriaCenario2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario3" parent="." instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9837, 0, 0)
+
+[node name="PontoPartida" parent="TrajetoriaCenario3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="TrajetoriaCenario3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[editable path="TrajetoriaCenario"]
+[editable path="TrajetoriaCenario2"]
+[editable path="TrajetoriaCenario3"]
