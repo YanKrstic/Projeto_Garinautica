@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccoumlkv2odmg"
-path.s3tc="res://.godot/imported/peixesss.jpg-b0c87a9e4d6f257d0434ee9ea9a0913f.s3tc.ctex"
+uid="uid://4q46vrl2kskh"
+path.s3tc="res://.godot/imported/prisongame_environment_concept_2.jpg-aeb885283a3aecb8082b1ee980842d4a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "2288f443e7c4894b9fa0eec12b55a754"
+}
 
 [deps]
 
-source_file="res://Assets/peixesss.jpg"
-dest_files=["res://.godot/imported/peixesss.jpg-b0c87a9e4d6f257d0434ee9ea9a0913f.s3tc.ctex"]
+source_file="res://Assets/AssetsMap/prisongame_environment_concept_2.jpg"
+dest_files=["res://.godot/imported/prisongame_environment_concept_2.jpg-aeb885283a3aecb8082b1ee980842d4a.s3tc.ctex"]
 
 [params]
 
