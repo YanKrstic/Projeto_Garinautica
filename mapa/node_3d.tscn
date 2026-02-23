@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dua73pywmhtul"]
+[gd_scene format=3 uid="uid://dua73pywmhtul"]
 
-[ext_resource type="Texture2D" uid="uid://bwti4jl44u4p4" path="res://Assets/underwater-scene-deep-sea-sunbeam-260nw-544043314.webp" id="2_5ldo5"]
 [ext_resource type="Texture2D" uid="uid://7ldmopsihm3s" path="res://Assets/sand2.JPG" id="4_qpqfk"]
-[ext_resource type="Script" path="res://Scripts/spawner_lixo.gd" id="7_k86or"]
+[ext_resource type="Script" uid="uid://b3h1cd07sdudh" path="res://mapa/movimemnto_chao.gd" id="5_aswyl"]
+[ext_resource type="Script" uid="uid://beuw2qjan8bmh" path="res://Scripts/spawner_lixo.gd" id="7_k86or"]
 [ext_resource type="PackedScene" uid="uid://umpjmjpyudj" path="res://Itens/Garrafa.tscn" id="8_tk3da"]
 [ext_resource type="PackedScene" uid="uid://coavd3dc6ynhr" path="res://Player/Player.tscn" id="9_6l010"]
 [ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="9_53jov"]
@@ -10,63 +10,147 @@
 [ext_resource type="PackedScene" uid="uid://bgu17ybgjkakp" path="res://Itens/tubo.tscn" id="10_5frv6"]
 [ext_resource type="PackedScene" uid="uid://cicxv4n4faeob" path="res://Itens/lixo_teste.tscn" id="11_14jja"]
 [ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
+[ext_resource type="Texture2D" uid="uid://clmcvxq8bogjo" path="res://Assets/iron_tex2.jpg" id="12_aswyl"]
 [ext_resource type="PackedScene" uid="uid://bn7pl72m7qtmn" path="res://mapa/trajetoria_cenario.tscn" id="12_ovh4m"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5ifxw"]
-panorama = ExtResource("2_5ldo5")
-
-[sub_resource type="Sky" id="Sky_a8qsv"]
-sky_material = SubResource("PanoramaSkyMaterial_5ifxw")
-
 [sub_resource type="Environment" id="Environment_13x8n"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0, 0.26854542, 0.39789888, 1)
 background_energy_multiplier = 2.68
-sky = SubResource("Sky_a8qsv")
+ambient_light_source = 2
+ambient_light_color = Color(1.8289685e-06, 0.51636827, 0.7015185, 1)
 ambient_light_sky_contribution = 0.31
+ambient_light_energy = 2.0
 fog_density = 0.0471
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(3.898591e-06, 0.46959215, 0.5917977, 1)
+volumetric_fog_emission = Color(0, 0.07532776, 0.13694361, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_gi_inject = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_knip1"]
-size = Vector3(1.927, 0, 1.987)
+size = Vector3(10.284485, 0, 1.987)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvvyk"]
 albedo_texture = ExtResource("4_qpqfk")
-uv1_scale = Vector3(30, 30, 30)
+uv1_scale = Vector3(17, 17, 17)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_miv3u"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i4jq"]
+albedo_texture = ExtResource("12_aswyl")
+uv1_scale = Vector3(7.725, 7.725, 7.725)
+texture_filter = 0
 
-[node name="Player" parent="." instance=ExtResource("9_6l010")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90153, 0)
+[sub_resource type="BoxMesh" id="BoxMesh_f551x"]
+material = SubResource("StandardMaterial3D_0i4jq")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[sub_resource type="BoxShape3D" id="BoxShape3D_aswyl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aswyl"]
+albedo_color = Color(0, 0.70547247, 0.8145474, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0i4jq"]
+material = SubResource("StandardMaterial3D_aswyl")
+
+[node name="Node3D" type="Node3D" unique_id=2145514500]
+
+[node name="Player" parent="." unique_id=597537831 instance=ExtResource("9_6l010")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.58744, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1233563199]
 environment = SubResource("Environment_13x8n")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.524417, -0.0105508, 0.851396, -0.771429, 0.417347, 0.480333, -0.360395, -0.908686, 0.210725, 2.2217, 23.7465, 18.6548)
-light_color = Color(0.72549, 1, 1, 1)
-light_energy = 1.47
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1016497884]
+transform = Transform3D(0.8993954, 0.4237012, 0.10754374, -0.05903715, -0.12603083, 0.99026805, 0.4331317, -0.8969913, -0.08833741, 2.2217, 23.7465, 18.6548)
+light_color = Color(0.76550764, 0.9999998, 0.9995577, 1)
+light_energy = 1.5
 shadow_enabled = true
 
-[node name="Alavanca" parent="." node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("12_6pd0d")]
-transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, 0.535849, -0.875538)
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=324463677]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.15778494, 24.905985, -5.0343456)
+light_energy = 10.904
+light_indirect_energy = 1.948
+spot_range = 117.78102
+
+[node name="Trajetos" type="Node" parent="." unique_id=588942625]
+
+[node name="TrajetoriaCenario" parent="Trajetos" unique_id=520312165 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.514145, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario2" parent="Trajetos" unique_id=1618496068 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.93356, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario2" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario2" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario3" parent="Trajetos" unique_id=1385273963 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.86332, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario3" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario3" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario4" parent="Trajetos" unique_id=1551280624 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.89569, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario4" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario4" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario5" parent="Trajetos" unique_id=1257975549 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.47627, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario5" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario5" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="TrajetoriaCenario6" parent="Trajetos" unique_id=1012171878 instance=ExtResource("12_ovh4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.546516, 0, 0)
+
+[node name="PontoPartida" parent="Trajetos/TrajetoriaCenario6" index="0" unique_id=654419662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+
+[node name="PontoFinal" parent="Trajetos/TrajetoriaCenario6" index="1" unique_id=1157807572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+
+[node name="Alavanca" parent="." unique_id=1510914112 node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("12_6pd0d")]
+transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, 6.040788, -0.875538)
 spawner_alvo = NodePath("../SpawnLixo")
 
-[node name="chao" type="StaticBody3D" parent="."]
+[node name="ChaoCenario" type="StaticBody3D" parent="." unique_id=1418571138]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.536869, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="chao"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaoCenario" unique_id=712345524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.6571665, 0.2112732, 0, 0)
 shape = SubResource("BoxShape3D_knip1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="chao"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChaoCenario" unique_id=1888603850]
+transform = Transform3D(4.74684, 0, 0, 0, 1, 0, 0, 0, 4.6450424, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_pvvyk")
 lod_bias = 0.001
 mesh = SubResource("PlaneMesh_miv3u")
 skeleton = NodePath("../..")
+script = ExtResource("5_aswyl")
 
-[node name="SpawnLixo" type="Node3D" parent="." node_paths=PackedStringArray("mira_raycast")]
-transform = Transform3D(1, 0, 0, 0, 0.359736, -0.933054, 0, 0.933054, 0.359736, 7.0313, 7.61248, -13.5735)
+[node name="SpawnLixo" type="Node3D" parent="." unique_id=1777196777 node_paths=PackedStringArray("mira_raycast")]
+transform = Transform3D(1, 0, 0, 0, 0.359736, -0.933054, 0, 0.933054, 0.359736, 7.0313, 12.40532, -13.5735)
 script = ExtResource("7_k86or")
 lista_de_lixos = Array[PackedScene]([ExtResource("8_tk3da"), ExtResource("9_53jov"), ExtResource("11_14jja"), ExtResource("10_3wgij")])
 quantidade_minima = 5
@@ -75,40 +159,34 @@ intervalo_entre_spawns = 0.05
 forca_expulsao = 16.0
 mira_raycast = NodePath("RayCast3D")
 
-[node name="RayCast3D" type="RayCast3D" parent="SpawnLixo"]
+[node name="RayCast3D" type="RayCast3D" parent="SpawnLixo" unique_id=163365595]
 transform = Transform3D(0.796223, 0.0291757, 0.604299, -0.137735, -0.963866, 0.228015, 0.589116, -0.264784, -0.763434, 0, 0, 0)
 target_position = Vector3(0, -1, -2)
 
-[node name="Tubo" parent="." instance=ExtResource("10_5frv6")]
-transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 7.40814, 7.95233, -13.7538)
+[node name="Tubo" parent="." unique_id=874621620 instance=ExtResource("10_5frv6")]
+transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 7.40814, 12.745171, -13.7538)
 
-[node name="TrajetoriaCenario" parent="." instance=ExtResource("12_ovh4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.9742, 0, 0)
+[node name="ChaoSubmarino" type="StaticBody3D" parent="." unique_id=726841307]
+transform = Transform3D(37.794662, 0, 0, 0, 1, 0, 0, 0, 49.001633, 0, 4.847377, -7.357499)
 
-[node name="PontoPartida" parent="TrajetoriaCenario" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChaoSubmarino" unique_id=1539048113]
+mesh = SubResource("BoxMesh_f551x")
 
-[node name="PontoFinal" parent="TrajetoriaCenario" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaoSubmarino" unique_id=305025755]
+shape = SubResource("BoxShape3D_aswyl")
 
-[node name="TrajetoriaCenario2" parent="." instance=ExtResource("12_ovh4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.93, 0, 0)
+[node name="mesinha" type="StaticBody3D" parent="." unique_id=1057122829]
+transform = Transform3D(0.9637187, 0, -0.8755325, 0, 1, 0, 0.7610991, 0, 1.1086165, 6.9413967, 5.5840783, -0.88602746)
 
-[node name="PontoPartida" parent="TrajetoriaCenario2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesinha" unique_id=1667270845]
+mesh = SubResource("BoxMesh_0i4jq")
 
-[node name="PontoFinal" parent="TrajetoriaCenario2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesinha" unique_id=1791261681]
+shape = SubResource("BoxShape3D_aswyl")
 
-[node name="TrajetoriaCenario3" parent="." instance=ExtResource("12_ovh4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9837, 0, 0)
-
-[node name="PontoPartida" parent="TrajetoriaCenario3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
-
-[node name="PontoFinal" parent="TrajetoriaCenario3" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
-
-[editable path="TrajetoriaCenario"]
-[editable path="TrajetoriaCenario2"]
-[editable path="TrajetoriaCenario3"]
+[editable path="Trajetos/TrajetoriaCenario"]
+[editable path="Trajetos/TrajetoriaCenario2"]
+[editable path="Trajetos/TrajetoriaCenario3"]
+[editable path="Trajetos/TrajetoriaCenario4"]
+[editable path="Trajetos/TrajetoriaCenario5"]
+[editable path="Trajetos/TrajetoriaCenario6"]

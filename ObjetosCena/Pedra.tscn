@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkxvvstyha10p"]
-
-[ext_resource type="PackedScene" uid="uid://ov6le6l7h0m" path="res://ModeloItens/Pedra1.glb" id="1_vhi22"]
-
-[node name="Pedra1" type="StaticBody3D"]
-
-[node name="Pedra1MOdelo" parent="." instance=ExtResource("1_vhi22")]

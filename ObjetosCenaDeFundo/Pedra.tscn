@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bkxvvstyha10p"]
+
+[ext_resource type="PackedScene" uid="uid://ov6le6l7h0m" path="res://ModeloItens/Pedra1.glb" id="1_civfo"]
+
+[node name="Pedra1" type="StaticBody3D" unique_id=1585452712]
+
+[node name="Pedra1MOdelo" parent="." unique_id=1276967439 instance=ExtResource("1_civfo")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)

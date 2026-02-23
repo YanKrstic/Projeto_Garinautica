@@ -7,7 +7,7 @@ extends Node3D
 @export var objs: Array[PackedScene] = []
 
 @export_group("Configuracoes")
-@export var velocidade: float = 3
+@export var velocidade: float = 4
 @export var distancia: int = 10
 
 var objs_em_cena: Array[Node3D] = []
@@ -16,7 +16,7 @@ var objs_em_cena: Array[Node3D] = []
 func _ready():
 	randomize() 
 	$Timer.timeout.connect(spawn_obj)
-	$Timer.wait_time = randi_range(4, 18)
+	$Timer.wait_time = 1 #randi_range(4, 18)
 	$Timer.start()
 
 func _process(delta):
@@ -40,10 +40,11 @@ func spawn_obj():
 	var obj_cena = objs.pick_random()
 	var obj = obj_cena.instantiate()
 	obj.position = ponto_partida.global_position
+	obj.rotation.y = randi_range(-360, 360)
 	
 	get_tree().current_scene.add_child(obj)
 	objs_em_cena.append(obj)
-	$Timer.wait_time = randi_range(4, 18)
+	$Timer.wait_time = randi_range(3, 9)
 	$Timer.start()
 	
 	

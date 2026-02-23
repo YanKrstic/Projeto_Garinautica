@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn7pl72m7qtmn"]
+[gd_scene format=3 uid="uid://bn7pl72m7qtmn"]
 
-[ext_resource type="Script" path="res://mapa/trajetoria_cenario.gd" id="1_d02in"]
-[ext_resource type="PackedScene" uid="uid://bkxvvstyha10p" path="res://ObjetosCena/Pedra.tscn" id="2_3kaiy"]
+[ext_resource type="Script" uid="uid://dedsjcjfsmugh" path="res://mapa/trajetoria_cenario.gd" id="1_d02in"]
+[ext_resource type="PackedScene" uid="uid://bkxvvstyha10p" path="res://ObjetosCenaDeFundo/Pedra.tscn" id="2_3kaiy"]
+[ext_resource type="PackedScene" uid="uid://diugw00kanbjs" path="res://ObjetosCenaDeFundo/pedra_2.tscn" id="3_ljoh7"]
 
-[node name="TrajetoriaCenario" type="Node3D"]
+[node name="TrajetoriaCenario" type="Node3D" unique_id=1551280624]
 script = ExtResource("1_d02in")
-objs = Array[PackedScene]([ExtResource("2_3kaiy")])
+objs = Array[PackedScene]([ExtResource("2_3kaiy"), ExtResource("3_ljoh7")])
 
-[node name="PontoPartida" type="Node3D" parent="."]
+[node name="PontoPartida" type="Node3D" parent="." unique_id=654419662]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="PontoFinal" type="Node3D" parent="."]
+[node name="PontoFinal" type="Node3D" parent="." unique_id=1157807572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1139157834]
 autostart = true
