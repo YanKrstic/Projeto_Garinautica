@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://clmcvxq8bogjo" path="res://Assets/iron_tex2.jpg" id="12_aswyl"]
 [ext_resource type="PackedScene" uid="uid://bn7pl72m7qtmn" path="res://mapa/trajetoria_cenario.tscn" id="12_ovh4m"]
 [ext_resource type="PackedScene" uid="uid://bt5g4dd3ysj8b" path="res://ObjetosMecanica/scanner.tscn" id="13_0i4jq"]
+[ext_resource type="PackedScene" uid="uid://bl72dscuq0126" path="res://ModeloItens/LupaTeste.glb" id="14_b8ukr"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -66,7 +67,7 @@ environment = SubResource("Environment_13x8n")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1016497884]
 transform = Transform3D(0.8993954, 0.4237012, 0.10754374, -0.05903715, -0.12603083, 0.99026805, 0.4331317, -0.8969913, -0.08833741, 2.2217, 23.7465, 18.6548)
 light_color = Color(0.76550764, 0.9999998, 0.9995577, 1)
-light_energy = 1.5
+light_energy = 2.266
 shadow_enabled = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=324463677]
@@ -187,6 +188,9 @@ shape = SubResource("BoxShape3D_aswyl")
 
 [node name="Scanner" parent="." unique_id=1407467961 instance=ExtResource("13_0i4jq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.381375, 6.1157207, 4.8086576)
+
+[node name="LupaTeste" parent="." unique_id=890995208 instance=ExtResource("14_b8ukr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.826332, 3.6488385, -9.128784)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

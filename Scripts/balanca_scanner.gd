@@ -24,8 +24,10 @@ func atualizar_monitor():
 		return
 		
 	var soma_peso_total = 0
+	
+	# MUDANÇA 1: Sem acento aqui
 	var soma_materiais = {
-		"Plástico": 0,
+		"Plastico": 0, 
 		"Metal": 0,
 		"Papel": 0,
 		"Vidro": 0
@@ -35,22 +37,19 @@ func atualizar_monitor():
 	for item in itens_na_balanca:
 		soma_peso_total += item.peso_total
 		for mat in item.pesos_absolutos_materiais.keys():
-			# Proteção caso o material exista na caixa mas não na lista base
 			if soma_materiais.has(mat):
 				soma_materiais[mat] += item.pesos_absolutos_materiais[mat]
 			
-	# --- 1. ATUALIZA O MONITOR DE PESO ---
 	monitor_peso.text = "Peso....... " + str(soma_peso_total)
 	
-	# --- 2. ATUALIZA O MONITOR DE MATERIAIS ---
-	var texto_mat = "" # Removido o "COMPOSIÇÃO:\n\n"
+	var texto_mat = "" 
 	
-	var ordem_materiais = ["Plástico", "Metal", "Papel", "Vidro"]
+	# MUDANÇA 2: Sem acento aqui também
+	var ordem_materiais = ["Plastico", "Metal", "Papel", "Vidro"] 
 	
 	for mat in ordem_materiais:
 		var percentagem = 0
 		if soma_peso_total > 0:
-			# MUDANÇA AQUI: Usando roundi() para remover as casas decimais
 			percentagem = roundi((float(soma_materiais[mat]) / float(soma_peso_total)) * 100.0)
 		
 		var linha_formatada = mat.rpad(12, ".") + " " + str(percentagem) + "%\n"

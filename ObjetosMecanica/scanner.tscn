@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt5g4dd3ysj8b"]
 
 [ext_resource type="Script" uid="uid://cymrb8jbjbd7" path="res://Scripts/balanca_scanner.gd" id="1_gjgfm"]
+[ext_resource type="FontFile" uid="uid://cin88y3h08dkk" path="res://Fonts/digital_7/digital-7.ttf" id="2_0jeek"]
 [ext_resource type="PackedScene" uid="uid://rtxdhdes5xt0" path="res://ModeloItens/CaixaPapelaoFechada.glb" id="2_kq8xl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kq8xl"]
@@ -19,13 +20,21 @@ shape = SubResource("BoxShape3D_kq8xl")
 [node name="MonitorPeso" type="Label3D" parent="." unique_id=2005861920]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.711598, 2.3088574, 2.1156266)
 pixel_size = 0.0101
+modulate = Color(0, 0.79607844, 0.36078432, 1)
+outline_modulate = Color(1, 1, 1, 1)
 text = "oi"
+font = ExtResource("2_0jeek")
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="MonitorMateriais" type="Label3D" parent="." unique_id=81783819]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.9690595, 2.3088574, 2.1156266)
 pixel_size = 0.0101
+modulate = Color(0, 0.79437906, 0.3615608, 1)
+outline_modulate = Color(1, 1, 1, 1)
 text = "oi"
+font = ExtResource("2_0jeek")
+outline_size = 0
 horizontal_alignment = 0
 
 [node name="CaixaPapelaoFechada" parent="." unique_id=1096470051 instance=ExtResource("2_kq8xl")]

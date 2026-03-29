@@ -14,6 +14,8 @@ pode_ser_aberto = false
 modelo_fechado = NodePath("MeshInstance3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 shapes_abertos = [null, null, null, null, null, null, null, null, null]
+peso_plastico = 2
+peso_metal = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1792965525]
 transform = Transform3D(0.09, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

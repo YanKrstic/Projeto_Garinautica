@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq1en0g0e2bi"]
+[gd_scene format=3 uid="uid://bq1en0g0e2bi"]
 
-[ext_resource type="Script" path="res://Scripts/objeto_interativo.gd" id="1_qcj7a"]
+[ext_resource type="Script" uid="uid://ds6pq8l1bceat" path="res://Scripts/objeto_interativo.gd" id="1_qcj7a"]
 [ext_resource type="PackedScene" uid="uid://b0nb61oylhng5" path="res://ModeloItens/SacoLixoAberto.glb" id="2_83tcb"]
 [ext_resource type="PackedScene" uid="uid://b712eqftul3m8" path="res://Itens/Latinha.tscn" id="2_f1g55"]
 [ext_resource type="PackedScene" uid="uid://b8jasces3jqnc" path="res://ModeloItens/SacoLixoFechado.glb" id="3_yx6m5"]
@@ -13,7 +13,7 @@ radius = 1.05912
 radius = 0.977129
 height = 2.97971
 
-[node name="SacoDeLixo" type="RigidBody3D" node_paths=PackedStringArray("modelo_fechado", "modelo_aberto", "shapes_fechados", "shapes_abertos")]
+[node name="SacoDeLixo" type="RigidBody3D" unique_id=831418112 node_paths=PackedStringArray("modelo_fechado", "modelo_aberto", "shapes_fechados", "shapes_abertos")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_qcj7a")
@@ -23,19 +23,20 @@ shapes_fechados = [NodePath("fe")]
 shapes_abertos = [NodePath("ab")]
 tabela_de_loot = Array[PackedScene]([ExtResource("2_f1g55")])
 qtd_maxima_loot = 4
+peso_plastico = 2
 
-[node name="SacoLixoAberto" parent="." instance=ExtResource("2_83tcb")]
+[node name="SacoLixoAberto" parent="." unique_id=354531300 instance=ExtResource("2_83tcb")]
 transform = Transform3D(0.297, 0, 0, 0, 0.297, 0, 0, 0, 0.297, 0, 0, 0)
 visible = false
 
-[node name="SacoLixoFechado" parent="." instance=ExtResource("3_yx6m5")]
+[node name="SacoLixoFechado" parent="." unique_id=1450882180 instance=ExtResource("3_yx6m5")]
 transform = Transform3D(0.297, 0, 0, 0, 0.297, 0, 0, 0, 0.297, 0, 0, 0)
 
-[node name="ab" type="CollisionShape3D" parent="."]
+[node name="ab" type="CollisionShape3D" parent="." unique_id=1591556150]
 transform = Transform3D(0.297, 0, 0, 0, 0.297, 0, 0, 0, 0.297, 0, 0, 0)
 visible = false
 shape = SubResource("CylinderShape3D_ip20i")
 
-[node name="fe" type="CollisionShape3D" parent="."]
+[node name="fe" type="CollisionShape3D" parent="." unique_id=444738455]
 transform = Transform3D(0.297, 0, 0, 0, 0.297, 0, 0, 0, 0.297, 0, 0.122617, 0)
 shape = SubResource("CapsuleShape3D_a8wj4")

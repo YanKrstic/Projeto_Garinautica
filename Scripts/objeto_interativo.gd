@@ -24,7 +24,6 @@ class_name InteractableObject
 @export var peso_papel: int = 0
 @export var peso_vidro: int = 0
 
-# Variáveis internas que a balança vai ler
 var peso_total: int = 0
 var pesos_absolutos_materiais: Dictionary = {}
 
@@ -41,19 +40,12 @@ func _ready():
 	material_outline.albedo_color = Color.WHITE 
 	material_outline.grow = true 
 	
-	loot_dentro = loot_dentro.duplicate()
-	
+	# O sorteio foi removido daqui e passou para a triagem!
 	alternar_visual(false)
 	alternar_lista_colisores(shapes_fechados, true)
 	alternar_lista_colisores(shapes_abertos, false)
 	
-	if loot_dentro.size() == 0 and tabela_de_loot.size() > 0:
-		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
-		for i in range(qtd):
-			loot_dentro.append(tabela_de_loot.pick_random())
-	
 	calcular_relatorio_triagem()
-# --- FUNÇÕES DE INTERAÇÃO ---
 
 func interagir_abrir():
 	# TRAVA DE SEGURANÇA:
@@ -147,29 +139,42 @@ func spawnar_loot():
 	loot_dentro.clear()
 	
 func calcular_relatorio_triagem():
+	# 1. MÁGICA DA RECURSIVIDADE: Garante o sorteio mesmo nos clones!
+	# Se não estiver na árvore (é um clone), duplica a lista para não sujar o original
+	if not is_inside_tree():
+		loot_dentro = loot_dentro.duplicate()
+		
+	# Sorteia os itens se a caixa estiver fechada e tiver tabela
+	if loot_dentro.is_empty() and not tabela_de_loot.is_empty():
+		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
+		for i in range(qtd):
+			loot_dentro.append(tabela_de_loot.pick_random())
+
 	pesos_absolutos_materiais.clear()
 	
-	# 1. Registra a composição base deste próprio objeto
-	pesos_absolutos_materiais["Plástico"] = peso_plastico
+	# 2. RESOLVIDO O ERRO DO ACENTO: Todas as chaves agora são sem acento
+	pesos_absolutos_materiais["Plastico"] = peso_plastico
 	pesos_absolutos_materiais["Metal"] = peso_metal
 	pesos_absolutos_materiais["Papel"] = peso_papel
 	pesos_absolutos_materiais["Vidro"] = peso_vidro
 	
 	peso_total = peso_plastico + peso_metal + peso_papel + peso_vidro
 	
-	# 2. Se houver itens dentro da caixa, simula eles para somar ao relatório
+	# 3. Lê os filhos, os netos, etc...
 	for cena_item in loot_dentro:
 		if cena_item:
 			var temp_item = cena_item.instantiate()
 			if temp_item is InteractableObject:
-				# Pede para o clone calcular a si mesmo primeiro
+				
+				# O clone chama esta mesma função para ler o que tem dentro dele!
 				temp_item.calcular_relatorio_triagem()
 				
-				# Soma o peso total
 				peso_total += temp_item.peso_total
 				
-				# Soma as composições misturadas
 				for mat in temp_item.pesos_absolutos_materiais.keys():
-					pesos_absolutos_materiais[mat] += temp_item.pesos_absolutos_materiais[mat]
-					
+					if pesos_absolutos_materiais.has(mat):
+						pesos_absolutos_materiais[mat] += temp_item.pesos_absolutos_materiais[mat]
+					else:
+						pesos_absolutos_materiais[mat] = temp_item.pesos_absolutos_materiais[mat]
+						
 			temp_item.queue_free()
