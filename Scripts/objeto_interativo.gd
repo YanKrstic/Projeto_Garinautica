@@ -40,12 +40,28 @@ func _ready():
 	material_outline.albedo_color = Color.WHITE 
 	material_outline.grow = true 
 	
-	# O sorteio foi removido daqui e passou para a triagem!
 	alternar_visual(false)
 	alternar_lista_colisores(shapes_fechados, true)
 	alternar_lista_colisores(shapes_abertos, false)
 	
-	calcular_relatorio_triagem()
+	# 1. Sorteia e CRIA FISICAMENTE os itens escondidos logo no início
+	if loot_dentro.is_empty() and not tabela_de_loot.is_empty():
+		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
+		for i in range(qtd):
+			loot_dentro.append(tabela_de_loot.pick_random())
+
+	for cena in loot_dentro:
+		if cena:
+			var novo_item = cena.instantiate()
+			add_child(novo_item) # Adiciona como filho escondido da caixa/saco
+			novo_item.process_mode = Node.PROCESS_MODE_DISABLED # Congela a física do item
+			novo_item.visible = false # Deixa-o invisível
+			
+	# Limpa a lista de projetos, pois agora os itens já são filhos reais na cena
+	loot_dentro.clear() 
+	
+	# Pede para calcular o peso apenas depois de todos os filhos nascerem
+	call_deferred("calcular_relatorio_triagem")
 
 func interagir_abrir():
 	# TRAVA DE SEGURANÇA:
@@ -127,32 +143,27 @@ func alternar_lista_colisores(lista: Array[CollisionShape3D], ativar: bool):
 		if shape: shape.set_deferred("disabled", !ativar)
 
 func spawnar_loot():
-	if loot_dentro.is_empty(): return
-	for item in loot_dentro:
-		if item:
-			var novo = item.instantiate()
-			get_parent().add_child(novo)
+	# 3. Solta os filhos que estavam guardados
+	for filho in get_children():
+		if filho is InteractableObject:
+			var item_escondido = filho
+			
+			# Tira a subordinação da caixa e atira para o mundo principal
+			remove_child(item_escondido)
+			get_parent().add_child(item_escondido)
+			
+			# Acorda o item (liga a física e torna-o visível)
+			item_escondido.process_mode = Node.PROCESS_MODE_INHERIT
+			item_escondido.visible = true
+			
+			# Posição de saída e empurrão
 			var offset = Vector3(0, 0, 1.0) if esta_segurado else Vector3(0, 0.5, 0)
-			novo.global_position = global_position + offset
-			if novo is RigidBody3D:
-				novo.apply_impulse(Vector3(randf_range(-1,1), 2, randf_range(-1,1)))
-	loot_dentro.clear()
+			item_escondido.global_position = global_position + offset
+			item_escondido.apply_impulse(Vector3(randf_range(-1,1), 2, randf_range(-1,1)))
 	
 func calcular_relatorio_triagem():
-	# 1. MÁGICA DA RECURSIVIDADE: Garante o sorteio mesmo nos clones!
-	# Se não estiver na árvore (é um clone), duplica a lista para não sujar o original
-	if not is_inside_tree():
-		loot_dentro = loot_dentro.duplicate()
-		
-	# Sorteia os itens se a caixa estiver fechada e tiver tabela
-	if loot_dentro.is_empty() and not tabela_de_loot.is_empty():
-		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
-		for i in range(qtd):
-			loot_dentro.append(tabela_de_loot.pick_random())
-
 	pesos_absolutos_materiais.clear()
 	
-	# 2. RESOLVIDO O ERRO DO ACENTO: Todas as chaves agora são sem acento
 	pesos_absolutos_materiais["Plastico"] = peso_plastico
 	pesos_absolutos_materiais["Metal"] = peso_metal
 	pesos_absolutos_materiais["Papel"] = peso_papel
@@ -160,21 +171,20 @@ func calcular_relatorio_triagem():
 	
 	peso_total = peso_plastico + peso_metal + peso_papel + peso_vidro
 	
-	# 3. Lê os filhos, os netos, etc...
-	for cena_item in loot_dentro:
-		if cena_item:
-			var temp_item = cena_item.instantiate()
-			if temp_item is InteractableObject:
-				
-				# O clone chama esta mesma função para ler o que tem dentro dele!
-				temp_item.calcular_relatorio_triagem()
-				
-				peso_total += temp_item.peso_total
-				
-				for mat in temp_item.pesos_absolutos_materiais.keys():
-					if pesos_absolutos_materiais.has(mat):
-						pesos_absolutos_materiais[mat] += temp_item.pesos_absolutos_materiais[mat]
-					else:
-						pesos_absolutos_materiais[mat] = temp_item.pesos_absolutos_materiais[mat]
-						
-			temp_item.queue_free()
+	# Se a caixa já abriu, já não tem nada dentro, por isso para por aqui
+	if ja_foi_aberto:
+		return
+		
+	# 2. Varre os filhos adormecidos e soma o peso deles
+	for filho in get_children():
+		# Garante que é um lixo e não apenas um modelo 3D
+		if filho is InteractableObject: 
+			filho.calcular_relatorio_triagem() # Pede para o filho atualizar-se
+			
+			peso_total += filho.peso_total
+			
+			for mat in filho.pesos_absolutos_materiais.keys():
+				if pesos_absolutos_materiais.has(mat):
+					pesos_absolutos_materiais[mat] += filho.pesos_absolutos_materiais[mat]
+				else:
+					pesos_absolutos_materiais[mat] = filho.pesos_absolutos_materiais[mat]
