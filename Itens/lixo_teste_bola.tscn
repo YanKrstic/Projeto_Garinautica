@@ -1,12 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlw1sgxrlr72g"]
+[gd_scene format=3 uid="uid://dlw1sgxrlr72g"]
 
-[ext_resource type="Script" path="res://Scripts/objeto_interativo.gd" id="1_hbunl"]
+[ext_resource type="Script" uid="uid://ds6pq8l1bceat" path="res://Scripts/objeto_interativo.gd" id="1_hbunl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k86d7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_f167a"]
 
-[node name="LixoTesteBola" type="RigidBody3D" node_paths=PackedStringArray("modelo_fechado", "shapes_fechados", "shapes_abertos")]
+[node name="LixoTesteBola" type="RigidBody3D" unique_id=792044157 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados", "shapes_abertos")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_hbunl")
@@ -15,10 +15,10 @@ modelo_fechado = NodePath("MeshInstance3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 shapes_abertos = [null, null, null, null, null, null, null, null, null]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1792965525]
 transform = Transform3D(0.09, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("SphereShape3D_k86d7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1393855840]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("SphereMesh_f167a")

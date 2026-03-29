@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="12_6pd0d"]
 [ext_resource type="Texture2D" uid="uid://clmcvxq8bogjo" path="res://Assets/iron_tex2.jpg" id="12_aswyl"]
 [ext_resource type="PackedScene" uid="uid://bn7pl72m7qtmn" path="res://mapa/trajetoria_cenario.tscn" id="12_ovh4m"]
+[ext_resource type="PackedScene" uid="uid://bt5g4dd3ysj8b" path="res://ObjetosMecanica/scanner.tscn" id="13_0i4jq"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -183,6 +184,9 @@ mesh = SubResource("BoxMesh_0i4jq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mesinha" unique_id=1791261681]
 shape = SubResource("BoxShape3D_aswyl")
+
+[node name="Scanner" parent="." unique_id=1407467961 instance=ExtResource("13_0i4jq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.381375, 6.1157207, 4.8086576)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

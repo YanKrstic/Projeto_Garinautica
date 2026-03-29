@@ -18,6 +18,16 @@ class_name InteractableObject
 @export var qtd_minima_loot: int = 1
 @export var qtd_maxima_loot: int = 3
 
+@export_group("Composição (Peso)")
+@export var peso_plastico: int = 0
+@export var peso_metal: int = 0
+@export var peso_papel: int = 0
+@export var peso_vidro: int = 0
+
+# Variáveis internas que a balança vai ler
+var peso_total: int = 0
+var pesos_absolutos_materiais: Dictionary = {}
+
 var esta_segurado: bool = false
 var ja_foi_aberto: bool = false
 var esta_focado: bool = false
@@ -41,7 +51,8 @@ func _ready():
 		var qtd = randi_range(qtd_minima_loot, qtd_maxima_loot)
 		for i in range(qtd):
 			loot_dentro.append(tabela_de_loot.pick_random())
-
+	
+	calcular_relatorio_triagem()
 # --- FUNÇÕES DE INTERAÇÃO ---
 
 func interagir_abrir():
@@ -60,6 +71,7 @@ func interagir_abrir():
 	alternar_lista_colisores(shapes_fechados, false)
 	alternar_lista_colisores(shapes_abertos, true)
 	spawnar_loot()
+	calcular_relatorio_triagem()
 	
 	atualizar_outline()
 
@@ -133,3 +145,31 @@ func spawnar_loot():
 			if novo is RigidBody3D:
 				novo.apply_impulse(Vector3(randf_range(-1,1), 2, randf_range(-1,1)))
 	loot_dentro.clear()
+	
+func calcular_relatorio_triagem():
+	pesos_absolutos_materiais.clear()
+	
+	# 1. Registra a composição base deste próprio objeto
+	pesos_absolutos_materiais["Plástico"] = peso_plastico
+	pesos_absolutos_materiais["Metal"] = peso_metal
+	pesos_absolutos_materiais["Papel"] = peso_papel
+	pesos_absolutos_materiais["Vidro"] = peso_vidro
+	
+	peso_total = peso_plastico + peso_metal + peso_papel + peso_vidro
+	
+	# 2. Se houver itens dentro da caixa, simula eles para somar ao relatório
+	for cena_item in loot_dentro:
+		if cena_item:
+			var temp_item = cena_item.instantiate()
+			if temp_item is InteractableObject:
+				# Pede para o clone calcular a si mesmo primeiro
+				temp_item.calcular_relatorio_triagem()
+				
+				# Soma o peso total
+				peso_total += temp_item.peso_total
+				
+				# Soma as composições misturadas
+				for mat in temp_item.pesos_absolutos_materiais.keys():
+					pesos_absolutos_materiais[mat] += temp_item.pesos_absolutos_materiais[mat]
+					
+			temp_item.queue_free()
