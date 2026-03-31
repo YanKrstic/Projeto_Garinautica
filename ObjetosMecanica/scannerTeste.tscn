@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bt5g4dd3ysj8b"]
+
+[ext_resource type="Script" uid="uid://cymrb8jbjbd7" path="res://Scripts/balanca_scanner.gd" id="1_gjgfm"]
+[ext_resource type="FontFile" uid="uid://cin88y3h08dkk" path="res://Fonts/digital_7/digital-7.ttf" id="2_0jeek"]
+[ext_resource type="PackedScene" uid="uid://rtxdhdes5xt0" path="res://ModeloItens/CaixaPapelaoFechada.glb" id="2_kq8xl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kq8xl"]
+size = Vector3(3.0331116, 2.0683594, 2.0529785)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0jeek"]
+size = Vector3(2.9077148, 1.9938965, 3.0683594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtuyh"]
+size = Vector3(2.934236, 2.097046, 1.7882385)
+
+[node name="Scanner" type="Area3D" unique_id=1407467961 node_paths=PackedStringArray("monitor_materiais", "monitor_peso")]
+collision_mask = 5
+script = ExtResource("1_gjgfm")
+monitor_materiais = NodePath("MonitorMateriais")
+monitor_peso = NodePath("MonitorPeso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1805550721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5376129, -0.011026144, 0.0015869141)
+shape = SubResource("BoxShape3D_kq8xl")
+
+[node name="MonitorPeso" type="Label3D" parent="." unique_id=2005861920]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.711598, 2.3088574, 2.1156266)
+pixel_size = 0.0101
+modulate = Color(0, 0.79607844, 0.36078432, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "oi"
+font = ExtResource("2_0jeek")
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="MonitorMateriais" type="Label3D" parent="." unique_id=81783819]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.9690595, 2.3088574, 2.1156266)
+pixel_size = 0.0101
+modulate = Color(0, 0.79437906, 0.3615608, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "oi"
+font = ExtResource("2_0jeek")
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="CaixaPapelaoFechada" parent="." unique_id=1096470051 instance=ExtResource("2_kq8xl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.050278664, 0, 0, 0.9381578)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada" unique_id=1472236595]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada/StaticBody3D" unique_id=689907453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53930664, -0.017944336, 0.33202934)
+shape = SubResource("BoxShape3D_0jeek")
+
+[node name="CaixaPapelaoFechada2" parent="." unique_id=150414469 instance=ExtResource("2_kq8xl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.050278664, 0, 0, -0.92181313)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada2" unique_id=114946539]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada2/StaticBody3D" unique_id=1273388241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53930664, -0.017944336, 0.33202934)
+shape = SubResource("BoxShape3D_0jeek")
+
+[node name="CaixaPapelaoFechada3" parent="." unique_id=605327440 instance=ExtResource("2_kq8xl")]
+transform = Transform3D(-2.7101061e-08, 0, 0.05, 0, 1, 0, -0.62, 0, -2.1855695e-09, -0.9401796, 0, 0.32559264)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada3" unique_id=1397601060]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada3/StaticBody3D" unique_id=2107094289]
+transform = Transform3D(1, 0, 4.440892e-16, 0, 1, 0, 0, 0, 1, 0.5575925, -0.035949707, -0.010025024)
+shape = SubResource("BoxShape3D_qtuyh")
+
+[node name="CaixaPapelaoFechada4" parent="." unique_id=1135947077 instance=ExtResource("2_kq8xl")]
+transform = Transform3D(-2.7101061e-08, 0, 0.05, 0, 1, 0, -0.62, 0, -2.1855695e-09, 1.9640572, 0, 0.32559264)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada4" unique_id=1829465512]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada4/StaticBody3D" unique_id=170206917]
+transform = Transform3D(1, 0, 4.440892e-16, 0, 1, 0, 0, 0, 1, 0.5575925, -0.035949707, -0.010025024)
+shape = SubResource("BoxShape3D_qtuyh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

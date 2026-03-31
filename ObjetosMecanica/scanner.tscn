@@ -1,17 +1,20 @@
-[gd_scene format=3 uid="uid://bt5g4dd3ysj8b"]
+[gd_scene format=3 uid="uid://djkr836g8gsbb"]
 
 [ext_resource type="Script" uid="uid://cymrb8jbjbd7" path="res://Scripts/balanca_scanner.gd" id="1_gjgfm"]
 [ext_resource type="FontFile" uid="uid://cin88y3h08dkk" path="res://Fonts/digital_7/digital-7.ttf" id="2_0jeek"]
-[ext_resource type="PackedScene" uid="uid://rtxdhdes5xt0" path="res://ModeloItens/CaixaPapelaoFechada.glb" id="2_kq8xl"]
+[ext_resource type="PackedScene" uid="uid://ynu3f3endyy5" path="res://ModeloItens/MesaAnaliseDef.glb" id="3_0jeek"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kq8xl"]
-size = Vector3(3.0331116, 2.0683594, 2.0529785)
+size = Vector3(0.8698838, 0.18687057, 0.72065425)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0jeek"]
-size = Vector3(2.9077148, 1.9938965, 3.0683594)
+size = Vector3(5.92749, 1.6480103, 2.8515625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qtuyh"]
-size = Vector3(2.934236, 2.097046, 1.7882385)
+size = Vector3(1.6403809, 0.40454102, 1.2435913)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dejlw"]
+size = Vector3(1.3076782, 1.6658936, 1.1786499)
 
 [node name="Scanner" type="Area3D" unique_id=1407467961 node_paths=PackedStringArray("monitor_materiais", "monitor_peso")]
 collision_mask = 5
@@ -20,72 +23,45 @@ monitor_materiais = NodePath("MonitorMateriais")
 monitor_peso = NodePath("MonitorPeso")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1805550721]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5376129, -0.011026144, 0.0015869141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19792378, 0.93726456, -0.12332153)
 shape = SubResource("BoxShape3D_kq8xl")
 
 [node name="MonitorPeso" type="Label3D" parent="." unique_id=2005861920]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.711598, 2.3088574, 2.1156266)
+transform = Transform3D(-0.55499995, 0, -8.380267e-08, -1.7427846e-08, 0.5428659, 0.1154194, 8.197047e-08, 0.1154194, -0.5428659, 0.5685672, 0.78052676, -0.5163367)
 pixel_size = 0.0101
 modulate = Color(0, 0.79607844, 0.36078432, 1)
 outline_modulate = Color(1, 1, 1, 1)
-text = "oi"
+text = "PESO....... 0"
 font = ExtResource("2_0jeek")
 outline_size = 0
 horizontal_alignment = 0
 
 [node name="MonitorMateriais" type="Label3D" parent="." unique_id=81783819]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.9690595, 2.3088574, 2.1156266)
+transform = Transform3D(-0.2716421, -6.5290537e-09, 0.14936729, -6.5290537e-09, 0.31, 1.6766784e-09, -0.14936729, -1.6766795e-09, -0.2716421, -1.1669935, 1.4309287, 0.14727122)
 pixel_size = 0.0101
 modulate = Color(0, 0.79437906, 0.3615608, 1)
 outline_modulate = Color(1, 1, 1, 1)
-text = "oi"
+text = "PLASTIC0.... 0%"
 font = ExtResource("2_0jeek")
 outline_size = 0
 horizontal_alignment = 0
 
-[node name="CaixaPapelaoFechada" parent="." unique_id=1096470051 instance=ExtResource("2_kq8xl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.050278664, 0, 0, 0.9381578)
+[node name="MesaAnaliseDef" parent="." unique_id=1150552718 instance=ExtResource("3_0jeek")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.2035194, 0, -0.2765925)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada" unique_id=1472236595]
-collision_layer = 7
-collision_mask = 7
+[node name="StaticBody3D" type="StaticBody3D" parent="MesaAnaliseDef" unique_id=50190328]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada/StaticBody3D" unique_id=689907453]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53930664, -0.017944336, 0.33202934)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MesaAnaliseDef/StaticBody3D" unique_id=1325994667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7513429, 0.18002318, 0.4084472)
 shape = SubResource("BoxShape3D_0jeek")
 
-[node name="CaixaPapelaoFechada2" parent="." unique_id=150414469 instance=ExtResource("2_kq8xl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.050278664, 0, 0, -0.92181313)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada2" unique_id=114946539]
-collision_layer = 7
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada2/StaticBody3D" unique_id=1273388241]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53930664, -0.017944336, 0.33202934)
-shape = SubResource("BoxShape3D_0jeek")
-
-[node name="CaixaPapelaoFechada3" parent="." unique_id=605327440 instance=ExtResource("2_kq8xl")]
-transform = Transform3D(-2.7101061e-08, 0, 0.05, 0, 1, 0, -0.62, 0, -2.1855695e-09, -0.9401796, 0, 0.32559264)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada3" unique_id=1397601060]
-collision_layer = 5
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada3/StaticBody3D" unique_id=2107094289]
-transform = Transform3D(1, 0, 4.440892e-16, 0, 1, 0, 0, 0, 1, 0.5575925, -0.035949707, -0.010025024)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MesaAnaliseDef/StaticBody3D" unique_id=1727382737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01184085, 1.2666352, 0.2364807)
 shape = SubResource("BoxShape3D_qtuyh")
 
-[node name="CaixaPapelaoFechada4" parent="." unique_id=1135947077 instance=ExtResource("2_kq8xl")]
-transform = Transform3D(-2.7101061e-08, 0, 0.05, 0, 1, 0, -0.62, 0, -2.1855695e-09, 1.9640572, 0, 0.32559264)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="CaixaPapelaoFechada4" unique_id=1829465512]
-collision_layer = 5
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CaixaPapelaoFechada4/StaticBody3D" unique_id=170206917]
-transform = Transform3D(1, 0, 4.440892e-16, 0, 1, 0, 0, 0, 1, 0.5575925, -0.035949707, -0.010025024)
-shape = SubResource("BoxShape3D_qtuyh")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MesaAnaliseDef/StaticBody3D" unique_id=1386331734]
+transform = Transform3D(0.88838506, -2.006787e-08, -0.45909932, 2.0067866e-08, 1, -4.8788467e-09, 0.45909932, -4.8788467e-09, 0.88838506, -2.7287207, 1.8670633, 0.9129951)
+shape = SubResource("BoxShape3D_dejlw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
