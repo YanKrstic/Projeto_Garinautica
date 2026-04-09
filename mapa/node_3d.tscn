@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bn7pl72m7qtmn" path="res://mapa/trajetoria_cenario.tscn" id="12_ovh4m"]
 [ext_resource type="PackedScene" uid="uid://bt5g4dd3ysj8b" path="res://ObjetosMecanica/scannerTeste.tscn" id="13_0i4jq"]
 [ext_resource type="PackedScene" uid="uid://djkr836g8gsbb" path="res://ObjetosMecanica/scanner.tscn" id="14_b8ukr"]
+[ext_resource type="PackedScene" uid="uid://bnod6gfv27xk0" path="res://Itens/Sucatas/SucataPastico.tscn" id="15_qnqco"]
+[ext_resource type="PackedScene" uid="uid://bf2d5s2upxunp" path="res://Itens/Sucatas/SucataMetal.tscn" id="16_gc50j"]
+[ext_resource type="PackedScene" uid="uid://bffr03k4uw8x0" path="res://Itens/Sucatas/SucataPapel.tscn" id="17_0su6q"]
+[ext_resource type="PackedScene" uid="uid://cnfv7nebtw70e" path="res://Itens/Sucatas/SucataVidro.tscn" id="18_jdn7m"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -191,6 +195,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.237722, 5.421232, 8.561480
 
 [node name="Scanner" parent="." unique_id=1991537674 instance=ExtResource("14_b8ukr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.572455, 5.398205, 6.397994)
+
+[node name="SucataPastico" parent="." unique_id=824805055 instance=ExtResource("15_qnqco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5768886, 0)
+
+[node name="SucataMetal" parent="." unique_id=103730248 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.176554, 0)
+
+[node name="SucataPapel" parent="." unique_id=1742995608 instance=ExtResource("17_0su6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.856391, 0)
+
+[node name="SucataVidro" parent="." unique_id=566858769 instance=ExtResource("18_jdn7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.672821, 0)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

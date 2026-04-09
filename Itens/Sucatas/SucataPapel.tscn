@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bffr03k4uw8x0"]
+
+[ext_resource type="Script" uid="uid://ds6pq8l1bceat" path="res://Scripts/objeto_interativo.gd" id="1_gw5dh"]
+[ext_resource type="PackedScene" uid="uid://dlaavpa6sk3ri" path="res://ModeloItens/PapelSucata.glb" id="2_gw5dh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4156y"]
+size = Vector3(1.4643669, 1.1463223, 1.4321404)
+
+[node name="SucataPapel" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("shapes_fechados")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_gw5dh")
+pode_ser_aberto = false
+shapes_fechados = [NodePath("CollisionShape3D")]
+peso_papel = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1383219952]
+transform = Transform3D(0.276075, 0, 0, 0, 0.276075, 0, 0, 0, 0.276075, 0.006723797, -0.0014762469, -0.0022279313)
+shape = SubResource("BoxShape3D_4156y")
+
+[node name="PapelSucata" parent="." unique_id=2044009751 instance=ExtResource("2_gw5dh")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

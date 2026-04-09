@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnod6gfv27xk0"]
+
+[ext_resource type="Script" uid="uid://ds6pq8l1bceat" path="res://Scripts/objeto_interativo.gd" id="1_ftrgh"]
+[ext_resource type="PackedScene" uid="uid://b6uqjrvssekit" path="res://ModeloItens/PlasticoSucata.glb" id="2_eykge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4156y"]
+size = Vector3(1.5283928, 1.1355801, 1.4583855)
+
+[node name="SucataPastico" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("shapes_fechados")]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_ftrgh")
+pode_ser_aberto = false
+shapes_fechados = [NodePath("CollisionShape3D")]
+peso_plastico = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1383219952]
+transform = Transform3D(0.276075, 0, 0, 0, 0.276075, 0, 0, 0, 0.276075, 0.0051988456, 6.5779313e-06, -0.0014328081)
+shape = SubResource("BoxShape3D_4156y")
+
+[node name="PlasticoSucata" parent="." unique_id=1847174666 instance=ExtResource("2_eykge")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
