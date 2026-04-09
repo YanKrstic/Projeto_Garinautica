@@ -6,11 +6,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_4156y"]
 size = Vector3(1.5283928, 1.1355801, 1.4583855)
 
-[node name="SucataPastico" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("shapes_fechados")]
+[node name="SucataPastico" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_ftrgh")
 pode_ser_aberto = false
+modelo_fechado = NodePath("PlasticoSucata")
 shapes_fechados = [NodePath("CollisionShape3D")]
 peso_plastico = 1
 

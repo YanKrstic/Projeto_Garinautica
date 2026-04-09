@@ -6,11 +6,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_4156y"]
 size = Vector3(1.4643669, 1.1463223, 1.4321404)
 
-[node name="SucataMetal" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("shapes_fechados")]
+[node name="SucataMetal" type="RigidBody3D" unique_id=824805055 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_mw4he")
 pode_ser_aberto = false
+modelo_fechado = NodePath("MetalSucata")
 shapes_fechados = [NodePath("CollisionShape3D")]
 peso_metal = 1
 

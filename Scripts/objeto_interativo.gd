@@ -1,6 +1,7 @@
 extends RigidBody3D
 class_name InteractableObject
 
+
 @export_group("Configurações")
 @export var pode_ser_aberto: bool = true 
 
@@ -188,3 +189,46 @@ func calcular_relatorio_triagem():
 					pesos_absolutos_materiais[mat] += filho.pesos_absolutos_materiais[mat]
 				else:
 					pesos_absolutos_materiais[mat] = filho.pesos_absolutos_materiais[mat]
+
+
+# --- SISTEMA DE DESMANCHE PROVISÓRIO ---
+
+func desmanchar():
+	# Trava de Segurança: Não faz nada se o jogador estiver segurando o item
+	if esta_segurado:
+		print("Solte o item no chão para desmanchá-lo!")
+		return
+		
+	if not ja_foi_aberto:
+		spawnar_loot()
+	
+	# Usamos LOAD em vez de PRELOAD para evitar o Crash de Dependência Circular!
+	var cena_plastico = load("res://Itens/Sucatas/SucataPastico.tscn")
+	var cena_metal = load("res://Itens/Sucatas/SucataMetal.tscn")
+	var cena_papel = load("res://Itens/Sucatas/SucataPapel.tscn")
+	var cena_vidro = load("res://Itens/Sucatas/SucataVidro.tscn")
+	
+	_gerar_sucata(cena_plastico, peso_plastico)
+	_gerar_sucata(cena_metal, peso_metal)
+	_gerar_sucata(cena_papel, peso_papel)
+	_gerar_sucata(cena_vidro, peso_vidro)
+	
+	collision_layer = 0 # Fica intocável
+	collision_mask = 0
+	visible = false     # Fica invisível instantaneamente
+	queue_free()        # Deleta com segurança
+
+func _gerar_sucata(cena_sucata: PackedScene, quantidade: int):
+	if quantidade <= 0 or not cena_sucata:
+		return
+		
+	for i in range(quantidade):
+		var nova_sucata = cena_sucata.instantiate()
+		
+		# Joga a sucata solta no mundo principal
+		get_tree().current_scene.add_child(nova_sucata)
+		
+		nova_sucata.global_position = global_position + Vector3(randf_range(-0.3, 0.3), 0.5, randf_range(-0.3, 0.3))
+		
+		if nova_sucata is RigidBody3D:
+			nova_sucata.apply_impulse(Vector3(randf_range(-2, 2), 3, randf_range(-2, 2)))

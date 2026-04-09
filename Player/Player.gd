@@ -45,6 +45,18 @@ func _input(event):
 		elif raycast.is_colliding():
 			var corpo = raycast.get_collider()
 			if corpo.has_method("interagir_abrir"): corpo.interagir_abrir()
+			
+		# Botão Q pressionado
+	if event is InputEventKey and event.keycode == KEY_Q and event.pressed and not event.echo:
+		
+		# Verifica se o Player está olhando para um objeto interativo
+		if ultimo_objeto_focado and ultimo_objeto_focado.has_method("desmanchar"):
+			
+			# BAM! Desmancha o objeto
+			ultimo_objeto_focado.desmanchar()
+			
+			# Limpa a variável para o Raycast não procurar a silhueta de um objeto destruído
+			ultimo_objeto_focado = null
 
 func _physics_process(delta):
 	# --- MOVIMENTO DO PLAYER ---
@@ -153,3 +165,6 @@ func _processar_silhueta():
 	if objeto_atual and objeto_atual != ultimo_objeto_focado:
 		objeto_atual.set_focado(true)
 	ultimo_objeto_focado = objeto_atual
+	
+	
+	
