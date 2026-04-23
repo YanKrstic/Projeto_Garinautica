@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bf2d5s2upxunp" path="res://Itens/Sucatas/SucataMetal.tscn" id="16_gc50j"]
 [ext_resource type="PackedScene" uid="uid://bffr03k4uw8x0" path="res://Itens/Sucatas/SucataPapel.tscn" id="17_0su6q"]
 [ext_resource type="PackedScene" uid="uid://cnfv7nebtw70e" path="res://Itens/Sucatas/SucataVidro.tscn" id="18_jdn7m"]
+[ext_resource type="PackedScene" uid="uid://c4b1bigvrsjo4" path="res://ObjetosMecanica/prensa_desmanche.tscn" id="19_jdn7m"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -207,6 +208,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.856391, 0)
 
 [node name="SucataVidro" parent="." unique_id=566858769 instance=ExtResource("18_jdn7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.672821, 0)
+
+[node name="PrensaDesmanche" parent="." unique_id=1907887848 instance=ExtResource("19_jdn7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265965, 5.335329, 0)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c4b1bigvrsjo4"]
+
+[ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="1_b7nnn"]
+[ext_resource type="Script" uid="uid://cd8ajguy2t307" path="res://ObjetosMecanica/prensa_desmanche.gd" id="1_klnwr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klnwr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_voydj"]
+size = Vector3(2.3203087, 0.2915039, 4.1595154)
+
+[node name="PrensaDesmanche" type="StaticBody3D" unique_id=1907887848 node_paths=PackedStringArray("area_esmagamento", "ponto_de_saida")]
+script = ExtResource("1_klnwr")
+area_esmagamento = NodePath("AreaEsmagamento")
+ponto_de_saida = NodePath("PontoDeSaida")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1013648085]
+transform = Transform3D(2.66, 0, 0, 0, 1.045, 0, 0, 0, 4.49, 0, 0, 0)
+shape = SubResource("BoxShape3D_klnwr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=872809635]
+transform = Transform3D(2.66, 0, 0, 0, 1.045, 0, 0, 0, 4.49, 0, 0, 0)
+
+[node name="AreaEsmagamento" type="Area3D" parent="." unique_id=1370223889]
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaEsmagamento" unique_id=724898703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01350975, 0.67556465, 0.0137786865)
+shape = SubResource("BoxShape3D_voydj")
+
+[node name="PontoDeSaida" type="Marker3D" parent="." unique_id=1667239231]
+transform = Transform3D(0.068025894, 0.14269803, 0.98742586, -0.009807529, 0.9897663, -0.14236061, -0.99763536, 0, 0.06872925, 0, 1.6893042, 5.2137365)
+
+[node name="Alavanca" parent="." unique_id=889613007 node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("1_b7nnn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0885952, 0, 1.4154706)
+spawner_alvo = NodePath("..")

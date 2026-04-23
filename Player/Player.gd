@@ -41,22 +41,11 @@ func _input(event):
 		
 	if event.is_action_pressed("interact"): 
 		if objeto_na_mao: 
-			if objeto_na_mao.has_method("interagir_abrir"): objeto_na_mao.interagir_abrir()
+			if objeto_na_mao.has_method("interagir_abrsir"): objeto_na_mao.interagir_abrir()
 		elif raycast.is_colliding():
 			var corpo = raycast.get_collider()
 			if corpo.has_method("interagir_abrir"): corpo.interagir_abrir()
 			
-		# Botão Q pressionado
-	if event is InputEventKey and event.keycode == KEY_Q and event.pressed and not event.echo:
-		
-		# Verifica se o Player está olhando para um objeto interativo
-		if ultimo_objeto_focado and ultimo_objeto_focado.has_method("desmanchar"):
-			
-			# BAM! Desmancha o objeto
-			ultimo_objeto_focado.desmanchar()
-			
-			# Limpa a variável para o Raycast não procurar a silhueta de um objeto destruído
-			ultimo_objeto_focado = null
 
 func _physics_process(delta):
 	# --- MOVIMENTO DO PLAYER ---
@@ -154,17 +143,24 @@ func soltar_objeto(forca: float):
 		objeto_na_mao = null
 
 func _processar_silhueta():
-	# (Mesmo código anterior)
 	var objeto_atual = null
+	
 	if raycast.is_colliding():
 		var colisor = raycast.get_collider()
-		if colisor.has_method("set_focado"):
+		
+		# TRAVA 1: Verifica se o objeto ainda existe no mundo ANTES de perguntar se tem o método!
+		if is_instance_valid(colisor) and colisor.has_method("set_focado"):
 			objeto_atual = colisor
+			
 	if ultimo_objeto_focado and ultimo_objeto_focado != objeto_atual:
-		ultimo_objeto_focado.set_focado(false)
+		
+		# TRAVA 2: Só tenta desligar o brilho se o objeto anterior não tiver sido destruído pela prensa
+		if is_instance_valid(ultimo_objeto_focado):
+			ultimo_objeto_focado.set_focado(false)
+			
 	if objeto_atual and objeto_atual != ultimo_objeto_focado:
 		objeto_atual.set_focado(true)
+		
 	ultimo_objeto_focado = objeto_atual
-	
 	
 	
