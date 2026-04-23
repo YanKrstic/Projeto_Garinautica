@@ -1,18 +1,19 @@
-[gd_scene format=3 uid="uid://bit4bg4socfb7"]
+[gd_scene format=3 uid="uid://cc1ejs54lwln6"]
 
-[ext_resource type="Script" uid="uid://b62i20citcjwy" path="res://ObjetosMecanica/Reciclagem/maquina_reciclagem.gd" id="1_kpa56"]
-[ext_resource type="PackedScene" uid="uid://cjyij3cv3dk2b" path="res://Itens/Barras/barra_metal.tscn" id="2_xhtj6"]
+[ext_resource type="Script" uid="uid://b62i20citcjwy" path="res://ObjetosMecanica/Reciclagem/maquina_reciclagem.gd" id="1_tfpr3"]
+[ext_resource type="PackedScene" uid="uid://cg6ktojm80jd5" path="res://Itens/Barras/barra_plastico.tscn" id="2_tfpr3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0801"]
 size = Vector3(1, 0.38623047, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rlb70"]
 
-[node name="ReciclagemMetal" type="StaticBody3D" unique_id=1136371530 node_paths=PackedStringArray("area_fornalha", "ponto_de_saida", "monitor")]
+[node name="ReciclagemPlastico" type="StaticBody3D" unique_id=1136371530 node_paths=PackedStringArray("area_fornalha", "ponto_de_saida", "monitor")]
 collision_mask = 5
-script = ExtResource("1_kpa56")
+script = ExtResource("1_tfpr3")
+material_alvo = "Plastico"
 capacidade_maxima = 5
-cena_barra = ExtResource("2_xhtj6")
+cena_barra = ExtResource("2_tfpr3")
 area_fornalha = NodePath("Area3D")
 ponto_de_saida = NodePath("Marker3D")
 monitor = NodePath("Label3D")
@@ -32,7 +33,7 @@ collision_mask = 5
 shape = SubResource("BoxShape3D_rlb70")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1710484369]
-transform = Transform3D(0.9973717, -0.072454885, 0, 0.072454885, 0.9973717, 0, 0, 0, 1, 1.461349, 0.63871646, 0)
+transform = Transform3D(0.9973717, -0.072454885, 0, 0.072454885, 0.9973717, 0, 0, 0, 1, 1.2127206, 0.63871646, 0)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=780674727]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1600635, 0)

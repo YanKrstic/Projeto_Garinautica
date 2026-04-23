@@ -41,7 +41,7 @@ func _input(event):
 		
 	if event.is_action_pressed("interact"): 
 		if objeto_na_mao: 
-			if objeto_na_mao.has_method("interagir_abrsir"): objeto_na_mao.interagir_abrir()
+			if objeto_na_mao.has_method("interagir_abrir"): objeto_na_mao.interagir_abrir()
 		elif raycast.is_colliding():
 			var corpo = raycast.get_collider()
 			if corpo.has_method("interagir_abrir"): corpo.interagir_abrir()

@@ -20,15 +20,12 @@ func _ready():
 		area_fornalha.body_entered.connect(_on_fornalha_body_entered)
 
 func _on_fornalha_body_entered(corpo):
-	# Ignora o jogador ou itens que não sejam lixo
 	if "peso_total" not in corpo:
 		return
 		
-	# Trava de Segurança: Não puxa o item da mão do jogador. Ele tem que soltar!
 	if "esta_segurado" in corpo and corpo.esta_segurado:
 		return
 		
-	# 1. Garante que os pesos estão atualizados
 	if corpo.has_method("calcular_relatorio_triagem"):
 		corpo.calcular_relatorio_triagem()
 
@@ -36,21 +33,23 @@ func _on_fornalha_body_entered(corpo):
 	if peso_total <= 0: 
 		return
 
-	# 2. VERIFICA A PUREZA DO ITEM
+	# 2. VERIFICA A PUREZA E O LIMITE DO TANQUE
 	var peso_do_alvo = 0
 	if corpo.pesos_absolutos_materiais.has(material_alvo):
 		peso_do_alvo = corpo.pesos_absolutos_materiais[material_alvo]
 
-	# Se o peso do material alvo for igual ao peso total, o item é 100% puro!
 	var e_puro = (peso_do_alvo == peso_total)
+	
+	# MUDANÇA: Verifica se a soma vai passar do limite
+	var cabe_no_tanque = (tanque_atual + peso_total) <= capacidade_maxima
 
-	if e_puro:
+	# A máquina agora só engole se for puro E se não transbordar o tanque!
+	if e_puro and cabe_no_tanque:
 		_processar_item_puro(corpo, peso_total)
 	else:
 		_rejeitar_item(corpo)
 
 func _processar_item_puro(corpo, peso: int):
-	# Blindagem contra o RayCast do Player
 	corpo.collision_layer = 0
 	corpo.collision_mask = 0
 	corpo.visible = false
@@ -59,13 +58,11 @@ func _processar_item_puro(corpo, peso: int):
 	tanque_atual += peso
 	atualizar_monitor()
 	
-	# Verifica se já tem material suficiente para forjar a barra
-	# (Usamos while caso o jogador jogue um item gigante que renda mais de 1 barra)
-	while tanque_atual >= capacidade_maxima:
-		tanque_atual -= capacidade_maxima
+	# MUDANÇA: Como a máquina nunca passa do limite, basta ejetar a barra quando bater exatos 10
+	if tanque_atual == capacidade_maxima:
+		tanque_atual = 0
 		forjar_barra()
 		atualizar_monitor()
-
 func _rejeitar_item(corpo):
 	# Teleporta o item impuro para o tubo de saída
 	corpo.global_position = ponto_de_saida.global_position

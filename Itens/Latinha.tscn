@@ -14,8 +14,7 @@ script = ExtResource("1_8jjie")
 pode_ser_aberto = false
 modelo_fechado = NodePath("Latinha")
 shapes_fechados = [NodePath("CollisionShape3D")]
-peso_plastico = 1
-peso_metal = 1
+peso_metal = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1383219952]
 transform = Transform3D(0.276075, 0, 0, 0, 0.276075, 0, 0, 0, 0.276075, 0, 0, 0)

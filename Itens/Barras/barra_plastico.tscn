@@ -13,7 +13,7 @@ size = Vector3(2.178772, 0.6245117, 1)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_qwpmx")
-peso_plastico = 10
+peso_plastico = 5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=439727397]
 transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.0009070337, 0.0029217005, 0)
