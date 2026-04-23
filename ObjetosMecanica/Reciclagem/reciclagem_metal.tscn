@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bit4bg4socfb7"]
+
+[ext_resource type="Script" uid="uid://b62i20citcjwy" path="res://ObjetosMecanica/Reciclagem/maquina_reciclagem.gd" id="1_kpa56"]
+[ext_resource type="PackedScene" uid="uid://cjyij3cv3dk2b" path="res://Itens/Barras/barra_metal.tscn" id="2_xhtj6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0801"]
+size = Vector3(1, 0.38623047, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlb70"]
+
+[node name="ReciclagemMetal" type="StaticBody3D" unique_id=1136371530 node_paths=PackedStringArray("area_fornalha", "ponto_de_saida", "monitor")]
+collision_mask = 5
+script = ExtResource("1_kpa56")
+cena_barra = ExtResource("2_xhtj6")
+area_fornalha = NodePath("Area3D")
+ponto_de_saida = NodePath("Marker3D")
+monitor = NodePath("Label3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2044460257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30688477, 0)
+shape = SubResource("BoxShape3D_q0801")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=857878551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3083496, 0)
+size = Vector3(1, 0.38330078, 1)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=530406564]
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2082705815]
+shape = SubResource("BoxShape3D_rlb70")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1710484369]
+transform = Transform3D(0.9973717, -0.072454885, 0, 0.072454885, 0.9973717, 0, 0, 0, 1, 1.2127206, 0.63871646, 0)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=780674727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1600635, 0)
+text = "oi
+"
