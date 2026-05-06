@@ -40,12 +40,18 @@ func _input(event):
 		if objeto_na_mao: soltar_objeto(ARREMESSO_FORCA)
 		
 	if event.is_action_pressed("interact"): 
-		if objeto_na_mao: 
-			if objeto_na_mao.has_method("interagir_abrir"): objeto_na_mao.interagir_abrir()
-		elif raycast.is_colliding():
+	# 1. Prioridade: Ver se estou olhando para um botão ou leitor
+		if raycast.is_colliding():
 			var corpo = raycast.get_collider()
-			if corpo.has_method("interagir_abrir"): corpo.interagir_abrir()
-			
+			if corpo.has_method("interagir_abrir"):
+				corpo.interagir_abrir()
+				return # Interagiu com a máquina, encerra aqui
+
+		# 2. Secundário: Tentar abrir o que está na mão
+		if objeto_na_mao: 
+			if objeto_na_mao.has_method("interagir_abrir"): 
+				objeto_na_mao.interagir_abrir()
+				
 
 func _physics_process(delta):
 	# --- MOVIMENTO DO PLAYER ---
@@ -109,6 +115,8 @@ func tentar_pegar_objeto():
 			
 			add_collision_exception_with(objeto_na_mao)
 			
+			raycast.add_exception(objeto_na_mao)
+			
 			# Calcula a distância e rotação atuais para manter relativo
 			hold_distance = camera.global_position.distance_to(objeto_na_mao.global_position)
 			# Limita a distância máxima para não pegar coisas muito longe e elas ficarem longe
@@ -126,7 +134,7 @@ func soltar_objeto(forca: float):
 		objeto_na_mao.ao_ser_solto()
 		
 		remove_collision_exception_with(objeto_na_mao)
-		
+		raycast.remove_exception(objeto_na_mao)
 		# CASO 1: ARREMESSO FORTE (Botão Direito)
 		if forca > 0:
 			var direcao = -camera.global_transform.basis.z

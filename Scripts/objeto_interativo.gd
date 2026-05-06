@@ -4,6 +4,7 @@ class_name InteractableObject
 
 @export_group("Configurações")
 @export var pode_ser_aberto: bool = true 
+@export var e_material_refinado: bool = false
 
 @export_group("Visuais")
 @export var modelo_fechado: Node3D
