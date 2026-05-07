@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://ce0kb452hn16u"]
+[gd_scene format=3 uid="uid://be32pr8efpek7"]
 
-[ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_myo8w"]
-[ext_resource type="PackedScene" uid="uid://b6vok16qi3dc8" path="res://Itens/Crafts/placa_de_metal.tscn" id="2_04f0g"]
+[ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_pqpjj"]
+[ext_resource type="PackedScene" uid="uid://b6vok16qi3dc8" path="res://Itens/Crafts/placa_de_metal.tscn" id="2_7ndwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04f0g"]
 albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
@@ -12,8 +12,11 @@ size = Vector3(1.3269043, 0.091552734, 1)
 [node name="Disquete" type="RigidBody3D" unique_id=1249661377 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_myo8w")
-cena_resultado = ExtResource("2_04f0g")
+script = ExtResource("1_pqpjj")
+nome_projeto = "Reparo de Filamentos"
+material_necessario = "Plastico"
+quantidade_necessaria = 3
+cena_resultado = ExtResource("2_7ndwe")
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 

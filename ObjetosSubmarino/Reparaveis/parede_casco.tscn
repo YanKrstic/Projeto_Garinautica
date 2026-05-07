@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b6uungnqwl3d7"]
+
+[ext_resource type="Script" uid="uid://ctycbcjldn5if" path="res://ObjetosSubmarino/Reparaveis/parede_casco.gd" id="1_ep42t"]
+[ext_resource type="PackedScene" uid="uid://bu4mhb5ej23vu" path="res://ModeloItens/ParedeAberta.glb" id="1_jrcvg"]
+[ext_resource type="PackedScene" uid="uid://dhaseijc23l3v" path="res://ModeloItens/ParedeNormal.glb" id="2_ep42t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2g7dt"]
+size = Vector3(0.69262695, 7.471466, 14.237854)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efr2g"]
+size = Vector3(5.118286, 9.041138, 13.679581)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrcvg"]
+transparency = 1
+albedo_color = Color(0, 0.94509804, 0.8, 0.22352941)
+
+[node name="ParedeCasco" type="StaticBody3D" unique_id=1488084307 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
+script = ExtResource("1_ep42t")
+modelo_normal = NodePath("ParedeNormal")
+modelo_quebrado = NodePath("ParedeAberta")
+
+[node name="ParedeAberta" parent="." unique_id=873456082 instance=ExtResource("1_jrcvg")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 0, 0)
+
+[node name="ParedeNormal" parent="." unique_id=229180872 instance=ExtResource("2_ep42t")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857441095]
+transform = Transform3D(0.41499993, 0, 0, 0, 0.41499993, 0, 0, 0, 0.41499993, 0.010413568, 1.7374722, -0.058258057)
+shape = SubResource("BoxShape3D_2g7dt")
+
+[node name="AreaInteracao" type="Area3D" parent="." unique_id=426566297]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 4.4242077, -0.19782257)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaInteracao" unique_id=125230756]
+transform = Transform3D(0.41500005, 0, 0, 0, 0.41500005, 0, 0, 0, 0.41500005, -0.8169877, -5.9180346, 0.4782458)
+shape = SubResource("BoxShape3D_efr2g")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1388166727]
+transform = Transform3D(0.4149999, 0, 0, 0, 0.4149999, 0, 0, 0, 0.4149999, -0.40878057, 2.2854986, -0.16267656)
+visible = false
+material_override = SubResource("StandardMaterial3D_jrcvg")
+size = Vector3(0.26757813, 2.3711548, 2.526001)

@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cc1ejs54lwln6" path="res://ObjetosMecanica/Reciclagem/reciclagem_plastico.tscn" id="19_k0ndr"]
 [ext_resource type="PackedScene" uid="uid://bgxymexd8i17w" path="res://ObjetosMecanica/mesa_montagem.tscn" id="20_pld7p"]
 [ext_resource type="PackedScene" uid="uid://ce0kb452hn16u" path="res://Itens/disquetes/disquete_reparo.tscn" id="21_lxp05"]
+[ext_resource type="PackedScene" uid="uid://b6uungnqwl3d7" path="res://ObjetosSubmarino/Reparaveis/parede_casco.tscn" id="22_lxp05"]
+[ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/disquete_reparo2.tscn" id="23_gteww"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -197,7 +199,7 @@ shape = SubResource("BoxShape3D_aswyl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.237722, 5.421232, 8.5614805)
 
 [node name="Scanner" parent="." unique_id=1991537674 instance=ExtResource("14_b8ukr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.572455, 5.398205, 6.397994)
+transform = Transform3D(0.89892405, 0, 0.43810445, 0, 1, 0, -0.43810445, 0, 0.89892405, -3.313472, 5.398205, 3.3217478)
 
 [node name="PrensaDesmanche" parent="." unique_id=1907887848 instance=ExtResource("19_jdn7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265965, 5.335329, 0)
@@ -222,6 +224,15 @@ transform = Transform3D(0.7336113, 0, -0.67956936, 0, 1, 0, 0.67956936, 0, 0.733
 
 [node name="Disquete" parent="." unique_id=1249661377 instance=ExtResource("21_lxp05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.202293, 6.3869267, 0)
+
+[node name="ParedeCasco" parent="." unique_id=1488084307 instance=ExtResource("22_lxp05")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -17.182583, 5.33149, -18.062897)
+
+[node name="ParedeCasco2" parent="." unique_id=219805297 instance=ExtResource("22_lxp05")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -17.167185, 5.376581, -12.224626)
+
+[node name="Disquete2" parent="." unique_id=1563596512 instance=ExtResource("23_gteww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8825536, 7.0251937, 0.7464516)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]
