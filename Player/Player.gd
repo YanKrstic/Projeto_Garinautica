@@ -81,6 +81,10 @@ func _physics_process(delta):
 
 	# Silhueta
 	_processar_silhueta()
+	
+	_processar_interacao_continua(delta)
+
+
 
 func atualizar_posicao_objeto():
 	# 1. Calcula onde o objeto "quer" estar (Baseado na distância original)
@@ -171,4 +175,20 @@ func _processar_silhueta():
 		
 	ultimo_objeto_focado = objeto_atual
 	
-	
+# --- SISTEMA DE SEGURAR (HOLD TO INTERACT) ---
+var objeto_interacao_continua = null
+
+func _processar_interacao_continua(delta):
+	if Input.is_action_pressed("interact") and raycast.is_colliding():
+		var corpo = raycast.get_collider()
+		
+		# TRAVA DE SEGURANÇA: Garante que o corpo ainda é válido e existe no mundo
+		if is_instance_valid(corpo) and corpo.has_method("interagir_segurando"):
+			objeto_interacao_continua = corpo
+			corpo.interagir_segurando(delta, self)
+			return
+
+	if objeto_interacao_continua:
+		if is_instance_valid(objeto_interacao_continua) and objeto_interacao_continua.has_method("cancelar_interacao"):
+			objeto_interacao_continua.cancelar_interacao(self)
+		objeto_interacao_continua = null

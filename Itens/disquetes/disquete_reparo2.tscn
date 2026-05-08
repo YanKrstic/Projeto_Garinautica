@@ -14,9 +14,9 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_pqpjj")
 nome_projeto = "Reparo de Filamentos"
-material_necessario = "Plastico"
-quantidade_necessaria = 3
 cena_resultado = ExtResource("2_7ndwe")
+custo_metal = 1
+custo_plastico = 2
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 

@@ -210,7 +210,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
 [node name="BarraMetal2" parent="." unique_id=238297024 instance=ExtResource("16_gc50j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
 
+[node name="BarraMetal3" parent="." unique_id=637716685 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
+
 [node name="BarraPlastico" parent="." unique_id=535811800 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
+
+[node name="BarraPlastico2" parent="." unique_id=609859979 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
+
+[node name="BarraPlastico3" parent="." unique_id=787108517 instance=ExtResource("17_vfqfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
 
 [node name="ReciclagemMetal" parent="." unique_id=1136371530 instance=ExtResource("18_0su6q")]
@@ -226,10 +235,16 @@ transform = Transform3D(0.7336113, 0, -0.67956936, 0, 1, 0, 0.67956936, 0, 0.733
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.202293, 6.3869267, 0)
 
 [node name="ParedeCasco" parent="." unique_id=1488084307 instance=ExtResource("22_lxp05")]
-transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, -17.182583, 5.33149, -18.062897)
+transform = Transform3D(-0.006283348, 0, 0.99998015, 0, 1, 0, -0.99998015, 0, -0.006283348, -9.786805, 5.33149, -17.770742)
 
 [node name="ParedeCasco2" parent="." unique_id=219805297 instance=ExtResource("22_lxp05")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -17.167185, 5.376581, -12.224626)
+transform = Transform3D(-0.006283349, 0, 0.9999803, 0, 1, 0, -0.9999803, 0, -0.006283349, -15.624865, 5.376581, -17.718662)
+
+[node name="ParedeCasco3" parent="." unique_id=522174326 instance=ExtResource("22_lxp05")]
+transform = Transform3D(-0.006283348, 0, 0.99998015, 0, 1, 0, -0.99998015, 0, -0.006283348, 1.9096074, 5.33149, -17.85907)
+
+[node name="ParedeCasco4" parent="." unique_id=1322032611 instance=ExtResource("22_lxp05")]
+transform = Transform3D(-0.006283349, 0, 0.9999803, 0, 1, 0, -0.9999803, 0, -0.006283349, -3.928452, 5.376581, -17.80699)
 
 [node name="Disquete2" parent="." unique_id=1563596512 instance=ExtResource("23_gteww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8825536, 7.0251937, 0.7464516)

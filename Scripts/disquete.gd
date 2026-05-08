@@ -1,15 +1,16 @@
-extends InteractableObject # Mudamos de RigidBody3D para herdar o seu script base!
+extends InteractableObject 
 class_name Disquete
 
 @export_group("Dados do Projeto")
-@export var nome_projeto: String = "Reparo de Casco"
-@export_enum("Plastico", "Metal", "Papel", "Vidro") var material_necessario: String = "Metal"
-@export var quantidade_necessaria: int = 2
+@export var nome_projeto: String = "Projeto Desconhecido"
 @export var cena_resultado: PackedScene 
 
+@export_group("Custos de Fabricação (Unidades)")
+@export var custo_metal: int = 0
+@export var custo_plastico: int = 0
+@export var custo_vidro: int = 0
+@export var custo_papel: int = 0
+
 func _ready():
-	# Desativamos a função de abrir, afinal, não queremos "abrir" um disquete como uma caixa
 	pode_ser_aberto = false 
-	
-	# Chama o _ready() do script original (objeto_interativo) para configurar a silhueta e física
 	super._ready()

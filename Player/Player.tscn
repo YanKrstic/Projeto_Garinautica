@@ -1,44 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://coavd3dc6ynhr"]
+[gd_scene format=3 uid="uid://coavd3dc6ynhr"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_nowl1"]
-[ext_resource type="Script" path="res://Player/CameraHolder.gd" id="2_kgwof"]
+[ext_resource type="Script" uid="uid://ct5rgn47bxa54" path="res://Player/Player.gd" id="1_nowl1"]
+[ext_resource type="Script" uid="uid://bekwhs1juh4i" path="res://Player/CameraHolder.gd" id="2_kgwof"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_irsfd"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3lat"]
+bg_color = Color(0.085823335, 0.12518147, 0.12149767, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tok1r"]
+bg_color = Color(0.011174084, 0.89249474, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.11858136, 0.11858142, 0.1185813, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=1279089258]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_nowl1")
 
-[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+[node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=1664897244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_irsfd")
 
-[node name="CameraHolder" type="Node3D" parent="."]
+[node name="CameraHolder" type="Node3D" parent="." unique_id=2011638482]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59673, 0)
 script = ExtResource("2_kgwof")
 
-[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=2068694922]
 
-[node name="RayCast3D" type="RayCast3D" parent="CameraHolder/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="CameraHolder/Camera3D" unique_id=425376019]
 target_position = Vector3(0, 0, -2.8)
 collision_mask = 5
 
-[node name="HoldPosition" type="Node3D" parent="CameraHolder/Camera3D"]
+[node name="HoldPosition" type="Node3D" parent="CameraHolder/Camera3D" unique_id=34679314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1507645459]
 
-[node name="ColorRect" type="ColorRect" parent="HUD"]
-anchors_preset = 8
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=270720544]
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.49400002
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -3.0
-offset_bottom = 3.0
+anchor_bottom = 0.49400002
+offset_left = -3.0
+offset_top = -3.1119995
+offset_right = 3.0
+offset_bottom = 2.8880005
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1413415980]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=2066360514]
+visible = false
+offset_left = 448.0
+offset_top = 360.0
+offset_right = 704.0
+offset_bottom = 376.0
+theme_override_styles/background = SubResource("StyleBoxFlat_q3lat")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tok1r")
+show_percentage = false
