@@ -15,6 +15,7 @@ collision_mask = 7
 script = ExtResource("1_myo8w")
 cena_resultado = ExtResource("2_04f0g")
 custo_metal = 2
+pode_ser_aberto = false
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 

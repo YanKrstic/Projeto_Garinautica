@@ -17,6 +17,7 @@ nome_projeto = "Reparo de Filamentos"
 cena_resultado = ExtResource("2_7ndwe")
 custo_metal = 1
 custo_plastico = 2
+pode_ser_aberto = false
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
 

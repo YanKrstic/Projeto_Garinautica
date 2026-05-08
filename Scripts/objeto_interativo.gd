@@ -129,7 +129,7 @@ func atualizar_outline():
 
 func aplicar_overlay_no_modelo(no_pai: Node, material: Material):
 	if not no_pai: return
-	if no_pai is MeshInstance3D:
+	if no_pai is GeometryInstance3D:
 		no_pai.material_overlay = material
 	for filho in no_pai.get_children():
 		aplicar_overlay_no_modelo(filho, material)

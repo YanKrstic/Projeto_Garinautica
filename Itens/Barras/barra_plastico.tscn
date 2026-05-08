@@ -13,6 +13,7 @@ size = Vector3(2.178772, 0.6245117, 1)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_qwpmx")
+pode_ser_aberto = false
 e_material_refinado = true
 modelo_fechado = NodePath("CSGBox3D")
 peso_plastico = 5
