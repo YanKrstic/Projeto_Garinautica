@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0gfe86b84tgt"
-path.s3tc="res://.godot/imported/ParedeAberta_paredeProv.png-5b5ff6077ab40bb4e029163eb96be6ca.s3tc.ctex"
+uid="uid://bol0cuw8y764c"
+path.s3tc="res://.godot/imported/PRENSAcaixa_prensa2.png-efc12262f20fcc95d42c3b28f1118c07.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "61bbe2b43b4486a09182a22e2449b2dd"
+"md5": "fab9efc96f90b0490d00d2f772b7b8ab"
 }
 
 [deps]
 
-source_file="res://ModeloItens/ParedeAberta_paredeProv.png"
-dest_files=["res://.godot/imported/ParedeAberta_paredeProv.png-5b5ff6077ab40bb4e029163eb96be6ca.s3tc.ctex"]
+source_file="res://ModeloItens/PRENSAcaixa_prensa2.png"
+dest_files=["res://.godot/imported/PRENSAcaixa_prensa2.png-efc12262f20fcc95d42c3b28f1118c07.s3tc.ctex"]
 
 [params]
 

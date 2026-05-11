@@ -1,22 +1,4 @@
-[gd_scene format=3 uid="uid://b6uungnqwl3d7"]
-
-[ext_resource type="Script" uid="uid://drso0xrey28fu" path="res://Scripts/objeto_reparavel.gd" id="1_ep42t"]
-[ext_resource type="PackedScene" uid="uid://dhaseijc23l3v" path="res://ModeloItens/ParedeNormal.glb" id="2_ep42t"]
-[ext_resource type="Script" uid="uid://bficxmsgd58cs" path="res://ObjetosSubmarino/Reparaveis/fonte.gd" id="5_w653u"]
-[ext_resource type="PackedScene" uid="uid://dxdyrxy6dqqni" path="res://ModeloItens/ParedeAberta4glb.glb" id="6_w653u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2g7dt"]
-size = Vector3(0.69262695, 7.471466, 14.237854)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_efr2g"]
-size = Vector3(5.118286, 9.041138, 13.679581)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrcvg"]
-transparency = 1
-albedo_color = Color(0, 0.94509804, 0.8, 0.22352941)
-
-[sub_resource type="Shader" id="Shader_2g7dt"]
-code = "shader_type spatial;
+shader_type spatial;
 render_mode cull_disabled, depth_draw_always;
 
 uniform vec4 albedo : source_color = vec4(0.45, 0.6, 0.85, 1.0);
@@ -141,55 +123,4 @@ void fragment() {
     ALBEDO += vec3(0.08 * pow(facing, 2.0));
     METALLIC = 0.0;
     ROUGHNESS = 0.35;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8fht"]
-render_priority = 0
-shader = SubResource("Shader_2g7dt")
-shader_parameter/albedo = Color(0.25558573, 0.58018804, 0.8345147, 1)
-shader_parameter/gravity = Vector3(0, 1, 0)
-shader_parameter/flow_speed = 2.0
-shader_parameter/flow_scale = 17.0
-shader_parameter/amplitude = 4.0
-shader_parameter/thickness = 0.0
-shader_parameter/duty_cycle = 15.0
-shader_parameter/global_time_offset = 0.0
-shader_parameter/bias_min_y = 0.0
-shader_parameter/bias_max_y = 10.0
-shader_parameter/bias_direction_strength = 1.0
-shader_parameter/force_messy = true
-
-[node name="ParedeCasco" type="StaticBody3D" unique_id=1488084307 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
-script = ExtResource("1_ep42t")
-tempo_reparo = 2.0
-modelo_normal = NodePath("ParedeNormal")
-modelo_quebrado = NodePath("ParedeAberta4glb")
-
-[node name="ParedeNormal" parent="." unique_id=229180872 instance=ExtResource("2_ep42t")]
-transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857441095]
-transform = Transform3D(0.41499993, 0, 0, 0, 0.41499993, 0, 0, 0, 0.41499993, 0.010413568, 1.7374722, -0.058258057)
-shape = SubResource("BoxShape3D_2g7dt")
-
-[node name="AreaInteracao" type="Area3D" parent="." unique_id=426566297]
-transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 4.4242077, -0.19782257)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaInteracao" unique_id=125230756]
-transform = Transform3D(0.41500005, 0, 0, 0, 0.41500005, 0, 0, 0, 0.41500005, -0.8169877, -5.9180346, 0.4782458)
-shape = SubResource("BoxShape3D_efr2g")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1388166727]
-transform = Transform3D(0.4149999, 0, 0, 0, 0.4149999, 0, 0, 0, 0.4149999, -0.40878057, 2.2854986, -0.16267656)
-visible = false
-material_override = SubResource("StandardMaterial3D_jrcvg")
-size = Vector3(0.26757813, 2.3711548, 2.526001)
-
-[node name="ParedeAberta4glb" parent="." unique_id=2123950993 instance=ExtResource("6_w653u")]
-transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 0, 0)
-
-[node name="Fonte" parent="ParedeAberta4glb" index="1" unique_id=932384183]
-surface_material_override/0 = SubResource("ShaderMaterial_s8fht")
-script = ExtResource("5_w653u")
-
-[editable path="ParedeAberta4glb"]
+}

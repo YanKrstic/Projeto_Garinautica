@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bu4mhb5ej23vu"
-path="res://.godot/imported/ParedeAberta.glb-0db3ec7c023c7a31b5fabdb5b8a63939.scn"
+uid="uid://bfil4wlkshtqp"
+path="res://.godot/imported/PRENSAcaixa.glb-e47328fd3cac940d5a0fbbc159b88a34.scn"
 
 [deps]
 
-source_file="res://ModeloItens/ParedeAberta.glb"
-dest_files=["res://.godot/imported/ParedeAberta.glb-0db3ec7c023c7a31b5fabdb5b8a63939.scn"]
+source_file="res://ModeloItens/PRENSAcaixa.glb"
+dest_files=["res://.godot/imported/PRENSAcaixa.glb-e47328fd3cac940d5a0fbbc159b88a34.scn"]
 
 [params]
 
