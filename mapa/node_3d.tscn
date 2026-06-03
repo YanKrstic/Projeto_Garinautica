@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dua73pywmhtul"]
 
 [ext_resource type="Texture2D" uid="uid://7ldmopsihm3s" path="res://Assets/sand2.JPG" id="4_qpqfk"]
+[ext_resource type="Script" uid="uid://pni7t15gs8yc" path="res://Itens/alavanca_tubo.gd" id="4_yvx52"]
 [ext_resource type="Script" uid="uid://b3h1cd07sdudh" path="res://mapa/movimemnto_chao.gd" id="5_aswyl"]
 [ext_resource type="Script" uid="uid://beuw2qjan8bmh" path="res://Scripts/spawner_lixo.gd" id="7_k86or"]
 [ext_resource type="PackedScene" uid="uid://umpjmjpyudj" path="res://Itens/Garrafa.tscn" id="8_tk3da"]
@@ -147,9 +148,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.1442)
 [node name="PontoFinal" parent="Trajetos/TrajetoriaCenario6" index="1" unique_id=1157807572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.6353)
 
-[node name="Alavanca" parent="." unique_id=1510914112 node_paths=PackedStringArray("spawner_alvo") instance=ExtResource("12_6pd0d")]
-transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 6.90637, 6.040788, -0.875538)
-spawner_alvo = NodePath("../SpawnLixo")
+[node name="Alavanca" parent="." unique_id=1510914112 node_paths=PackedStringArray("tubo_conectado") instance=ExtResource("12_6pd0d")]
+transform = Transform3D(-0.623334, 0, -0.781956, 0, 1, 0, 0.781956, 0, -0.623334, 7.1916456, 6.040788, -8.844542)
+script = ExtResource("4_yvx52")
+tubo_conectado = NodePath("../Tubo")
 
 [node name="ChaoCenario" type="StaticBody3D" parent="." unique_id=1418571138]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0.536869, 0)
@@ -196,6 +198,7 @@ shape = SubResource("BoxShape3D_aswyl")
 transform = Transform3D(0.9637187, 0, -0.8755325, 0, 1, 0, 0.7610991, 0, 1.1086165, 6.9413967, 5.5840783, -0.88602746)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesinha" unique_id=1667270845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8396423, 0, -4.5522127)
 mesh = SubResource("BoxMesh_0i4jq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mesinha" unique_id=1791261681]

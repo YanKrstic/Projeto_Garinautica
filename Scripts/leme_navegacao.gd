@@ -49,9 +49,9 @@ func _calcular_giro_mouse():
 		giro_acumulado_total += movimento_real
 		
 		if radar_2d and radar_2d.has_method("atualizar_posicao_submarino"):
-			radar_2d.atualizar_posicao_submarino(giro_acumulado_total/5)
+			radar_2d.atualizar_posicao_submarino(giro_acumulado_total/7)
 			
-		print("Submarino moveu-se! Giro Acumulado: ", snapped(giro_acumulado_total, 0.01))
+		#print("Submarino moveu-se! Giro Acumulado: ", snapped(giro_acumulado_total, 0.01))
 		# Visual da Manivela (EIXO Z DEFINITIVO)
 		if mesh_manivela:
 			mesh_manivela.rotation.z = -angulo_atual + deg_to_rad(compensacao_visual_graus)

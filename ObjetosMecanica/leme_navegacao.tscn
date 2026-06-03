@@ -8,6 +8,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_a0tg7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lblbg"]
+size = Vector3(1, 2.3302612, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_odikk"]
 
@@ -26,7 +27,6 @@ script = ExtResource("1_a0tg7")
 mesh_manivela = NodePath("Manivela")
 camera_leme = NodePath("Camera3D")
 radar_2d = NodePath("MonitorRadar/SubViewportRadar/TelaRadar")
-compensacao_visual_graus = -180.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1200349196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 2.325)
@@ -40,11 +40,12 @@ mesh = SubResource("CylinderMesh_myx8l")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Manivela" unique_id=267288254]
-transform = Transform3D(3.5700002, 0, 0, 0, -3.558913, 1.7640396e-07, 0, -5.5046087e-07, -3.5700002, 0, 2.610498, -0.83449745)
+transform = Transform3D(2.3, 0, 0, 0, -3.378, 3.4729032e-07, 0, -5.1006384e-07, -2.3, 0, 2.610498, -0.83449745)
 mesh = SubResource("CylinderMesh_a0tg7")
 skeleton = NodePath("../MeshManivela")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1204230036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6651306, 0)
 shape = SubResource("BoxShape3D_lblbg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1395093660]
