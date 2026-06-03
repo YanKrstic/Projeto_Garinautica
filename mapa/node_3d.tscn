@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ce0kb452hn16u" path="res://Itens/disquetes/disquete_reparo.tscn" id="21_lxp05"]
 [ext_resource type="PackedScene" uid="uid://b6uungnqwl3d7" path="res://ObjetosSubmarino/Reparaveis/parede_casco.tscn" id="22_lxp05"]
 [ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/disquete_reparo2.tscn" id="23_gteww"]
+[ext_resource type="PackedScene" uid="uid://cndymnts0bgcg" path="res://ObjetosMecanica/leme_navegacao.tscn" id="24_k6cbh"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -210,22 +211,22 @@ transform = Transform3D(0.89892405, 0, 0.43810445, 0, 1, 0, -0.43810445, 0, 0.89
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265965, 5.3434854, 0)
 
 [node name="BarraMetal" parent="." unique_id=1765086446 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
 
 [node name="BarraMetal2" parent="." unique_id=238297024 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
 
 [node name="BarraMetal3" parent="." unique_id=637716685 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
 
 [node name="BarraPlastico" parent="." unique_id=535811800 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
 
 [node name="BarraPlastico2" parent="." unique_id=609859979 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
 
 [node name="BarraPlastico3" parent="." unique_id=787108517 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9247823, 8.63932, 3.249406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
 
 [node name="ReciclagemMetal" parent="." unique_id=1136371530 instance=ExtResource("18_0su6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.734098, 5.8666143, -8.128746)
@@ -253,6 +254,9 @@ transform = Transform3D(-0.006283349, 0, 0.9999803, 0, 1, 0, -0.9999803, 0, -0.0
 
 [node name="Disquete2" parent="." unique_id=1563596512 instance=ExtResource("23_gteww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8825536, 7.0251937, 0.7464516)
+
+[node name="LemeNavegacao" parent="." unique_id=853700553 instance=ExtResource("24_k6cbh")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.978508, 5.677549, 3.3032584)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

@@ -8,83 +8,112 @@ const INERCIA_AO_SOLTAR = 0.35
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-# --- SISTEMA DE SEGURAR (ESTÁTICO) ---
-# Removemos Joints e HandBody. Agora é pura matemática.
+# --- SISTEMA DE ESTADOS ---
+var estado_atual: String = "LIVRE" # Pode ser "LIVRE" ou "PILOTANDO"
+var leme_atual = null # Guarda o leme que estamos a usar
+
+# --- SISTEMA DE SEGURAR ---
 var hold_distance: float = 0.0
 var hold_relative_rotation: Quaternion
+var objeto_na_mao: InteractableObject = null
+var ultimo_objeto_focado = null
+var objeto_interacao_continua = null
 
 @onready var camera = $CameraHolder/Camera3D
 @onready var raycast = $CameraHolder/Camera3D/RayCast3D
 
-var objeto_na_mao: InteractableObject = null
-var ultimo_objeto_focado = null
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	# Não precisamos mais criar HandBody nem Joint aqui
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(event.relative.x * -0.11))
-		# Opcional: Rotacionar a câmera verticalmente (se ainda não tiver no CameraHolder)
-		# camera.rotate_x(deg_to_rad(event.relative.y * -0.11))
-	
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 		
-	if event.is_action_pressed("mouse_left"): 
-		if objeto_na_mao: soltar_objeto(0.0)
-		else: tentar_pegar_objeto()
-		
-	if event.is_action_pressed("mouse_right"): 
-		if objeto_na_mao: soltar_objeto(ARREMESSO_FORCA)
-		
-	if event.is_action_pressed("interact"): 
-	# 1. Prioridade: Ver se estou olhando para um botão ou leitor
-		if raycast.is_colliding():
-			var corpo = raycast.get_collider()
-			if corpo.has_method("interagir_abrir"):
-				corpo.interagir_abrir()
-				return # Interagiu com a máquina, encerra aqui
-
-		# 2. Secundário: Tentar abrir o que está na mão
-		if objeto_na_mao: 
-			if objeto_na_mao.has_method("interagir_abrir"): 
+	# --- SE ESTIVER LIVRE PARA ANDAR ---
+	if estado_atual == "LIVRE":
+		# Todo o seu código de rodar a câmera deve estar DENTRO deste bloco!
+		if event is InputEventMouseMotion:
+			rotate_y(deg_to_rad(event.relative.x * -0.11))
+			#camera.rotate_x(deg_to_rad(event.relative.y * -0.11)) # (Se a sua câmera mexe aqui)
+			
+		if event.is_action_pressed("mouse_left"): 
+			if objeto_na_mao: soltar_objeto(0.0)
+			else: tentar_pegar_objeto()
+			
+		if event.is_action_pressed("mouse_right"): 
+			if objeto_na_mao: soltar_objeto(ARREMESSO_FORCA)
+			
+		if event.is_action_pressed("interact"): 
+			if raycast.is_colliding():
+				var corpo = raycast.get_collider()
+				if corpo.has_method("interagir_abrir"):
+					corpo.interagir_abrir()
+					return 
+			if objeto_na_mao and objeto_na_mao.has_method("interagir_abrir"): 
 				objeto_na_mao.interagir_abrir()
 				
+	# --- SE ESTIVER PRESO NO LEME ---
+	elif estado_atual == "PILOTANDO":
+		# Aperta 'E' novamente para sair do leme
+		if event.is_action_pressed("interact"):
+			sair_do_leme()
+			return
 
 func _physics_process(delta):
-	# --- MOVIMENTO DO PLAYER ---
-	if not is_on_floor(): velocity.y -= gravity * delta
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor(): velocity.y = JUMP_VELOCITY
-	
-	var input_dir = Input.get_vector("a", "d", "w", "s")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	# Se estiver livre, a gravidade funciona normalmente
+	if estado_atual == "LIVRE":
+		if not is_on_floor(): velocity.y -= gravity * delta
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor(): velocity.y = JUMP_VELOCITY
+		
+		var input_dir = Input.get_vector("a", "d", "w", "s")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+			
+		_processar_silhueta()
+		_processar_interacao_continua(delta)
+		
+	# SE ESTIVER NO LEME:
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		# Desliga o motor do player e Zera a gravidade para ele não cair!
+		velocity = Vector3.ZERO
+	
+			
 	move_and_slide()
 	
-	# Empurrar objetos no chão (Mantido)
+	# Empurrar objetos no chão
 	for i in get_slide_collision_count():
 		var colisao = get_slide_collision(i)
 		var corpo = colisao.get_collider()
 		if corpo is RigidBody3D and corpo != objeto_na_mao:
 			corpo.apply_central_impulse(-colisao.get_normal() * EMPURRAO_FORCA)
 
-	# --- ATUALIZAR POSIÇÃO DO OBJETO NA MÃO ---
 	if objeto_na_mao:
 		atualizar_posicao_objeto()
 
-	# Silhueta
-	_processar_silhueta()
+func entrar_no_leme(leme):
+	estado_atual = "PILOTANDO"
+	leme_atual = leme
+	if objeto_na_mao: soltar_objeto(0.0) 
 	
-	_processar_interacao_continua(delta)
+	# MÁGICA: Liga a câmera do leme (A do Player desliga automaticamente)
+	if leme.camera_leme:
+		leme.camera_leme.make_current()
+		
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 
-
+func sair_do_leme():
+	estado_atual = "LIVRE"
+	leme_atual = null
+	
+	# MÁGICA: Devolve a visão para a câmera original do Player
+	camera.make_current()
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func atualizar_posicao_objeto():
 	# 1. Calcula onde o objeto "quer" estar (Baseado na distância original)
@@ -176,7 +205,6 @@ func _processar_silhueta():
 	ultimo_objeto_focado = objeto_atual
 	
 # --- SISTEMA DE SEGURAR (HOLD TO INTERACT) ---
-var objeto_interacao_continua = null
 
 func _processar_interacao_continua(delta):
 	if Input.is_action_pressed("interact") and raycast.is_colliding():
