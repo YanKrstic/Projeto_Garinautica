@@ -4,6 +4,7 @@ class_name LemeNavegacao
 @export var mesh_manivela: Node3D 
 @export var camera_leme: Camera3D # <--- AGORA É UMA CAMERA3D!
 @export var sensibilidade_giro: float = 1.0
+@export var radar_2d: Control # <--- NOVA VARIÁVEL AQUI!
 
 # Ajuste visual (Tente 0, 90, -90, etc. até alinhar perfeito)
 @export var compensacao_visual_graus: float = 0.0 
@@ -46,6 +47,10 @@ func _calcular_giro_mouse():
 		# Lógica de Movimento
 		var movimento_real = delta_angulo * sensibilidade_giro
 		giro_acumulado_total += movimento_real
+		
+		if radar_2d and radar_2d.has_method("atualizar_posicao_submarino"):
+			radar_2d.atualizar_posicao_submarino(giro_acumulado_total/5)
+			
 		print("Submarino moveu-se! Giro Acumulado: ", snapped(giro_acumulado_total, 0.01))
 		# Visual da Manivela (EIXO Z DEFINITIVO)
 		if mesh_manivela:

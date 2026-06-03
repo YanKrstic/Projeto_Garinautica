@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bcofy3u5yvdug"]
+
+[ext_resource type="Script" uid="uid://bttal6vc5bs62" path="res://ObjetosMecanica/tela_radar.gd" id="1_tn2ef"]
+
+[node name="TelaRadar" type="Control" unique_id=1458760733]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 512.0
+script = ExtResource("1_tn2ef")
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=24090159]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(3.970787e-07, 0.43571183, 0.009519781, 1)
+
+[node name="IconeSubmarino" type="ColorRect" parent="." unique_id=1526044408]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 420.0
+offset_right = 271.0
+offset_bottom = 450.0
+color = Color(0.18431373, 1, 0, 1)

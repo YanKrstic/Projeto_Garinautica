@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cndymnts0bgcg"]
 
 [ext_resource type="Script" uid="uid://dy6edbqqqrgu8" path="res://Scripts/leme_navegacao.gd" id="1_a0tg7"]
+[ext_resource type="PackedScene" uid="uid://bcofy3u5yvdug" path="res://ObjetosMecanica/tela_radar.tscn" id="2_lblbg"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_myx8l"]
 
@@ -10,10 +11,21 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_odikk"]
 
-[node name="LemeNavegacao" type="StaticBody3D" unique_id=853700553 node_paths=PackedStringArray("mesh_manivela", "camera_leme")]
+[sub_resource type="QuadMesh" id="QuadMesh_odikk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_myx8l"]
+viewport_path = NodePath("MonitorRadar/SubViewportRadar")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkemu"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_myx8l")
+
+[node name="LemeNavegacao" type="StaticBody3D" unique_id=853700553 node_paths=PackedStringArray("mesh_manivela", "camera_leme", "radar_2d")]
 script = ExtResource("1_a0tg7")
 mesh_manivela = NodePath("Manivela")
 camera_leme = NodePath("Camera3D")
+radar_2d = NodePath("MonitorRadar/SubViewportRadar/TelaRadar")
 compensacao_visual_graus = -180.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1200349196]
@@ -37,3 +49,12 @@ shape = SubResource("BoxShape3D_lblbg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1395093660]
 mesh = SubResource("BoxMesh_odikk")
+
+[node name="MonitorRadar" type="MeshInstance3D" parent="." unique_id=815017238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6277263, 1.242219, 0)
+mesh = SubResource("QuadMesh_odikk")
+surface_material_override/0 = SubResource("StandardMaterial3D_pkemu")
+
+[node name="SubViewportRadar" type="SubViewport" parent="MonitorRadar" unique_id=1203950252]
+
+[node name="TelaRadar" parent="MonitorRadar/SubViewportRadar" unique_id=1458760733 instance=ExtResource("2_lblbg")]
