@@ -1,44 +1,41 @@
 extends Control
 
 @onready var icone = $IconeSubmarino
-var posicao_inicial_x: float
 
-# --- CONFIGURAÇÕES DA ESTEIRA ---
-var velocidade_esteira: float = 40.0 # Quão rápido as coisas descem (pixels por segundo)
-var tempo_spawn: float = 6 # Segundos entre cada novo objeto
+@export_group("Movimento e Controles")
+# Quanto maior esse número, mais o submarino anda pros lados a cada volta do mouse
+@export var pixels_por_radiano: float = 30.0 
+
+@export_group("Configurações da Esteira")
+@export var velocidade_esteira: float = 120.0 
+@export var tempo_spawn: float = 1.2 
+@export var min_lixo_por_bloco: int = 3
+@export var max_lixo_por_bloco: int = 6
+
 var timer_atual: float = 0.0
 
-func _ready():
-	posicao_inicial_x = icone.position.x
-
 func _process(delta):
-	# 1. O Relógio do Spawner (Cria novos itens com o passar do tempo)
 	timer_atual += delta
 	if timer_atual >= tempo_spawn:
 		_spawnar_objeto()
 		timer_atual = 0.0
 		
-	# 2. O Motor da Esteira (Move tudo para baixo e verifica batidas)
 	_mover_e_verificar_colisoes(delta)
 
-# Função que o seu Leme3D já está chamando!
-func atualizar_posicao_submarino(giro_acumulado: float):
-	# Ajuste o multiplicador final aqui se achar que ficou muito rápido ou devagar
-	icone.position.x = posicao_inicial_x + (giro_acumulado * 20.0)
+# O Leme agora chama esta função para somar a posição atual
+func mover_submarino(giro_delta: float):
+	icone.position.x += giro_delta * pixels_por_radiano
 	
-	# Trava de segurança para o submarino não sair da tela
+	# O Clamp prende o ícone dentro da tela. Se você tentar ir além, o giro é simplesmente engolido pelo limbo!
 	icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
-# --- A MÁQUINA DE CRIAÇÃO ---
 func _spawnar_objeto():
 	var novo_obj = ColorRect.new()
-	novo_obj.size = Vector2(25, 25) # Tamanho do obstáculo
+	novo_obj.size = Vector2(25, 25) 
 	
-	# Sorteia uma posição X aleatória lá no topo da tela (escondido acima da borda)
 	var pos_x = randf_range(0, size.x - novo_obj.size.x)
 	novo_obj.position = Vector2(pos_x, -30)
 	
-	# Sorteio: 30% de chance de ser Lixo, 70% de chance de ser Pedra
 	if randf() < 0.3:
 		novo_obj.color = Color.YELLOW
 		novo_obj.add_to_group("lixos_radar")
@@ -48,39 +45,31 @@ func _spawnar_objeto():
 		
 	add_child(novo_obj)
 
-# --- A FÍSICA DO RADAR ---
 func _mover_e_verificar_colisoes(delta):
-	# Pega a "caixa de colisão" do nosso submarino
 	var meu_rect = icone.get_global_rect()
 	
-	# 1. Processa todas as PEDRAS
 	for pedra in get_tree().get_nodes_in_group("pedras_radar"):
 		pedra.position.y += velocidade_esteira * delta
-		
-		# Se a pedra saiu pelo fundo da tela, nós a deletamos para não pesar o jogo
 		if pedra.position.y > size.y:
 			pedra.queue_free()
 			continue
 			
-		# BATIDA! Verifica se as caixas se cruzaram
 		if meu_rect.intersects(pedra.get_global_rect()):
 			print("BUM! Bateu na pedra! Vazamento no casco!")
-			# TODO no futuro: Avisar o submarino para perder oxigênio e abrir um buraco
 			pedra.queue_free()
 			
-	# 2. Processa todos os LIXOS
 	for lixo in get_tree().get_nodes_in_group("lixos_radar"):
 		lixo.position.y += velocidade_esteira * delta
-		
 		if lixo.position.y > size.y:
 			lixo.queue_free()
 			continue
 			
-		# COLETA!
 		if meu_rect.intersects(lixo.get_global_rect()):
-			print("Radar: LIXO SUGADO! Avisando o tubo...")
+			# MUDANÇA: Sorteia quantos lixos físicos este bloco quadrado vale
+			var qtd = randi_range(min_lixo_por_bloco, max_lixo_por_bloco)
+			print("Radar: Bloco Sugado! Gerando ", qtd, " lixos físicos...")
 			
-			# MÁGICA: Grita para qualquer objeto no mundo que esteja no grupo "tubos_de_coleta"
-			get_tree().call_group("tubos_de_coleta", "receber_lixo")
+			# Manda o Tubo receber essa quantidade específica
+			get_tree().call_group("tubos_de_coleta", "receber_lixo", qtd)
 			
 			lixo.queue_free()

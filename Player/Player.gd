@@ -26,8 +26,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
 		
 	# --- SE ESTIVER LIVRE PARA ANDAR ---
 	if estado_atual == "LIVRE":

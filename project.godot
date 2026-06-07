@@ -19,6 +19,10 @@ run/main_scene="res://mapa/node_3d.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MenuPausa="*uid://ydn46bwwqo0m"
+
 [display]
 
 window/size/mode=3
