@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dh6p7ghrpb1un"]
+
+[ext_resource type="Script" uid="uid://bb58ts5ap3r1w" path="res://ObjetosMecanica/sistema_oxigenio.gd" id="1_722ky"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6a6u"]
+bg_color = Color(0, 0.63751245, 0.9483102, 1)
+
+[node name="SistemaOxigenio" type="CanvasLayer" unique_id=490304291]
+script = ExtResource("1_722ky")
+
+[node name="BarraOxigenio" type="ProgressBar" parent="." unique_id=1497770535]
+offset_right = 200.0
+offset_bottom = 29.685
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_l6a6u")

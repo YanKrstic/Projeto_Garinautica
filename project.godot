@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MenuPausa="*uid://ydn46bwwqo0m"
+SistemaOxigenio="*uid://dh6p7ghrpb1un"
 
 [display]
 
