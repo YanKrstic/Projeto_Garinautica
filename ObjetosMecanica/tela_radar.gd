@@ -55,7 +55,25 @@ func _mover_e_verificar_colisoes(delta):
 			continue
 			
 		if meu_rect.intersects(pedra.get_global_rect()):
-			print("BUM! Bateu na pedra! Vazamento no casco!")
+			print("BUM! Bateu na pedra! Procurando um casco para quebrar...")
+			
+			# 1. Procura todas as paredes de casco na cena
+			var todos_os_cascos = get_tree().get_nodes_in_group("cascos")
+			var cascos_inteiros = []
+			
+			# 2. Filtra apenas as que ainda não estão quebradas
+			for casco in todos_os_cascos:
+				if not casco.esta_quebrado:
+					cascos_inteiros.append(casco)
+			
+			# 3. Sorteia UMA parede inteira e quebra-a!
+			if cascos_inteiros.size() > 0:
+				var casco_sorteado = cascos_inteiros.pick_random()
+				casco_sorteado.quebrar()
+				print("Vazamento aberto!")
+			else:
+				print("BUM! Todos os buracos já estão abertos! Estamos a afundar!")
+			
 			pedra.queue_free()
 			
 	for lixo in get_tree().get_nodes_in_group("lixos_radar"):

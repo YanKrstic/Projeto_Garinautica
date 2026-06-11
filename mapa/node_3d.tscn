@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b6uungnqwl3d7" path="res://ObjetosSubmarino/Reparaveis/parede_casco.tscn" id="22_lxp05"]
 [ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/disquete_reparo2.tscn" id="23_gteww"]
 [ext_resource type="PackedScene" uid="uid://cndymnts0bgcg" path="res://ObjetosMecanica/leme_navegacao.tscn" id="24_k6cbh"]
+[ext_resource type="PackedScene" uid="uid://ck7ckwi0u5p6g" path="res://ObjetosMecanica/caixa_carga.tscn" id="26_kd22w"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -183,7 +184,7 @@ transform = Transform3D(0.796223, 0.0291757, 0.604299, -0.137735, -0.963866, 0.2
 target_position = Vector3(0, -1, -2)
 
 [node name="Tubo" parent="." unique_id=874621620 instance=ExtResource("10_5frv6")]
-transform = Transform3D(-0.110099, -0.577855, 0.808679, 0.634369, -0.667208, -0.390397, 0.76515, 0.470018, 0.440032, 7.40814, 12.745171, -13.7538)
+transform = Transform3D(0.031020314, -0.48264366, 0.87526727, 0.6343689, -0.667208, -0.39039692, 0.77240795, 0.5673521, 0.28547686, 7.40814, 12.745171, -15.552648)
 
 [node name="ChaoSubmarino" type="StaticBody3D" parent="." unique_id=726841307]
 transform = Transform3D(37.794662, 0, 0, 0, 1, 0, 0, 0, 49.001633, 0, 4.847377, -7.357499)
@@ -202,6 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8396423, 0, -4.5522127)
 mesh = SubResource("BoxMesh_0i4jq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mesinha" unique_id=1791261681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8254626, 0, -4.5399513)
 shape = SubResource("BoxShape3D_aswyl")
 
 [node name="ScannerTeste" parent="." unique_id=1407467961 instance=ExtResource("13_0i4jq")]
@@ -215,12 +217,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265965, 5.3434854, 0)
 
 [node name="BarraMetal" parent="." unique_id=1765086446 instance=ExtResource("16_gc50j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
 
 [node name="BarraMetal2" parent="." unique_id=238297024 instance=ExtResource("16_gc50j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
 
 [node name="BarraMetal3" parent="." unique_id=637716685 instance=ExtResource("16_gc50j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
 
 [node name="BarraPlastico" parent="." unique_id=535811800 instance=ExtResource("17_vfqfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
@@ -260,6 +283,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8825536, 7.0251937, 0.7464
 
 [node name="LemeNavegacao" parent="." unique_id=853700553 instance=ExtResource("24_k6cbh")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.978508, 5.677549, 3.3032584)
+
+[node name="CaixaCarga" parent="." unique_id=549534160 instance=ExtResource("26_kd22w")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.962096, 5.334875, -0.19119072)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

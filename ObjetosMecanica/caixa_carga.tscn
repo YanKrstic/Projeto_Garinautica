@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ck7ckwi0u5p6g"]
+
+[ext_resource type="Script" uid="uid://cp763v1o2p8x1" path="res://ObjetosMecanica/caixa_carga.gd" id="1_gj7ei"]
+[ext_resource type="PackedScene" uid="uid://8gvlos15g7bt" path="res://Itens/alavanca.tscn" id="2_dpwga"]
+[ext_resource type="Script" uid="uid://cowtrdckupjp5" path="res://Itens/alavanca_caixa_carga.gd" id="3_yjtiu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpwga"]
+size = Vector3(1, 0.17938232, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yjtiu"]
+
+[node name="CaixaCarga" type="StaticBody3D" unique_id=549534160]
+script = ExtResource("1_gj7ei")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=154638555]
+transform = Transform3D(4.105, 0, 0, 0, 4.105, 0, 0, 0, 4.105, 0, 0.08416748, 1.330472)
+shape = SubResource("BoxShape3D_dpwga")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1409998354]
+transform = Transform3D(4.105, 0, 0, 0, 4.105, 0, 0, 0, 4.105, 0, 0.08682251, 1.330472)
+size = Vector3(1, 0.16998291, 1)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=303119005]
+transform = Transform3D(4.105, 0, 0, 0, 4.105, 0, 0, 0, 4.105, 0, 0, 1.330472)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=356884503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5097952, 0)
+shape = SubResource("BoxShape3D_yjtiu")
+
+[node name="Alavanca" parent="." unique_id=652800764 instance=ExtResource("2_dpwga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12690043, 0, -1.7128735)
+script = ExtResource("3_yjtiu")
+
+[editable path="Alavanca"]
+[editable path="Alavanca/AlavancaModelo"]

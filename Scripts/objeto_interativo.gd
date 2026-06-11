@@ -5,11 +5,12 @@ class_name InteractableObject
 @export_group("Configurações")
 @export var pode_ser_aberto: bool = true 
 @export var e_material_refinado: bool = false
+@export var nome_do_material: String = ""
 
 @export_group("Visuais")
 @export var modelo_fechado: Node3D
 @export var modelo_aberto: Node3D
-
+	
 @export_group("Colisões")
 @export var shapes_fechados: Array[CollisionShape3D]
 @export var shapes_abertos: Array[CollisionShape3D]

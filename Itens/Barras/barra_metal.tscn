@@ -16,9 +16,17 @@ collision_mask = 7
 script = ExtResource("1_m1qbf")
 pode_ser_aberto = false
 e_material_refinado = true
+nome_do_material = "metal"
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
+loot_dentro = null
+tabela_de_loot = null
+qtd_minima_loot = null
+qtd_maxima_loot = null
+peso_plastico = null
 peso_metal = 5
+peso_papel = null
+peso_vidro = null
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=439727397]
 transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, -0.0009070337, 0.0029217005, 0)
