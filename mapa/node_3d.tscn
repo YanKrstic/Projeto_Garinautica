@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/disquete_reparo2.tscn" id="23_gteww"]
 [ext_resource type="PackedScene" uid="uid://cndymnts0bgcg" path="res://ObjetosMecanica/leme_navegacao.tscn" id="24_k6cbh"]
 [ext_resource type="PackedScene" uid="uid://ck7ckwi0u5p6g" path="res://ObjetosMecanica/caixa_carga.tscn" id="26_kd22w"]
+[ext_resource type="PackedScene" uid="uid://b42hqb7b13iio" path="res://ObjetosSubmarino/Reparaveis/quadro_eletrico.tscn" id="27_1n0lq"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -76,18 +77,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.58744, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1233563199]
 environment = SubResource("Environment_13x8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=88938184]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=88938184 groups=["luzes_principais"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.915348, 8.944675, -1.937573)
 light_energy = 3.35
 omni_range = 21.404
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1016497884]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1016497884 groups=["luzes_principais"]]
 transform = Transform3D(0.8993954, 0.4237012, 0.10754374, -0.05903715, -0.12603083, 0.99026805, 0.4331317, -0.8969913, -0.08833741, 2.2217, 23.7465, 18.6548)
 light_color = Color(0.76550764, 0.9999998, 0.9995577, 1)
 light_energy = 2.937
 shadow_enabled = true
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=324463677]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=324463677 groups=["luzes_principais"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.15778494, 24.905985, -5.0343456)
 light_energy = 16.0
 light_indirect_energy = 1.948
@@ -286,6 +287,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.97
 
 [node name="CaixaCarga" parent="." unique_id=549534160 instance=ExtResource("26_kd22w")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.962096, 5.334875, -0.19119072)
+
+[node name="QuadroEletrico" parent="." unique_id=2066651161 instance=ExtResource("27_1n0lq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.880283, 5.469995, -5.043834)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

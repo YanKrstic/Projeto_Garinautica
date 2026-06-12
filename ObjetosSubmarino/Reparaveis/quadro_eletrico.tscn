@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b42hqb7b13iio"]
+
+[ext_resource type="Script" uid="uid://bo70j7s17hrg3" path="res://ObjetosSubmarino/Reparaveis/quadro_eletrico.gd" id="1_61bjc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61bjc"]
+albedo_color = Color(0.7419795, 0, 0.3420349, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ibey"]
+albedo_color = Color(0.42903674, 0.05167771, 0.9999998, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_61bjc"]
+size = Vector3(1.8839111, 3.9511719, 1)
+
+[node name="QuadroEletrico" type="StaticBody3D" unique_id=2066651161 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
+script = ExtResource("1_61bjc")
+chance_de_falha = 0.4
+ferramenta_necessaria = "Circuito"
+dano_oxigenio = 0.0
+modelo_normal = NodePath("CSGBox3D2")
+modelo_quebrado = NodePath("CSGBox3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1248539963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029907227, 1.4772186, 0)
+size = Vector3(1.8669434, 3.9544373, 1)
+material = SubResource("StandardMaterial3D_61bjc")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=431403870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029907227, 1.4772186, 0)
+size = Vector3(1.8669434, 3.9544373, 1)
+material = SubResource("StandardMaterial3D_1ibey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1722182989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.058776855, 1.4755859, 0)
+shape = SubResource("BoxShape3D_61bjc")

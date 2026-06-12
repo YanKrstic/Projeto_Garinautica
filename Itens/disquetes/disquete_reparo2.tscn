@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be32pr8efpek7"]
 
 [ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_pqpjj"]
-[ext_resource type="PackedScene" uid="uid://b6vok16qi3dc8" path="res://Itens/Crafts/placa_de_metal.tscn" id="2_7ndwe"]
+[ext_resource type="PackedScene" uid="uid://b8lai2nn4r07b" path="res://Itens/Crafts/reparo_circuito.tscn" id="2_pqpjj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04f0g"]
 albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
@@ -14,7 +14,7 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_pqpjj")
 nome_projeto = "Reparo de Filamentos"
-cena_resultado = ExtResource("2_7ndwe")
+cena_resultado = ExtResource("2_pqpjj")
 custo_metal = 1
 custo_plastico = 2
 pode_ser_aberto = false
