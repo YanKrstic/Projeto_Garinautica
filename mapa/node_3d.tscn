@@ -21,12 +21,14 @@
 [ext_resource type="PackedScene" uid="uid://c4b1bigvrsjo4" path="res://ObjetosMecanica/prensa_desmanche.tscn" id="19_jdn7m"]
 [ext_resource type="PackedScene" uid="uid://cc1ejs54lwln6" path="res://ObjetosMecanica/Reciclagem/reciclagem_plastico.tscn" id="19_k0ndr"]
 [ext_resource type="PackedScene" uid="uid://bgxymexd8i17w" path="res://ObjetosMecanica/mesa_montagem.tscn" id="20_pld7p"]
-[ext_resource type="PackedScene" uid="uid://ce0kb452hn16u" path="res://Itens/disquetes/disquete_reparo.tscn" id="21_lxp05"]
+[ext_resource type="PackedScene" uid="uid://ce0kb452hn16u" path="res://Itens/disquetes/casco_disquete_reparo.tscn" id="21_lxp05"]
 [ext_resource type="PackedScene" uid="uid://b6uungnqwl3d7" path="res://ObjetosSubmarino/Reparaveis/parede_casco.tscn" id="22_lxp05"]
-[ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/disquete_reparo2.tscn" id="23_gteww"]
+[ext_resource type="PackedScene" uid="uid://be32pr8efpek7" path="res://Itens/disquetes/filamentos_disquete_reparo2.tscn" id="23_gteww"]
 [ext_resource type="PackedScene" uid="uid://cndymnts0bgcg" path="res://ObjetosMecanica/leme_navegacao.tscn" id="24_k6cbh"]
 [ext_resource type="PackedScene" uid="uid://ck7ckwi0u5p6g" path="res://ObjetosMecanica/caixa_carga.tscn" id="26_kd22w"]
 [ext_resource type="PackedScene" uid="uid://b42hqb7b13iio" path="res://ObjetosSubmarino/Reparaveis/quadro_eletrico.tscn" id="27_1n0lq"]
+[ext_resource type="PackedScene" uid="uid://cbcjen3xc0673" path="res://ObjetosSubmarino/Reparaveis/filtro_oxigenio.tscn" id="28_vaxkm"]
+[ext_resource type="PackedScene" uid="uid://cxjyo2c5h63xa" path="res://Itens/disquetes/filtroO2_disquete_reparo.tscn" id="29_1aavg"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -290,6 +292,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.96
 
 [node name="QuadroEletrico" parent="." unique_id=2066651161 instance=ExtResource("27_1n0lq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.880283, 5.469995, -5.043834)
+
+[node name="FiltroOxigenio" parent="." unique_id=828362228 instance=ExtResource("28_vaxkm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.356546, -11.480257)
+
+[node name="Disquete3" parent="." unique_id=622769228 instance=ExtResource("29_1aavg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.783988, 7.764198, 0.09038639)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

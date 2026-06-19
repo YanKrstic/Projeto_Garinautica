@@ -92,3 +92,14 @@ func remover_item_da_cota(tipo_item: String):
 	elif tipo_item == "plastico" and plastico_coletado > 0:
 		plastico_coletado -= 1
 		atualizar_hud_cota()
+		
+# --- MECÂNICAS DO FILTRO DE AR ---
+func entupir_filtro():
+	# O consumo base normal é 1.0. Dobramos (ou mais) para sufocar o jogador!
+	consumo_base = 1.0
+	print("ALERTA CRÍTICO: Filtro de ar entupido! Consumo de O2 subiu drasticamente!")
+
+func limpar_filtro():
+	# Volta ao consumo padrão de repouso
+	consumo_base = 1.0 
+	print("Filtro de ar limpo! Consumo estabilizado.")

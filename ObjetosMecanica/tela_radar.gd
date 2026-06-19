@@ -14,6 +14,9 @@ extends Control
 
 var timer_atual: float = 0.0
 
+# ---> 1. NOVA VARIÁVEL DA CORRENTEZA <---
+var forca_corrente_atual: float = 0.0
+
 func _process(delta):
 	timer_atual += delta
 	if timer_atual >= tempo_spawn:
@@ -21,12 +24,21 @@ func _process(delta):
 		timer_atual = 0.0
 		
 	_mover_e_verificar_colisoes(delta)
+	
+	# ---> 2. O EMPURRÃO CONTÍNUO DA CORRENTEZA <---
+	if forca_corrente_atual != 0.0:
+		icone.position.x += forca_corrente_atual * delta
+		icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
-# O Leme agora chama esta função para somar a posição atual
+# ---> 3. A FUNÇÃO QUE O PAINEL 3D CHAMA <---
+func aplicar_correnteza(forca: float):
+	forca_corrente_atual = forca
+
+# O Leme agora chama esta função para somar a posição atual do mouse
 func mover_submarino(giro_delta: float):
 	icone.position.x += giro_delta * pixels_por_radiano
 	
-	# O Clamp prende o ícone dentro da tela. Se você tentar ir além, o giro é simplesmente engolido pelo limbo!
+	# O Clamp prende o ícone dentro da tela.
 	icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
 func _spawnar_objeto():
@@ -57,16 +69,13 @@ func _mover_e_verificar_colisoes(delta):
 		if meu_rect.intersects(pedra.get_global_rect()):
 			print("BUM! Bateu na pedra! Procurando um casco para quebrar...")
 			
-			# 1. Procura todas as paredes de casco na cena
 			var todos_os_cascos = get_tree().get_nodes_in_group("cascos")
 			var cascos_inteiros = []
 			
-			# 2. Filtra apenas as que ainda não estão quebradas
 			for casco in todos_os_cascos:
 				if not casco.esta_quebrado:
 					cascos_inteiros.append(casco)
 			
-			# 3. Sorteia UMA parede inteira e quebra-a!
 			if cascos_inteiros.size() > 0:
 				var casco_sorteado = cascos_inteiros.pick_random()
 				casco_sorteado.quebrar()
@@ -83,11 +92,9 @@ func _mover_e_verificar_colisoes(delta):
 			continue
 			
 		if meu_rect.intersects(lixo.get_global_rect()):
-			# MUDANÇA: Sorteia quantos lixos físicos este bloco quadrado vale
 			var qtd = randi_range(min_lixo_por_bloco, max_lixo_por_bloco)
 			print("Radar: Bloco Sugado! Gerando ", qtd, " lixos físicos...")
 			
-			# Manda o Tubo receber essa quantidade específica
 			get_tree().call_group("tubos_de_coleta", "receber_lixo", qtd)
 			
 			lixo.queue_free()

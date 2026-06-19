@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d4gwqh3fsukns"]
+
+[ext_resource type="Script" uid="uid://1tevrs0mfjoq" path="res://placa_de_metal.gd" id="1_p1yyr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b43iy"]
+albedo_color = Color(0, 0.76176614, 0.76372737, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf4aa"]
+resource_local_to_scene = true
+albedo_color = Color(0.39607844, 0.39607844, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vs6t4"]
+size = Vector3(1, 0.14929199, 1)
+
+[node name="ReparoCircuito" type="RigidBody3D" unique_id=306768600 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
+script = ExtResource("1_p1yyr")
+tipo_reparo = "Filtro de O2"
+pode_ser_aberto = false
+modelo_fechado = NodePath("CSGBox3D")
+shapes_fechados = [NodePath("CollisionShape3D")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=255852514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04675293, 0)
+material_override = SubResource("StandardMaterial3D_b43iy")
+size = Vector3(1, 0.13549805, 1)
+material = SubResource("StandardMaterial3D_nf4aa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=769354684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.041931152, 0)
+shape = SubResource("BoxShape3D_vs6t4")

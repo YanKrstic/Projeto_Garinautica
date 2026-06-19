@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cbcjen3xc0673"]
+
+[ext_resource type="Script" uid="uid://hj7v8kgqo35k" path="res://ObjetosSubmarino/Reparaveis/filtro_oxigenio.gd" id="1_qlydd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_72s7w"]
+
+[node name="FiltroOxigenio" type="StaticBody3D" unique_id=828362228 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
+script = ExtResource("1_qlydd")
+intervalo_checagem = 10.0
+chance_de_falha = 1.0
+ferramenta_necessaria = "Filtro de O2"
+dano_oxigenio = 0.0
+modelo_normal = NodePath("CSGBox3D2")
+modelo_quebrado = NodePath("CSGBox3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2032907701]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=174506374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4360962, 0)
+size = Vector3(1, 1.8721924, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1127969333]
+shape = SubResource("BoxShape3D_72s7w")

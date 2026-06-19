@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dy6edbqqqrgu8" path="res://Scripts/leme_navegacao.gd" id="1_a0tg7"]
 [ext_resource type="PackedScene" uid="uid://bcofy3u5yvdug" path="res://ObjetosMecanica/tela_radar.tscn" id="2_lblbg"]
+[ext_resource type="Script" uid="uid://emjq6r83i8n6" path="res://ObjetosMecanica/painel_correnteza.gd" id="3_odikk"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_myx8l"]
 
@@ -59,3 +60,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pkemu")
 [node name="SubViewportRadar" type="SubViewport" parent="MonitorRadar" unique_id=1203950252]
 
 [node name="TelaRadar" parent="MonitorRadar/SubViewportRadar" unique_id=1458760733 instance=ExtResource("2_lblbg")]
+
+[node name="PainelCorrenteza" type="Node3D" parent="." unique_id=884007590 node_paths=PackedStringArray("radar_2d", "luz_esquerda", "luz_direita")]
+transform = Transform3D(0.755, 0, 0, 0, 0.755, 0, 0, 0, 0.755, -1.6415048, 0, 0)
+script = ExtResource("3_odikk")
+radar_2d = NodePath("../MonitorRadar/SubViewportRadar/TelaRadar")
+luz_esquerda = NodePath("LuzEsquerda")
+luz_direita = NodePath("LuzDireira")
+tempo_min_espera = 5.0
+tempo_max_espera = 10.0
+duracao_correnteza = 10.0
+
+[node name="LuzEsquerda" type="CSGBox3D" parent="PainelCorrenteza" unique_id=1339164171]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.5327387, 0, 0)
+
+[node name="LuzDireira" type="CSGBox3D" parent="PainelCorrenteza" unique_id=1566549973]
+transform = Transform3D(0.30000004, 0, 0, 0, 0.30000004, 0, 0, 0, 0.30000004, 0.45196235, 0, 0)
