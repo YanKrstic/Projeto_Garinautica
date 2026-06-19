@@ -8,6 +8,7 @@ var oxigenio_maximo: float = 100.0
 var oxigenio_atual: float = 100.0
 var consumo_base: float = 0.05 
 var vazamento_extra: float = 0.0 
+var multiplicador_filtro: float = 1.0 # 1 -> total normal
 
 # --- CONFIGURAÇÕES DA COTA DA FASE ---
 var cota_metal_requerida: int = 3
@@ -26,7 +27,8 @@ func _process(delta):
 	if get_tree().paused or oxigenio_atual <= 0: 
 		return
 
-	var perda_total = consumo_base + vazamento_extra
+	var perda_total = (consumo_base * multiplicador_filtro) + vazamento_extra
+	
 	oxigenio_atual -= perda_total * delta
 	barra.value = oxigenio_atual
 	
@@ -94,12 +96,15 @@ func remover_item_da_cota(tipo_item: String):
 		atualizar_hud_cota()
 		
 # --- MECÂNICAS DO FILTRO DE AR ---
-func entupir_filtro():
-	# O consumo base normal é 1.0. Dobramos (ou mais) para sufocar o jogador!
-	consumo_base = 1.0
-	print("ALERTA CRÍTICO: Filtro de ar entupido! Consumo de O2 subiu drasticamente!")
+func entupir_filtro(percentagem_aumento: float):
+	multiplicador_filtro += (percentagem_aumento / 100.0)
+	print("Filtro entupido! Multiplicador de consumo subiu para: ", multiplicador_filtro, "x")
 
-func limpar_filtro():
-	# Volta ao consumo padrão de repouso
-	consumo_base = 1.0 
-	print("Filtro de ar limpo! Consumo estabilizado.")
+func limpar_filtro(percentagem_reducao: float):
+	multiplicador_filtro -= (percentagem_reducao / 100.0)
+	
+	# Trava de segurança para não bugar a matemática
+	if multiplicador_filtro < 1.0: 
+		multiplicador_filtro = 1.0
+		
+	print("Filtro limpo! Multiplicador de consumo desceu para: ", multiplicador_filtro, "x")
