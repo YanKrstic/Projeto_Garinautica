@@ -1,6 +1,7 @@
 extends Control
 
 @onready var icone = $IconeSubmarino
+@onready var tela_morta = $TelaMorta
 
 @export_group("Movimento e Controles")
 # Quanto maior esse número, mais o submarino anda pros lados a cada volta do mouse
@@ -16,6 +17,24 @@ var timer_atual: float = 0.0
 
 # ---> 1. NOVA VARIÁVEL DA CORRENTEZA <---
 var forca_corrente_atual: float = 0.0
+
+func _ready():
+	# Entra no grupo para que o Módulo Físico o consiga encontrar de qualquer lado
+	add_to_group("tela_radar")
+	if tela_morta:
+		tela_morta.hide()
+
+# --- MECÂNICAS DA CRISE DO RADAR ---
+
+func avariar_tela():
+	if tela_morta: 
+		tela_morta.show()
+	print("Radar: Ecrã sem sinal! Navegação às cegas!")
+
+func reparar_tela():
+	if tela_morta: 
+		tela_morta.hide()
+	print("Radar: Sinal restaurado e imagem limpa!")
 
 func _process(delta):
 	timer_atual += delta

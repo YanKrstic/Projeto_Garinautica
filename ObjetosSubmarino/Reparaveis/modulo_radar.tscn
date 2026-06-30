@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d10acy444jogx"]
+
+[ext_resource type="Script" uid="uid://b7vlufm3a0uft" path="res://ObjetosSubmarino/Reparaveis/modulo_radar.gd" id="1_xn6iu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1pn2"]
+
+[node name="ModuloRadar" type="StaticBody3D" unique_id=563817260]
+script = ExtResource("1_xn6iu")
+intervalo_checagem = 10.0
+chance_de_falha = 1.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1798375259]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=500093499]
+shape = SubResource("BoxShape3D_h1pn2")
