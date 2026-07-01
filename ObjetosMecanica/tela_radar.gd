@@ -1,10 +1,10 @@
 extends Control
 
 @onready var icone = $IconeSubmarino
-@onready var tela_morta = $TelaMorta
+# Certifique-se de que este nome bate exatamente com o nó do seu retângulo preto!
+@onready var tela_morta = $TelaMorta 
 
 @export_group("Movimento e Controles")
-# Quanto maior esse número, mais o submarino anda pros lados a cada volta do mouse
 @export var pixels_por_radiano: float = 30.0 
 
 @export_group("Configurações da Esteira")
@@ -14,50 +14,54 @@ extends Control
 @export var max_lixo_por_bloco: int = 6
 
 var timer_atual: float = 0.0
-
-# ---> 1. NOVA VARIÁVEL DA CORRENTEZA <---
 var forca_corrente_atual: float = 0.0
 
+# --- VARIÁVEIS DA NOVA MECÂNICA DE MAU CONTATO ---
+var radar_quebrado: bool = false
+var timer_piscar: float = 0.0
+
 func _ready():
-	# Entra no grupo para que o Módulo Físico o consiga encontrar de qualquer lado
 	add_to_group("tela_radar")
 	if tela_morta:
 		tela_morta.hide()
-
-# --- MECÂNICAS DA CRISE DO RADAR ---
-
-func avariar_tela():
-	if tela_morta: 
-		tela_morta.show()
-	print("Radar: Ecrã sem sinal! Navegação às cegas!")
-
-func reparar_tela():
-	if tela_morta: 
-		tela_morta.hide()
-	print("Radar: Sinal restaurado e imagem limpa!")
+		# FIX DO BUG: Força a lona preta a desenhar por cima das pedras e lixos!
+		tela_morta.z_index = 100
 
 func _process(delta):
+	# 1. Geração de Lixo e Pedras
 	timer_atual += delta
 	if timer_atual >= tempo_spawn:
 		_spawnar_objeto()
 		timer_atual = 0.0
 		
+	# 2. Física e Colisões
 	_mover_e_verificar_colisoes(delta)
 	
-	# ---> 2. O EMPURRÃO CONTÍNUO DA CORRENTEZA <---
+	# 3. Correnteza
 	if forca_corrente_atual != 0.0:
 		icone.position.x += forca_corrente_atual * delta
 		icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
-# ---> 3. A FUNÇÃO QUE O PAINEL 3D CHAMA <---
+	# 4. A MÁGICA DO PISCA-PISCA (Mau Contato)
+	if radar_quebrado and tela_morta:
+		timer_piscar -= delta
+		if timer_piscar <= 0:
+			if tela_morta.visible:
+				# Se a tela estava PRETA, dá um vislumbre rápido do radar
+				tela_morta.visible = false
+				timer_piscar = randf_range(0.4, 1.2) # Fica visível entre 0.1s e 0.4s
+			else:
+				# Se a tela estava VISÍVEL, volta para o breu por mais tempo
+				tela_morta.visible = true
+				timer_piscar = randf_range(1, 4) # Fica apagada entre 0.5s e 2.0s
+
+# --- COMANDOS DO RADAR ---
+
 func aplicar_correnteza(forca: float):
 	forca_corrente_atual = forca
 
-# O Leme agora chama esta função para somar a posição atual do mouse
 func mover_submarino(giro_delta: float):
 	icone.position.x += giro_delta * pixels_por_radiano
-	
-	# O Clamp prende o ícone dentro da tela.
 	icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
 func _spawnar_objeto():
@@ -86,21 +90,18 @@ func _mover_e_verificar_colisoes(delta):
 			continue
 			
 		if meu_rect.intersects(pedra.get_global_rect()):
-			print("BUM! Bateu na pedra! Procurando um casco para quebrar...")
-			
+			print("BUM! Bateu na pedra!")
 			var todos_os_cascos = get_tree().get_nodes_in_group("cascos")
 			var cascos_inteiros = []
-			
 			for casco in todos_os_cascos:
-				if not casco.esta_quebrado:
-					cascos_inteiros.append(casco)
+				if not casco.esta_quebrado: cascos_inteiros.append(casco)
 			
 			if cascos_inteiros.size() > 0:
 				var casco_sorteado = cascos_inteiros.pick_random()
 				casco_sorteado.quebrar()
 				print("Vazamento aberto!")
 			else:
-				print("BUM! Todos os buracos já estão abertos! Estamos a afundar!")
+				print("BUM! Todos os buracos já estão abertos!")
 			
 			pedra.queue_free()
 			
@@ -113,7 +114,17 @@ func _mover_e_verificar_colisoes(delta):
 		if meu_rect.intersects(lixo.get_global_rect()):
 			var qtd = randi_range(min_lixo_por_bloco, max_lixo_por_bloco)
 			print("Radar: Bloco Sugado! Gerando ", qtd, " lixos físicos...")
-			
 			get_tree().call_group("tubos_de_coleta", "receber_lixo", qtd)
-			
 			lixo.queue_free()
+
+# --- COMANDOS DA CRISE DO RADAR ---
+
+func avariar_tela():
+	radar_quebrado = true
+	if tela_morta: tela_morta.show() 
+	print("Radar: Ecrã com mau contato! Navegação prejudicada!")
+
+func reparar_tela():
+	radar_quebrado = false
+	if tela_morta: tela_morta.hide()
+	print("Radar: Sinal restaurado e imagem limpa!")

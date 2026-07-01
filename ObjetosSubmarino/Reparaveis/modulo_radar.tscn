@@ -4,12 +4,20 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1pn2"]
 
-[node name="ModuloRadar" type="StaticBody3D" unique_id=563817260]
+[node name="ModuloRadar" type="StaticBody3D" unique_id=563817260 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
 script = ExtResource("1_xn6iu")
-intervalo_checagem = 10.0
+intervalo_checagem = 5.0
 chance_de_falha = 1.0
+ferramenta_necessaria = "Radar"
+dano_oxigenio = 0.0
+modelo_normal = NodePath("CSGBox3D")
+modelo_quebrado = NodePath("CSGBox3D2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1798375259]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=855932831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27822876, 0, 0)
+size = Vector3(2.3848267, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=500093499]
 shape = SubResource("BoxShape3D_h1pn2")

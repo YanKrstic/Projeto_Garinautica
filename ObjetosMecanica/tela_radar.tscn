@@ -17,8 +17,6 @@ script = ExtResource("1_tn2ef")
 pixels_por_radiano = 5.0
 velocidade_esteira = 100.0
 tempo_spawn = 2.0
-min_lixo_por_bloco = 2
-max_lixo_por_bloco = 4
 
 [node name="Fundo" type="ColorRect" parent="." unique_id=24090159]
 layout_mode = 0
