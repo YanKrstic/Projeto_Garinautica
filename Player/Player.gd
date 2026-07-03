@@ -57,6 +57,10 @@ func _input(event):
 			sair_do_leme()
 			return
 
+func _process(delta):
+	if objeto_na_mao:
+		atualizar_posicao_objeto()
+
 func _physics_process(delta):
 	# Se estiver livre, a gravidade funciona normalmente
 	if estado_atual == "LIVRE":
@@ -90,8 +94,7 @@ func _physics_process(delta):
 		if corpo is RigidBody3D and corpo != objeto_na_mao:
 			corpo.apply_central_impulse(-colisao.get_normal() * EMPURRAO_FORCA)
 
-	if objeto_na_mao:
-		atualizar_posicao_objeto()
+
 
 func entrar_no_leme(leme):
 	estado_atual = "PILOTANDO"
