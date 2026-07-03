@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dmjv1u3xm4w46"]
+[gd_scene format=3 uid="uid://dvx3m4fpnktgc"]
 
-[ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_m7frp"]
-[ext_resource type="PackedScene" uid="uid://bwdub71efky6l" path="res://Itens/Crafts/reparo_radar.tscn" id="2_m7frp"]
+[ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_ixfbf"]
+[ext_resource type="PackedScene" uid="uid://dhlcou8v8xtqc" path="res://Itens/Crafts/reparo_motor_leme.tscn" id="2_ixfbf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04f0g"]
 albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
@@ -12,11 +12,10 @@ size = Vector3(1.3269043, 0.091552734, 1)
 [node name="Disquete" type="RigidBody3D" unique_id=1249661377 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_m7frp")
-nome_projeto = "Sinal de Radio"
-cena_resultado = ExtResource("2_m7frp")
-custo_metal = 1
-custo_plastico = 1
+script = ExtResource("1_ixfbf")
+nome_projeto = "Motor do Leme"
+cena_resultado = ExtResource("2_ixfbf")
+custo_plastico = 2
 pode_ser_aberto = false
 modelo_fechado = NodePath("CSGBox3D")
 shapes_fechados = [NodePath("CollisionShape3D")]
