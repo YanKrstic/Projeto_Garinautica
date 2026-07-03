@@ -20,6 +20,9 @@ var forca_corrente_atual: float = 0.0
 var radar_quebrado: bool = false
 var timer_piscar: float = 0.0
 
+# --- VARIÁVEIS DA CRISE DE DIREÇÃO ---
+var multiplicador_direcao: float = 1.0
+
 func _ready():
 	add_to_group("tela_radar")
 	if tela_morta:
@@ -61,7 +64,7 @@ func aplicar_correnteza(forca: float):
 	forca_corrente_atual = forca
 
 func mover_submarino(giro_delta: float):
-	icone.position.x += giro_delta * pixels_por_radiano
+	icone.position.x += giro_delta * (pixels_por_radiano * multiplicador_direcao)
 	icone.position.x = clamp(icone.position.x, 0, size.x - icone.size.x)
 
 func _spawnar_objeto():
@@ -128,3 +131,15 @@ func reparar_tela():
 	radar_quebrado = false
 	if tela_morta: tela_morta.hide()
 	print("Radar: Sinal restaurado e imagem limpa!")
+	
+# --- COMANDOS DA CRISE DE DIREÇÃO ---
+
+func dificultar_direcao():
+	# Reduz a eficiência do leme para 40% do normal
+	multiplicador_direcao = 0.4 
+	print("Radar: Direção pesada! O leme está com as engrenagens travadas!")
+
+func normalizar_direcao():
+	# Devolve a leveza original a 100%
+	multiplicador_direcao = 1.0 
+	print("Radar: Engrenagens lubrificadas. Direção normalizada!")

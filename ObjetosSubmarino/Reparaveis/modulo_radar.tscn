@@ -6,8 +6,8 @@
 
 [node name="ModuloRadar" type="StaticBody3D" unique_id=563817260 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
 script = ExtResource("1_xn6iu")
-intervalo_checagem = 5.0
-chance_de_falha = 1.0
+intervalo_checagem = 20.0
+chance_de_falha = 0.3
 ferramenta_necessaria = "Radar"
 dano_oxigenio = 0.0
 modelo_normal = NodePath("CSGBox3D")
