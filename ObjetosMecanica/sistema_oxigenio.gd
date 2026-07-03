@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+var cena_game_over = preload("res://ObjetosMecanica/tela_game_over.tscn")
+var tela_instanciada = null
+
+
 @onready var barra = $BarraOxigenio
 @onready var texto_cota = $TextoCota # <-- NOVO
 
@@ -28,18 +32,20 @@ func _process(delta):
 		return
 
 	var perda_total = (consumo_base * multiplicador_filtro) + vazamento_extra
-	
 	oxigenio_atual -= perda_total * delta
 	barra.value = oxigenio_atual
 	
 	if oxigenio_atual <= 0:
 		oxigenio_atual = 0
-		_game_over()
+		disparar_game_over("Ficou sem oxigénio. Asfixia letal.")
 
-func _game_over():
-	print("GAME OVER!")
-	get_tree().reload_current_scene()
-
+func disparar_game_over(motivo: String):
+	if tela_instanciada == null:
+		tela_instanciada = cena_game_over.instantiate()
+		add_child(tela_instanciada)
+	
+	tela_instanciada.exibir(motivo)
+	
 # --- ATUALIZAÇÃO DA INTERFACE DA COTA ---
 func atualizar_hud_cota():
 	if texto_cota:

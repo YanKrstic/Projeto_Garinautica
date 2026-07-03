@@ -3,13 +3,15 @@ extends Control
 @onready var icone = $IconeSubmarino
 # Certifique-se de que este nome bate exatamente com o nó do seu retângulo preto!
 @onready var tela_morta = $TelaMorta 
+@export var limite_esmagamento: float = 2.5 # Segundos esfregando na parede até morrer
+var tempo_esmagado: float = 0.0
 
 @export_group("Movimento e Controles")
 @export var pixels_por_radiano: float = 30.0 
 
 @export_group("Configurações da Esteira")
 @export var velocidade_esteira: float = 120.0 
-@export var tempo_spawn: float = 0.1 
+@export var tempo_spawn: float = 1.2 
 @export var min_lixo_por_bloco: int = 3
 @export var max_lixo_por_bloco: int = 6
 
@@ -108,6 +110,34 @@ func _mover_e_verificar_colisoes(delta):
 				print("BUM! Todos os buracos já estão abertos!")
 			
 			pedra.queue_free()
+	var esta_batendo_no_tunel = false
+	
+	for parede in get_tree().get_nodes_in_group("tuneis_radar"):
+		parede.position.y += velocidade_esteira * delta
+		if parede.position.y > size.y:
+			parede.queue_free()
+			continue
+			
+		if meu_rect.intersects(parede.get_global_rect()):
+			esta_batendo_no_tunel = true
+			
+	# Se estiver encostando na parede, a barra de esmagamento enche!
+	if esta_batendo_no_tunel:
+		tempo_esmagado += delta
+		print("Dano crítico! Casco sob pressão extrema: ", tempo_esmagado)
+		
+		# Faz o ícone do submarino piscar vermelho para dar agonia!
+		icone.modulate = Color.RED if randf() > 0.5 else Color.WHITE
+		
+		if tempo_esmagado >= limite_esmagamento:
+			# CHAMA A TELA DE GAME OVER GLOBAL!
+			if SistemaOxigenio:
+				SistemaOxigenio.disparar_game_over("O casco foi esmagado pelas rochas do abismo.")
+	else:
+		# Se desgrudou da parede, o casco se recupera aos poucos
+		icone.modulate = Color.WHITE
+		tempo_esmagado -= delta
+		if tempo_esmagado < 0: tempo_esmagado = 0
 			
 	for lixo in get_tree().get_nodes_in_group("lixos_radar"):
 		lixo.position.y += velocidade_esteira * delta
@@ -153,7 +183,7 @@ func _spawnar_tunel():
 	var meio = size.x / 2.0
 	
 	# ---> MÁGICA AQUI: Aumente este número para deixar o túnel mais longo! <---
-	var comprimento_tunel = 888.0 
+	var comprimento_tunel = 700.0 
 	
 	print("Radar: A gerar túnel de rochas longo do tipo ", tipo)
 	
@@ -178,5 +208,6 @@ func _criar_bloco_parede(pos_inicio_x: float, pos_fim_x: float, comprimento: flo
 	parede.position = Vector2(pos_inicio_x, -comprimento - 10)
 	
 	parede.color = Color.RED
-	parede.add_to_group("pedras_radar") 
+	parede.add_to_group("tuneis_radar")
 	add_child(parede)
+	

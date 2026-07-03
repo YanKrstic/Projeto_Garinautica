@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://iscgyou8w4lf"]
+
+[ext_resource type="Script" uid="uid://dvjpg8ohtv275" path="res://ObjetosMecanica/tela_game_over.gd" id="1_mtrp0"]
+[ext_resource type="FontFile" uid="uid://212m4jxcavlx" path="res://Fonts/arcade_classic_2/ARCADECLASSIC.TTF" id="1_yp65l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mtrp0"]
+font = ExtResource("1_yp65l")
+font_size = 140
+font_color = Color(0.9999997, 0.1018958, 0.20751438, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lk83u"]
+font_size = 35
+
+[node name="TelaGameOver" type="Control" unique_id=1437042060]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mtrp0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=338102675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1117.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.79607844)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=309130817]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = -150.17
+offset_right = 249.0
+offset_bottom = -38.16986
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_mtrp0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MotivoTexto" type="Label" parent="ColorRect" unique_id=1625274978]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -24.5
+offset_right = 264.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+label_settings = SubResource("LabelSettings_lk83u")
+
+[node name="BotaoReiniciar" type="Button" parent="ColorRect" unique_id=313924494]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 40.274994
+offset_right = 77.0
+offset_bottom = 71.274994
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tentar Novamente"
