@@ -9,8 +9,7 @@ albedo_color = Color(0, 1, 1, 1)
 
 [node name="MotorDirecao" type="StaticBody3D" unique_id=2120128084 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado")]
 script = ExtResource("1_ks1e2")
-intervalo_checagem = 10.0
-chance_de_falha = 1.0
+chance_de_falha = 0.2
 ferramenta_necessaria = "MotorLeme"
 dano_oxigenio = 0.0
 modelo_normal = NodePath("CSGBox3D")

@@ -9,7 +9,7 @@ extends Control
 
 @export_group("Configurações da Esteira")
 @export var velocidade_esteira: float = 120.0 
-@export var tempo_spawn: float = 1.2 
+@export var tempo_spawn: float = 0.1 
 @export var min_lixo_por_bloco: int = 3
 @export var max_lixo_por_bloco: int = 6
 
@@ -34,7 +34,8 @@ func _process(delta):
 	# 1. Geração de Lixo e Pedras
 	timer_atual += delta
 	if timer_atual >= tempo_spawn:
-		_spawnar_objeto()
+		_spawnar_tunel()
+		#_spawnar_objeto()
 		timer_atual = 0.0
 		
 	# 2. Física e Colisões
@@ -143,3 +144,39 @@ func normalizar_direcao():
 	# Devolve a leveza original a 100%
 	multiplicador_direcao = 1.0 
 	print("Radar: Engrenagens lubrificadas. Direção normalizada!")
+	
+# --- MECÂNICA DE TÚNEIS (FASE 3) ---
+
+func _spawnar_tunel():
+	var tipo = randi() % 3
+	var espaco_livre = 140.0 
+	var meio = size.x / 2.0
+	
+	# ---> MÁGICA AQUI: Aumente este número para deixar o túnel mais longo! <---
+	var comprimento_tunel = 888.0 
+	
+	print("Radar: A gerar túnel de rochas longo do tipo ", tipo)
+	
+	if tipo == 0: 
+		_criar_bloco_parede(0, meio - (espaco_livre / 2.0), comprimento_tunel) 
+		_criar_bloco_parede(meio + (espaco_livre / 2.0), size.x, comprimento_tunel)
+		
+	elif tipo == 1: 
+		_criar_bloco_parede(0, size.x - espaco_livre, comprimento_tunel)
+		
+	elif tipo == 2: 
+		_criar_bloco_parede(espaco_livre, size.x, comprimento_tunel)
+
+# Atualizamos a função para receber o "comprimento"
+func _criar_bloco_parede(pos_inicio_x: float, pos_fim_x: float, comprimento: float):
+	var parede = ColorRect.new()
+	
+	# O eixo Y agora usa a nossa nova variável de comprimento
+	parede.size = Vector2(pos_fim_x - pos_inicio_x, comprimento) 
+	
+	# Faz a parede nascer exatamente acima da tela (-comprimento) para descer suavemente
+	parede.position = Vector2(pos_inicio_x, -comprimento - 10)
+	
+	parede.color = Color.RED
+	parede.add_to_group("pedras_radar") 
+	add_child(parede)
