@@ -29,16 +29,20 @@ func _ready():
 	add_to_group("tela_radar")
 	if tela_morta:
 		tela_morta.hide()
-		# FIX DO BUG: Força a lona preta a desenhar por cima das pedras e lixos!
 		tela_morta.z_index = 100
 
 func _process(delta):
 	# 1. Geração de Lixo e Pedras
 	timer_atual += delta
 	if timer_atual >= tempo_spawn:
-		_spawnar_tunel()
-		#_spawnar_objeto()
 		timer_atual = 0.0
+		
+		# A MÁGICA DO RADAR:
+		# Se estiver na Fase 3, tem 20% de chance de nascer um túnel em vez de lixo solto
+		if SistemaOxigenio.fase_atual >= 3 and randf() < 0.2:
+			_spawnar_tunel()
+		else:
+			_spawnar_objeto()
 		
 	# 2. Física e Colisões
 	_mover_e_verificar_colisoes(delta)

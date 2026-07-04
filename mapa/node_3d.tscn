@@ -305,7 +305,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.783988, 7.764198, 0.090386
 
 [node name="ModuloRadar" parent="." unique_id=563817260 instance=ExtResource("30_3jm2w")]
 transform = Transform3D(-0.78645027, 0, -0.61765385, 0, 1, 0, 0.61765385, 0, -0.78645027, 4.504416, 5.9122033, 3.5628824)
-chance_de_falha = 0.0
+chance_de_falha = 1.0
 
 [node name="Disquete4" parent="." unique_id=1536651656 instance=ExtResource("31_0u0pp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.611355, 5.687946, -2.7361617)

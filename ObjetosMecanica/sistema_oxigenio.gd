@@ -7,6 +7,8 @@ var tela_instanciada = null
 @onready var barra = $BarraOxigenio
 @onready var texto_cota = $TextoCota # <-- NOVO
 
+
+
 # --- CONFIGURAÇÕES DE VIDA ---
 var oxigenio_maximo: float = 100.0
 var oxigenio_atual: float = 100.0
@@ -20,6 +22,17 @@ var cota_plastico_requerida: int = 2
 
 var metal_coletado: int = 0
 var plastico_coletado: int = 0
+
+# --- GERENCIADOR DE FASES ---
+var fase_atual: int = 1
+
+# Esta função será chamada pela Tela de Transição sempre que o jogador passar de fase
+func iniciar_fase(numero_fase: int):
+	fase_atual = numero_fase
+	print("SISTEMA GLOBAL: Iniciando Fase ", fase_atual)
+	
+	# Aqui no futuro vamos mandar o Rádio tocar o áudio correspondente!
+	# if fase_atual == 2: radio.play(audio_fase2)
 
 func _ready():
 	oxigenio_atual = oxigenio_maximo

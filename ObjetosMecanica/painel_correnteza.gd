@@ -11,6 +11,9 @@ extends Node3D
 @export var tempo_max_espera: float = 25.0
 @export var duracao_correnteza: float = 6.0
 
+@export_group("Configuração de Fases")
+@export var fase_desbloqueio: int = 2 # A correnteza só acorda na Fase 2!
+
 var timer_espera: float = 0.0
 var timer_duracao: float = 0.0
 var correnteza_ativa: bool = false
@@ -21,7 +24,9 @@ func _ready():
 	_reiniciar_espera()
 
 func _process(delta):
-	if get_tree().paused: return
+	if get_tree().paused or SistemaOxigenio.fase_atual < fase_desbloqueio: 
+		return
+		
 	
 	if correnteza_ativa:
 		# Conta o tempo que a maré vai durar

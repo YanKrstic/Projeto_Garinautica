@@ -11,6 +11,9 @@ class_name ObjetoReparavel
 @export var modelo_normal: Node3D
 @export var modelo_quebrado: Node3D
 
+@export_group("Configuração de Fases")
+@export var fase_desbloqueio: int = 1 # Em que fase este desastre começa a acontecer?
+
 var esta_quebrado: bool = false # MUDANÇA: O submarino começa 100% consertado
 var progresso_atual: float = 0.0
 

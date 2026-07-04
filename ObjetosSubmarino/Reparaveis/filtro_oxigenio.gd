@@ -10,7 +10,7 @@ extends ObjetoReparavel
 var tempo_acumulado: float = 0.0
 
 func _process(delta):
-	if get_tree().paused or esta_quebrado:
+	if get_tree().paused or esta_quebrado or SistemaOxigenio.fase_atual < fase_desbloqueio:
 		return
 		
 	tempo_acumulado += delta

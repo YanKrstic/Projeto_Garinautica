@@ -12,6 +12,7 @@ ferramenta_necessaria = "Radar"
 dano_oxigenio = 0.0
 modelo_normal = NodePath("CSGBox3D")
 modelo_quebrado = NodePath("CSGBox3D2")
+fase_desbloqueio = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1798375259]
 
