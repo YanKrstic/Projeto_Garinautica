@@ -8,4 +8,4 @@ func funcao_do_spawn():
 	print("Alavanca puxada! Verificando a carga...")
 	
 	if SistemaOxigenio:
-		SistemaOxigenio.verificar_vitoria_fase()
+		SistemaOxigenio.avancar_fase()

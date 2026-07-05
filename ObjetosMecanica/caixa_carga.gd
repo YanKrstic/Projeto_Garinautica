@@ -4,7 +4,6 @@ extends Node3D
 
 func _ready():
 	area_sensor.body_entered.connect(_on_body_entered)
-	# NOVO: Conecta o sinal de saída!
 	area_sensor.body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
@@ -18,16 +17,28 @@ func _on_body_entered(body):
 			var player = get_tree().current_scene.find_child("Player", true, false)
 			if player and player.objeto_na_mao == body:
 				player.soltar_objeto(0.0)
-				
-			# O QUEUE_FREE FOI REMOVIDO DAQUI! A barra agora fica no mundo.
 
-# NOVO: O que acontece se a barra for removida
 func _on_body_exited(body):
 	if "nome_do_material" in body:
 		var tipo = body.nome_do_material
 		
-		# Tira o ponto do jogador no HUD!
 		if SistemaOxigenio:
 			SistemaOxigenio.remover_item_da_cota(tipo)
 			
 		print("Caixa de Carga: ALERTA! Barra de ", tipo, " foi removida da caixa!")
+
+# NOVO: A Alavanca de Ejeção deve chamar esta função!
+func ejetar_carga():
+	# Pergunta ao sistema global se temos os requisitos mínimos
+	if SistemaOxigenio.verificar_pode_avancar():
+		print("Caixa de Carga: Ejetando material para a superfície!")
+		
+		# Varrer tudo o que está dentro da área e destruir fisicamente as barras
+		for body in area_sensor.get_overlapping_bodies():
+			if "nome_do_material" in body:
+				body.queue_free()
+				
+		# Avisa o cérebro do jogo que pode subir o nível de dificuldade!
+		SistemaOxigenio.avancar_fase()
+	else:
+		print("Caixa de Carga: Cota incompleta! Faltam materiais.")

@@ -80,13 +80,38 @@ func registrar_item_na_cota(tipo_item: String) -> bool:
 	return false # Retorna falso se o item enviado foi lixo errado ou cota já cheia
 
 # Chamado pelo Botão de Ejetar
-func verificar_vitoria_fase():
+func verificar_pode_avancar() -> bool:
 	if metal_coletado >= cota_metal_requerida and plastico_coletado >= cota_plastico_requerida:
-		print("VITÓRIA! Carga ejetada com sucesso para a superfície!")
-		# Provisório: Reinicia o jogo/fase ao vencer. Futuramente carrega a Fase 2.
-		get_tree().reload_current_scene()
-	else:
-		print("Caixa de Carga: Cota incompleta! Não é possível ejetar ainda.")
+		return true
+	return false
+
+# A caixa de carga chama esta função quando esvazia com sucesso
+func avancar_fase():
+	# Zera os contadores internos para a nova fase
+	metal_coletado = 0
+	plastico_coletado = 0
+	
+	if fase_atual == 1:
+		fase_atual = 2
+		# Novas exigências da Fase 2 (mais difíceis!)
+		cota_metal_requerida = 5
+		cota_plastico_requerida = 3
+		atualizar_hud_cota()
+		
+		print("📻 RÁDIO: Atenção! Descendo para 1.000 metros. A pressão aumentou e a poeira abissal vai entupir os filtros de oxigénio. Fiquem atentos!")
+		
+	elif fase_atual == 2:
+		fase_atual = 3
+		# Novas exigências da Fase 3 (Desespero!)
+		cota_metal_requerida = 8
+		cota_plastico_requerida = 5
+		atualizar_hud_cota()
+		
+		print("📻 RÁDIO: Alerta Crítico: Entrando no Abismo (2.000m). O campo magnético está enlouquecendo os nossos radares. Cuidado com os túneis!")
+		
+	elif fase_atual == 3:
+		print("VITÓRIA FINAL! Carga máxima atingida.")
+		# Futuramente chamaremos a Tela de Vitória (API do Dashboard)
 # ==========================================
 # FUNÇÕES GLOBAIS PARA AS CRISES USAREM
 # ==========================================
