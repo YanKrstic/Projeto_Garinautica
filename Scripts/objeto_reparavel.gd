@@ -36,8 +36,8 @@ func consertar(player):
 	_atualizar_visual()
 	
 	var item = player.objeto_na_mao
-	player.objeto_na_mao = null
-	item.queue_free()
+	#player.objeto_na_mao =  # null -> destruia a ferramenta
+	#item.queue_free()
 	
 	cancelar_interacao(player)
 	
