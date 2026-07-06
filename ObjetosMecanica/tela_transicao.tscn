@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cnxx3b3bvmarj"]
+
+[ext_resource type="FontFile" uid="uid://212m4jxcavlx" path="res://Fonts/arcade_classic_2/ARCADECLASSIC.TTF" id="1_6e01i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqavw"]
+font = ExtResource("1_6e01i")
+font_size = 95
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i02d"]
+font_size = 25
+
+[node name="TelaTransicao" type="Control" unique_id=1042133385]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=11149246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1118.0
+offset_bottom = 612.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5921569)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1866931846]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -144.575
+offset_right = 289.0
+offset_bottom = -41.57492
+grow_horizontal = 2
+grow_vertical = 2
+text = "Carga Recebida!"
+label_settings = SubResource("LabelSettings_jqavw")
+
+[node name="TextoRadio" type="Label" parent="ColorRect" unique_id=1495975956]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "aaaaaaaaaaaaaaaaaaa"
+label_settings = SubResource("LabelSettings_4i02d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BotaoContinuar" type="Button" parent="ColorRect" unique_id=1827398909]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 55.174988
+offset_right = 82.0
+offset_bottom = 86.17499
+grow_horizontal = 2
+grow_vertical = 2
+text = "descer mais fundo..."
