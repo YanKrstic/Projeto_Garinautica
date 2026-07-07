@@ -50,7 +50,7 @@ func _process(delta):
 	
 	if oxigenio_atual <= 0:
 		oxigenio_atual = 0
-		disparar_game_over("Ficou sem oxigénio. Asfixia letal.")
+		disparar_game_over("Ficou sem oxigênio. Asfixia letal.")
 
 func disparar_game_over(motivo: String):
 	if tela_instanciada == null:

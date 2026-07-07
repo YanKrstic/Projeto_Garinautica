@@ -85,13 +85,13 @@ environment = SubResource("Environment_13x8n")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=88938184 groups=["luzes_principais"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.915348, 8.944675, -1.937573)
-light_energy = 0.499
+light_energy = 4.237
 omni_range = 21.404
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1016497884 groups=["luzes_principais"]]
 transform = Transform3D(0.8993954, 0.4237012, 0.10754374, -0.05903715, -0.12603083, 0.99026805, 0.4331317, -0.8969913, -0.08833741, 2.2217, 23.7465, 18.6548)
 light_color = Color(0.76550764, 0.9999998, 0.9995577, 1)
-light_energy = 1.194
+light_energy = 2.54
 shadow_enabled = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=324463677 groups=["luzes_principais"]]
@@ -296,6 +296,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.96
 
 [node name="QuadroEletrico" parent="." unique_id=2066651161 instance=ExtResource("27_1n0lq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.880283, 5.469995, -5.043834)
+chance_de_falha = 0.0
 
 [node name="FiltroOxigenio" parent="." unique_id=828362228 instance=ExtResource("28_vaxkm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.356546, -11.480257)
