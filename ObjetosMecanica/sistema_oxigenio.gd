@@ -15,6 +15,9 @@ var tela_transicao_instanciada = null
 @onready var barra = $BarraOxigenio
 @onready var texto_cota = $TextoCota # <-- NOVO
 
+# Variáveis de Ranking
+var tempo_total_jogado: float = 0.0
+var total_lixo_reciclado: int = 0
 
 
 # --- CONFIGURAÇÕES DE VIDA ---
@@ -56,6 +59,8 @@ func _process(delta):
 	if get_tree().paused or oxigenio_atual <= 0: 
 		return
 
+	tempo_total_jogado += delta
+	
 	var perda_total = (consumo_base * multiplicador_filtro) + vazamento_extra
 	oxigenio_atual -= perda_total * delta
 	barra.value = oxigenio_atual
@@ -199,14 +204,19 @@ func reiniciar_partida_completa():
 	fase_atual = 1
 	metal_coletado = 0
 	plastico_coletado = 0
-	cota_metal_requerida = 3 # (coloque a sua cota inicial aqui)
-	cota_plastico_requerida = 2 
+	cota_metal_requerida = 1 # (coloque a sua cota inicial aqui)
+	cota_plastico_requerida = 1 
 	oxigenio_atual = 100.0
 	consumo_base = 0.05
 	multiplicador_filtro = 1.0
 	vazamento_extra = 0.0
+	
+	tempo_total_jogado = 0.0
+	total_lixo_reciclado = 0
 	atualizar_hud_cota()
 
 	# Despausa e recarrega o mapa do zero!
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	
+	

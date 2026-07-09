@@ -85,6 +85,11 @@ func forjar_barra():
 	# O call_deferred é obrigatório no Godot 4 para criar coisas durante uma colisão
 	get_tree().current_scene.call_deferred("add_child", barra)
 	
+	# ---> NOVA LÓGICA: SOMA O PONTO GLOBAL AQUI! <---
+	if SistemaOxigenio:
+		SistemaOxigenio.total_lixo_reciclado += 1
+		print("Ranking: +1 Barra Fabricada! Total: ", SistemaOxigenio.total_lixo_reciclado)
+	
 	# Espera um frame para garantir que a barra foi adicionada à árvore
 	await get_tree().process_frame 
 	

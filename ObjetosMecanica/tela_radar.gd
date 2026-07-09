@@ -15,6 +15,13 @@ var tempo_esmagado: float = 0.0
 @export var min_lixo_por_bloco: int = 3
 @export var max_lixo_por_bloco: int = 6
 
+@export_group("Configurações da Fase 3")
+@export var tempo_entre_tuneis: float = 12.0 # De quanto em quanto tempo um túnel pode nascer
+@export var tempo_passagem_tunel: float = 5 # Tempo de pausa para o túnel descer sem lixo no caminho
+
+var cooldown_tunel: float = 0.0
+var bloqueio_spawn_por_tunel: float = 0.0
+
 var timer_atual: float = 0.0
 var forca_corrente_atual: float = 0.0
 
@@ -32,20 +39,34 @@ func _ready():
 		tela_morta.z_index = 100
 
 func _process(delta):
-	# 1. Geração de Lixo e Pedras
-	timer_atual += delta
-	if timer_atual >= tempo_spawn:
-		timer_atual = 0.0
-		
-		# A MÁGICA DO RADAR:
-		# Se estiver na Fase 3, tem 20% de chance de nascer um túnel em vez de lixo solto
-		if SistemaOxigenio.fase_atual >= 3 and randf() < 0.2:
-			_spawnar_tunel()
-		else:
-			_spawnar_objeto()
-		
-	# 2. Física e Colisões
+# 1. Movimento e Colisões (Este TEM que continuar rodando sempre!)
 	_mover_e_verificar_colisoes(delta)
+	
+	# --- NOVA LÓGICA DE SPAWN INTELIGENTE ---
+	
+	# Desconta o tempo de recarga geral do túnel
+	if cooldown_tunel > 0:
+		cooldown_tunel -= delta
+		
+	# Verifica se um túnel acabou de nascer e está descendo
+	if bloqueio_spawn_por_tunel > 0:
+		bloqueio_spawn_por_tunel -= delta
+		timer_atual = 0.0 # Segura o relógio de spawn normal! Não gera nada!
+	else:
+		# Se não há túnel passando agora, o ciclo normal continua
+		timer_atual += delta
+		if timer_atual >= tempo_spawn:
+			timer_atual = 0.0
+			
+			# Chance de Túnel: Só acontece se estiver na Fase 3 E o cooldown já tiver zerado
+			if SistemaOxigenio.fase_atual >= 3 and cooldown_tunel <= 0.0 and randf() < 0.4:
+				_spawnar_tunel()
+				# Reinicia os relógios!
+				cooldown_tunel = tempo_entre_tuneis 
+				bloqueio_spawn_por_tunel = tempo_passagem_tunel 
+			else:
+				# Se não for hora do túnel, nasce lixo ou pedra normal
+				_spawnar_objeto()
 	
 	# 3. Correnteza
 	if forca_corrente_atual != 0.0:
