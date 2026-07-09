@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+var bloqueia_pausa: bool = false
+var camada_ui: CanvasLayer = null
+
+var cena_vitoria = preload("res://ObjetosMecanica/tela_vitoria.tscn")
+var tela_vitoria_instanciada = null
+
 var cena_game_over = preload("res://ObjetosMecanica/tela_game_over.tscn")
 var tela_instanciada = null
 
@@ -19,8 +25,8 @@ var vazamento_extra: float = 0.0
 var multiplicador_filtro: float = 1.0 # 1 -> total normal
 
 # --- CONFIGURAÇÕES DA COTA DA FASE ---
-var cota_metal_requerida: int = 3
-var cota_plastico_requerida: int = 2
+var cota_metal_requerida: int = 1
+var cota_plastico_requerida: int = 1
 
 var metal_coletado: int = 0
 var plastico_coletado: int = 0
@@ -37,6 +43,10 @@ func iniciar_fase(numero_fase: int):
 	# if fase_atual == 2: radio.play(audio_fase2)
 
 func _ready():
+	camada_ui = CanvasLayer.new()
+	camada_ui.layer = 100 
+	add_child(camada_ui)
+	
 	oxigenio_atual = oxigenio_maximo
 	barra.max_value = oxigenio_maximo
 	barra.value = oxigenio_atual
@@ -55,10 +65,10 @@ func _process(delta):
 		disparar_game_over("Ficou sem oxigênio. Asfixia letal.")
 
 func disparar_game_over(motivo: String):
+	bloqueia_pausa = true # Ativa o bloqueio do Esc
 	if tela_instanciada == null:
 		tela_instanciada = cena_game_over.instantiate()
-		add_child(tela_instanciada)
-	
+		camada_ui.add_child(tela_instanciada) # <-- Adiciona na super camada!
 	tela_instanciada.exibir(motivo)
 	
 # --- ATUALIZAÇÃO DA INTERFACE DA COTA ---
@@ -69,19 +79,17 @@ func atualizar_hud_cota():
 		texto_cota.text += "Barras de Plástico: " + str(plastico_coletado) + " / " + str(cota_plastico_requerida)
 
 # Chamado pela Caixa de Carga quando o jogador joga um item lá dentro
-func registrar_item_na_cota(tipo_item: String) -> bool:
-	if tipo_item == "metal" and metal_coletado < cota_metal_requerida:
-		metal_coletado += 1
-		atualizar_hud_cota()
-		return true
-	elif tipo_item == "plastico" and plastico_coletado < cota_plastico_requerida:
-		plastico_coletado += 1
-		atualizar_hud_cota()
-		return true
+func registrar_item_na_cota(tipo: String) -> bool:
+	var material = tipo.to_lower() # Força a leitura em minúsculas
 	
-	return false # Retorna falso se o item enviado foi lixo errado ou cota já cheia
+	if material == "metal" or material == "barra_metal":
+		metal_coletado += 1
+	elif material == "plastico" or material == "barra_plastico":
+		plastico_coletado += 1
 
-# Chamado pelo Botão de Ejetar
+	atualizar_hud_cota()
+	return true
+	
 func verificar_pode_avancar() -> bool:
 	if metal_coletado >= cota_metal_requerida and plastico_coletado >= cota_plastico_requerida:
 		return true
@@ -89,15 +97,19 @@ func verificar_pode_avancar() -> bool:
 
 # A caixa de carga chama esta função quando ejeta os itens com sucesso!
 func avancar_fase():
-	# Zera os contadores internos para a nova fase
-	metal_coletado = 0
-	plastico_coletado = 0
-	
+	# A MÁGICA: EM VEZ DE ZERAR TUDO, nós SUBTRAÍMOS o que foi ejetado!
+	# Ex: Tinha 3, a cota era 2. Sobra 1 barra garantida para a próxima fase!
+	metal_coletado -= cota_metal_requerida
+	plastico_coletado -= cota_plastico_requerida
+
+	if metal_coletado < 0: metal_coletado = 0
+	if plastico_coletado < 0: plastico_coletado = 0
+
 	if fase_atual == 1:
 		fase_atual = 2
 		# Novas exigências da Fase 2
-		cota_metal_requerida = 5
-		cota_plastico_requerida = 3
+		cota_metal_requerida = 1
+		cota_plastico_requerida = 1
 		atualizar_hud_cota()
 		
 		# ---> É AQUI QUE VOCÊ CHAMA A FUNÇÃO DA TELA! <---
@@ -106,16 +118,22 @@ func avancar_fase():
 	elif fase_atual == 2:
 		fase_atual = 3
 		# Novas exigências da Fase 3
-		cota_metal_requerida = 8
-		cota_plastico_requerida = 5
+		cota_metal_requerida = 1
+		cota_plastico_requerida = 1
 		atualizar_hud_cota()
 		
 		# ---> E AQUI PARA A FASE 3! <---
-		_tocar_mensagem_radio("Alerta Crítico: Entrando no Abismo (2.000m). O campo magnético está enlouquecendo nossos radares. Muito cuidado com as rochas gigantes!")
+		_tocar_mensagem_radio("Você passou da fase 2! Está pronto para a ultima fase?")
 		
 	elif fase_atual == 3:
-		print("VITÓRIA FINAL! Carga máxima atingida.")
-		# A tela de vitória da API virá aqui em breve!
+			print("VITÓRIA FINAL! Carga máxima atingida.")
+			bloqueia_pausa = true
+			# Pausa o jogo e chama a glória!
+			if tela_vitoria_instanciada == null:
+				tela_vitoria_instanciada = cena_vitoria.instantiate()
+				camada_ui.add_child(tela_vitoria_instanciada)
+			
+			tela_vitoria_instanciada.exibir()
 # ==========================================
 # FUNÇÕES GLOBAIS PARA AS CRISES USAREM
 # ==========================================
@@ -135,14 +153,18 @@ func recuperar_oxigenio(quantidade: float):
 		oxigenio_atual = oxigenio_maximo
 	print("Oxigênio restaurado em: ", quantidade)
 	
-func remover_item_da_cota(tipo_item: String):
-	if tipo_item == "metal" and metal_coletado > 0:
+func remover_item_da_cota(tipo: String):
+	var material = tipo.to_lower()
+	
+	if material == "metal" or material == "barra_metal":
 		metal_coletado -= 1
-		atualizar_hud_cota()
-	elif tipo_item == "plastico" and plastico_coletado > 0:
+	elif material == "plastico" or material == "barra_plastico":
 		plastico_coletado -= 1
-		atualizar_hud_cota()
-		
+
+	if metal_coletado < 0: metal_coletado = 0
+	if plastico_coletado < 0: plastico_coletado = 0
+
+	atualizar_hud_cota()
 # --- MECÂNICAS DO FILTRO DE AR ---
 func entupir_filtro(percentagem_aumento: float):
 	multiplicador_filtro += (percentagem_aumento / 100.0)
@@ -159,10 +181,32 @@ func limpar_filtro(percentagem_reducao: float):
 	
 	
 func _tocar_mensagem_radio(texto_legenda: String):
-	# Instancia a tela se ela ainda não existir
+	bloqueia_pausa = true # Ativa o bloqueio do Esc
 	if tela_transicao_instanciada == null:
 		tela_transicao_instanciada = cena_transicao.instantiate()
-		add_child(tela_transicao_instanciada)
-	
-	# Chama a tela para pausar o jogo e mostrar a mensagem!
+		camada_ui.add_child(tela_transicao_instanciada) # <-- Adiciona na super camada!
 	tela_transicao_instanciada.exibir(texto_legenda)
+	
+func reiniciar_partida_completa():
+	bloqueia_pausa = false
+	
+	# Esconde as telas se elas existirem
+	if tela_instanciada: tela_instanciada.hide()
+	if tela_transicao_instanciada: tela_transicao_instanciada.hide()
+	if tela_vitoria_instanciada: tela_vitoria_instanciada.hide()
+
+	# Zera TODA a sua progressão de volta para a Fase 1!
+	fase_atual = 1
+	metal_coletado = 0
+	plastico_coletado = 0
+	cota_metal_requerida = 3 # (coloque a sua cota inicial aqui)
+	cota_plastico_requerida = 2 
+	oxigenio_atual = 100.0
+	consumo_base = 0.05
+	multiplicador_filtro = 1.0
+	vazamento_extra = 0.0
+	atualizar_hud_cota()
+
+	# Despausa e recarrega o mapa do zero!
+	get_tree().paused = false
+	get_tree().reload_current_scene()

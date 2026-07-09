@@ -27,7 +27,7 @@ offset_right = 1118.0
 offset_bottom = 612.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5921569)
+color = Color(0, 0, 0, 0.5882353)
 
 [node name="Label" type="Label" parent="ColorRect" unique_id=1866931846]
 layout_mode = 1
@@ -72,13 +72,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = 52.0
-offset_right = 32.0
-offset_bottom = 83.0
+offset_left = -160.0
+offset_top = 57.0
+offset_right = 5.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.655, 1.655)
+scale = Vector2(2, 2)
 text = "Descer mais fundo..."
 
 [connection signal="pressed" from="ColorRect/BotaoContinuar" to="." method="_on_botao_continuar_pressed"]

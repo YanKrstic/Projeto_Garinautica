@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://p6en1pgdtpr1"]
+
+[ext_resource type="Script" uid="uid://debrm215w6b64" path="res://ObjetosMecanica/tela_vitoria.gd" id="1_h5i4s"]
+[ext_resource type="FontFile" uid="uid://212m4jxcavlx" path="res://Fonts/arcade_classic_2/ARCADECLASSIC.TTF" id="1_rs75t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h5i4s"]
+font = ExtResource("1_rs75t")
+font_size = 60
+font_color = Color(0.33352333, 0.99999994, 0.88589585, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lev1j"]
+font = ExtResource("1_rs75t")
+font_size = 50
+
+[node name="TelaVitoria" type="Control" unique_id=707355990]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_h5i4s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1052737137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=313140109]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -536.0
+offset_top = 40.0
+offset_right = 535.0
+offset_bottom = 123.0
+grow_horizontal = 2
+text = "Vitoria!  Você   completou   as   3  fases"
+label_settings = SubResource("LabelSettings_h5i4s")
+
+[node name="Label2" type="Label" parent="ColorRect" unique_id=1807834608]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -536.0
+offset_top = 159.0
+offset_right = 535.0
+offset_bottom = 242.0
+grow_horizontal = 2
+text = "Digite   seu   nome,   garinauta!"
+label_settings = SubResource("LabelSettings_lev1j")
+horizontal_alignment = 1
+
+[node name="CampoNome" type="LineEdit" parent="ColorRect" unique_id=510738240]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -65.0
+offset_right = -6.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Nome"
+max_length = 15
+
+[node name="Button" type="Button" parent="ColorRect" unique_id=1123402990]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.0
+offset_top = 27.0
+offset_right = 1.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Enviar para o ranking online!"
+
+[node name="HTTPRequisicao" type="HTTPRequest" parent="." unique_id=246635718]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

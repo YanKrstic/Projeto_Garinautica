@@ -8,24 +8,39 @@ bg_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6a6u"]
 bg_color = Color(0, 0.63751245, 0.9483102, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_722ky"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwuot"]
+font_size = 20
+
 [node name="SistemaOxigenio" type="CanvasLayer" unique_id=490304291]
 script = ExtResource("1_722ky")
 
 [node name="BarraOxigenio" type="ProgressBar" parent="." unique_id=1497770535]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 205.0
-offset_bottom = 34.684998
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 69.685
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_722ky")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l6a6u")
 
 [node name="TextoCota" type="Label" parent="." unique_id=1720582921]
-offset_left = 5.0
-offset_top = 35.575
-offset_right = 180.0
-offset_bottom = 110.575
+offset_left = 8.0
+offset_top = 80.0
+offset_right = 227.0
+offset_bottom = 170.0
 text = "COTA DE RECICLAGEM:
 Metal: 0/3
 Plástico: 0/2"
+label_settings = SubResource("LabelSettings_722ky")
+
+[node name="Label" type="Label" parent="." unique_id=795805367]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 81.0
+offset_bottom = 31.0
+text = "Oxigênio:"
+label_settings = SubResource("LabelSettings_uwuot")

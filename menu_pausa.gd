@@ -12,6 +12,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"): # ui_cancel = Tecla ESC
+		if SistemaOxigenio.bloqueia_pausa:
+			return
 		if get_tree().paused:
 			despausar()
 		else:

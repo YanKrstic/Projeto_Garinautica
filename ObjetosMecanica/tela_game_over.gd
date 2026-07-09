@@ -13,5 +13,4 @@ func exibir(motivo: String):
 	get_tree().paused = true 
 
 func _on_botao_reiniciar_pressed():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	SistemaOxigenio.reiniciar_partida_completa()
