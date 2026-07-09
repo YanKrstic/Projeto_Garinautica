@@ -223,7 +223,7 @@ transform = Transform3D(0.89892405, 0, 0.43810445, 0, 1, 0, -0.43810445, 0, 0.89
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.265965, 5.3434854, 0)
 
 [node name="BarraMetal" parent="." unique_id=1765086446 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -4.724754)
 loot_dentro = Array[PackedScene]([])
 tabela_de_loot = Array[PackedScene]([])
 qtd_minima_loot = 1
@@ -233,7 +233,7 @@ peso_papel = 0
 peso_vidro = 0
 
 [node name="BarraMetal2" parent="." unique_id=238297024 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -4.724754)
 loot_dentro = Array[PackedScene]([])
 tabela_de_loot = Array[PackedScene]([])
 qtd_minima_loot = 1
@@ -243,7 +243,7 @@ peso_papel = 0
 peso_vidro = 0
 
 [node name="BarraMetal3" parent="." unique_id=637716685 instance=ExtResource("16_gc50j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.779931, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -4.724754)
 loot_dentro = Array[PackedScene]([])
 tabela_de_loot = Array[PackedScene]([])
 qtd_minima_loot = 1
@@ -253,13 +253,130 @@ peso_papel = 0
 peso_vidro = 0
 
 [node name="BarraPlastico" parent="." unique_id=535811800 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -4.724754)
 
 [node name="BarraPlastico2" parent="." unique_id=609859979 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -4.724754)
 
 [node name="BarraPlastico3" parent="." unique_id=787108517 instance=ExtResource("17_vfqfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.855149, 8.63932, 5.1974735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -4.724754)
+
+[node name="BarraMetal4" parent="." unique_id=1789056261 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -4.724754)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal5" parent="." unique_id=1589872113 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -4.724754)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal6" parent="." unique_id=336272131 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -4.724754)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraPlastico4" parent="." unique_id=1905708244 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -4.724754)
+
+[node name="BarraPlastico5" parent="." unique_id=1147892833 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -4.724754)
+
+[node name="BarraPlastico6" parent="." unique_id=433899196 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -4.724754)
+
+[node name="BarraMetal7" parent="." unique_id=29327978 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal8" parent="." unique_id=331283738 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal9" parent="." unique_id=863442248 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.055558, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraPlastico7" parent="." unique_id=1553077719 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -5.1771326)
+
+[node name="BarraPlastico8" parent="." unique_id=1559741105 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -5.1771326)
+
+[node name="BarraPlastico9" parent="." unique_id=884854495 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9803405, 8.63932, -5.1771326)
+
+[node name="BarraMetal10" parent="." unique_id=1122471933 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal11" parent="." unique_id=866354293 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraMetal12" parent="." unique_id=1441343503 instance=ExtResource("16_gc50j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9606576, 8.63932, -5.1771326)
+loot_dentro = Array[PackedScene]([])
+tabela_de_loot = Array[PackedScene]([])
+qtd_minima_loot = 1
+qtd_maxima_loot = 3
+peso_plastico = 0
+peso_papel = 0
+peso_vidro = 0
+
+[node name="BarraPlastico10" parent="." unique_id=1651835807 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -5.1771326)
+
+[node name="BarraPlastico11" parent="." unique_id=521370256 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -5.1771326)
+
+[node name="BarraPlastico12" parent="." unique_id=1545139578 instance=ExtResource("17_vfqfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88544, 8.63932, -5.1771326)
 
 [node name="ReciclagemMetal" parent="." unique_id=1136371530 instance=ExtResource("18_0su6q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.734098, 5.8666143, -8.128746)
@@ -306,13 +423,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.783988, 7.764198, 0.090386
 
 [node name="ModuloRadar" parent="." unique_id=563817260 instance=ExtResource("30_3jm2w")]
 transform = Transform3D(-0.78645027, 0, -0.61765385, 0, 1, 0, 0.61765385, 0, -0.78645027, 4.504416, 5.9122033, 3.5628824)
-chance_de_falha = 1.0
+chance_de_falha = 0.0
 
 [node name="Disquete4" parent="." unique_id=1536651656 instance=ExtResource("31_0u0pp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.611355, 5.687946, -2.7361617)
 
 [node name="MotorDirecao" parent="." unique_id=2120128084 instance=ExtResource("33_5lmft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.073724, 4.814874)
+chance_de_falha = 0.0
 
 [node name="Disquete5" parent="." unique_id=440299835 instance=ExtResource("32_jpk8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1835, 0)

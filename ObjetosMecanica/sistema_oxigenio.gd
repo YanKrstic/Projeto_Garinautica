@@ -3,6 +3,8 @@ extends CanvasLayer
 var cena_game_over = preload("res://ObjetosMecanica/tela_game_over.tscn")
 var tela_instanciada = null
 
+var cena_transicao = preload("res://ObjetosMecanica/tela_transicao.tscn")
+var tela_transicao_instanciada = null
 
 @onready var barra = $BarraOxigenio
 @onready var texto_cota = $TextoCota # <-- NOVO
@@ -12,7 +14,7 @@ var tela_instanciada = null
 # --- CONFIGURAÇÕES DE VIDA ---
 var oxigenio_maximo: float = 100.0
 var oxigenio_atual: float = 100.0
-var consumo_base: float = 0.05 
+var consumo_base: float = 0.01
 var vazamento_extra: float = 0.0 
 var multiplicador_filtro: float = 1.0 # 1 -> total normal
 
@@ -85,7 +87,7 @@ func verificar_pode_avancar() -> bool:
 		return true
 	return false
 
-# A caixa de carga chama esta função quando esvazia com sucesso
+# A caixa de carga chama esta função quando ejeta os itens com sucesso!
 func avancar_fase():
 	# Zera os contadores internos para a nova fase
 	metal_coletado = 0
@@ -93,25 +95,27 @@ func avancar_fase():
 	
 	if fase_atual == 1:
 		fase_atual = 2
-		# Novas exigências da Fase 2 (mais difíceis!)
+		# Novas exigências da Fase 2
 		cota_metal_requerida = 5
 		cota_plastico_requerida = 3
 		atualizar_hud_cota()
 		
-		print("📻 RÁDIO: Atenção! Descendo para 1.000 metros. A pressão aumentou e a poeira abissal vai entupir os filtros de oxigénio. Fiquem atentos!")
+		# ---> É AQUI QUE VOCÊ CHAMA A FUNÇÃO DA TELA! <---
+		_tocar_mensagem_radio("Você passou da fase 1! Está pronto para descer mas fundo?")
 		
 	elif fase_atual == 2:
 		fase_atual = 3
-		# Novas exigências da Fase 3 (Desespero!)
+		# Novas exigências da Fase 3
 		cota_metal_requerida = 8
 		cota_plastico_requerida = 5
 		atualizar_hud_cota()
 		
-		print("📻 RÁDIO: Alerta Crítico: Entrando no Abismo (2.000m). O campo magnético está enlouquecendo os nossos radares. Cuidado com os túneis!")
+		# ---> E AQUI PARA A FASE 3! <---
+		_tocar_mensagem_radio("Alerta Crítico: Entrando no Abismo (2.000m). O campo magnético está enlouquecendo nossos radares. Muito cuidado com as rochas gigantes!")
 		
 	elif fase_atual == 3:
 		print("VITÓRIA FINAL! Carga máxima atingida.")
-		# Futuramente chamaremos a Tela de Vitória (API do Dashboard)
+		# A tela de vitória da API virá aqui em breve!
 # ==========================================
 # FUNÇÕES GLOBAIS PARA AS CRISES USAREM
 # ==========================================
@@ -152,3 +156,13 @@ func limpar_filtro(percentagem_reducao: float):
 		multiplicador_filtro = 1.0
 		
 	print("Filtro limpo! Multiplicador de consumo desceu para: ", multiplicador_filtro, "x")
+	
+	
+func _tocar_mensagem_radio(texto_legenda: String):
+	# Instancia a tela se ela ainda não existir
+	if tela_transicao_instanciada == null:
+		tela_transicao_instanciada = cena_transicao.instantiate()
+		add_child(tela_transicao_instanciada)
+	
+	# Chama a tela para pausar o jogo e mostrar a mensagem!
+	tela_transicao_instanciada.exibir(texto_legenda)

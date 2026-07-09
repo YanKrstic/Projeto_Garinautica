@@ -12,6 +12,7 @@ font_color = Color(0.9999997, 0.1018958, 0.20751438, 1)
 font_size = 35
 
 [node name="TelaGameOver" type="Control" unique_id=1437042060]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -78,3 +79,5 @@ offset_bottom = 71.274994
 grow_horizontal = 2
 grow_vertical = 2
 text = "Tentar Novamente"
+
+[connection signal="pressed" from="ColorRect/BotaoReiniciar" to="." method="_on_botao_reiniciar_pressed"]

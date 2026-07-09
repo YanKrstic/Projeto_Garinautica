@@ -187,7 +187,7 @@ func _spawnar_tunel():
 	var meio = size.x / 2.0
 	
 	# ---> MÁGICA AQUI: Aumente este número para deixar o túnel mais longo! <---
-	var comprimento_tunel = 700.0 
+	var comprimento_tunel = 400.0 
 	
 	print("Radar: A gerar túnel de rochas longo do tipo ", tipo)
 	
