@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dbkdgerdro3b6" path="res://Scripts/disquete.gd" id="1_myo8w"]
 [ext_resource type="PackedScene" uid="uid://b6vok16qi3dc8" path="res://Itens/Crafts/placa_de_metal.tscn" id="2_04f0g"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04f0g"]
-albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+[ext_resource type="PackedScene" uid="uid://iosu28lvrk0m" path="res://ModeloItens/Disquete2.glb" id="3_0oh1a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_04f0g"]
-size = Vector3(1.3269043, 0.091552734, 1)
+size = Vector3(0.8409271, 0.14453125, 1.1914063)
 
 [node name="Disquete" type="RigidBody3D" unique_id=1249661377 node_paths=PackedStringArray("modelo_fechado", "shapes_fechados")]
 collision_layer = 4
@@ -17,14 +15,12 @@ nome_projeto = "Projeto De Casco"
 cena_resultado = ExtResource("2_04f0g")
 custo_metal = 2
 pode_ser_aberto = false
-modelo_fechado = NodePath("CSGBox3D")
+modelo_fechado = NodePath("")
 shapes_fechados = [NodePath("CollisionShape3D")]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1101877565]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014930785, 0.028366089, 0)
-material_override = SubResource("StandardMaterial3D_04f0g")
-size = Vector3(1.3534546, 0.083221436, 1)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1241804800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01574707, 0.032836914, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07601166, -0.005126953, -0.095703125)
 shape = SubResource("BoxShape3D_04f0g")
+
+[node name="Disquete2" parent="." unique_id=1129214737 instance=ExtResource("3_0oh1a")]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0.0823219, -0.004836932, -0.07867324)

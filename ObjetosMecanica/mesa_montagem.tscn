@@ -2,22 +2,33 @@
 
 [ext_resource type="Script" uid="uid://btnl3ce4oiosl" path="res://Scripts/mesa_montagem.gd" id="1_vuib6"]
 [ext_resource type="Script" uid="uid://d1n58r17e2usq" path="res://ObjetosMecanica/leitor_interativo.gd" id="2_hjatv"]
+[ext_resource type="FontFile" uid="uid://cin88y3h08dkk" path="res://Fonts/digital_7/digital-7.ttf" id="2_vdvia"]
 [ext_resource type="Script" uid="uid://bodbmutbkckc0" path="res://ObjetosMecanica/botao_craft.gd" id="3_e3gri"]
+[ext_resource type="PackedScene" uid="uid://c6xtmcakyv5iu" path="res://ModeloItens/CraftingMesa.glb" id="5_256nu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv5i3"]
-size = Vector3(4.216797, 0.28149414, 2.2768555)
+size = Vector3(4.3709717, 0.26330566, 2.5270386)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hjatv"]
-size = Vector3(1.4164429, 0.7609863, 1.3354492)
+size = Vector3(1.5310287, 1.3379517, 2.138031)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e3gri"]
-size = Vector3(1, 0.5059509, 0.69140625)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdvia"]
-albedo_color = Color(0.25614154, 0.7156245, 1.92523e-07, 1)
+size = Vector3(1.0581055, 0.22953796, 1.2290344)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_256nu"]
-size = Vector3(0.26306152, 0.22808838, 0.24621582)
+size = Vector3(0.5708847, 0.22808838, 1.4421043)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxj3o"]
+size = Vector3(0.34210205, 1, 5.784424)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2b57r"]
+size = Vector3(4.2227783, 1, 0.4597168)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i70wj"]
+size = Vector3(3.6639404, 0.6560669, 5.2491455)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwb1f"]
+size = Vector3(4.846924, 4.6865234, 1.3269043)
 
 [node name="MesaMontagem" type="StaticBody3D" unique_id=355655305 node_paths=PackedStringArray("bandeja", "monitor", "slot_disquete", "ponto_spawn")]
 script = ExtResource("1_vuib6")
@@ -26,52 +37,72 @@ monitor = NodePath("Monitor")
 slot_disquete = NodePath("SlotDisquete")
 ponto_spawn = NodePath("PontoSpawn")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1765612025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011535525, 0.14144051, -0.64624023)
-size = Vector3(4.2819824, 0.27319336, 2.2924805)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1347564663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029296875, 0.14294434, -0.63842773)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0947876, 0.1338501, 0.5369694)
 shape = SubResource("BoxShape3D_xv5i3")
 
 [node name="BandejaMaterias" type="Area3D" parent="." unique_id=929766534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.479784)
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BandejaMaterias" unique_id=1858424628]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3787124, 0.6730242, -0.16772461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1384666, 0.3845415, -0.95726013)
 shape = SubResource("BoxShape3D_hjatv")
 
-[node name="AreaBandejaMaterias" type="CSGBox3D" parent="." unique_id=1633557239]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3855479, 0.2942015, -0.21161628)
-size = Vector3(1.4186401, 0.039916992, 1.3045654)
-
 [node name="Monitor" type="Label3D" parent="." unique_id=41768490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3340857, 1.394718, -1.3073705)
-text = "oi
-"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.060175, 1.7322198, -0.05246544)
+text = "aaaa"
+font = ExtResource("2_vdvia")
+font_size = 35
 
 [node name="SlotDisquete" type="Marker3D" parent="." unique_id=752060593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5390232, 0.579214, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5390232, 0.39240587, 0.90707874)
 
 [node name="PontoSpawn" type="Marker3D" parent="." unique_id=823806359]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3074429, 1.2643684, -0.11798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81664467, 1.4566818, 0.3249855)
 
 [node name="LeitorInterativo" type="StaticBody3D" parent="." unique_id=1073926383]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4467219, 0.5423214, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4467219, 0.5423214, -2.067906)
 script = ExtResource("2_hjatv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeitorInterativo" unique_id=2122429514]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.003921509, -0.0078125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10473633, -0.14212799, 3.1044657)
 shape = SubResource("BoxShape3D_e3gri")
 
 [node name="BotaoCraft" type="StaticBody3D" parent="." unique_id=1466184001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4125316, 0.31281728, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4125316, 0.31281728, 1.2664528)
 script = ExtResource("3_e3gri")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="BotaoCraft" unique_id=1848155644]
-material_override = SubResource("StandardMaterial3D_vdvia")
-size = Vector3(0.24316406, 0.25683594, 0.21881104)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BotaoCraft" unique_id=1285309892]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006164551, 0.028961182, 0.0044555664)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49945533, 0.028961182, -0.26122475)
 shape = SubResource("BoxShape3D_256nu")
+
+[node name="CraftingMesa" parent="." unique_id=1509692167 instance=ExtResource("5_256nu")]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, -0.07771397, 0, 0.5435424)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=756985691]
+collision_layer = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=651892828]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, 0.3297906, 0.3511893, 0.56969553)
+shape = SubResource("BoxShape3D_oxj3o")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1427337148]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, 1.8979298, 0.35118932, 0.56969553)
+shape = SubResource("BoxShape3D_oxj3o")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1611006648]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, 1.1142119, 0.30632892, 1.6363679)
+shape = SubResource("BoxShape3D_2b57r")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=548201696]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, 1.1142122, 0.30632892, -0.5732627)
+shape = SubResource("BoxShape3D_2b57r")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=1449679256]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, 1.0773935, 0.16758424, 0.511531)
+shape = SubResource("BoxShape3D_i70wj")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=1144541022]
+transform = Transform3D(0.40500018, 0, 0, 0, 0.40500018, 0, 0, 0, 0.40500018, -1.0936741, 1.2322865, -0.23764205)
+shape = SubResource("BoxShape3D_kwb1f")
