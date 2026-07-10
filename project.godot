@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Gariautica"
-run/main_scene="res://mapa/node_3d.tscn"
+run/main_scene="uid://cph5gaghnp8b7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

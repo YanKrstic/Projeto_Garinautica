@@ -217,6 +217,5 @@ func reiniciar_partida_completa():
 
 	# Despausa e recarrega o mapa do zero!
 	get_tree().paused = false
-	get_tree().reload_current_scene()
 	
 	
