@@ -23,9 +23,6 @@ func _on_fornalha_body_entered(corpo):
 	if "peso_total" not in corpo:
 		return
 		
-	if "esta_segurado" in corpo and corpo.esta_segurado:
-		return
-		
 	if corpo.has_method("calcular_relatorio_triagem"):
 		corpo.calcular_relatorio_triagem()
 

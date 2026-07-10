@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d10acy444jogx"]
 
 [ext_resource type="Script" uid="uid://b7vlufm3a0uft" path="res://ObjetosSubmarino/Reparaveis/modulo_radar.gd" id="1_xn6iu"]
+[ext_resource type="PackedScene" uid="uid://b3oh4l8rjsgm4" path="res://Assets/alert.glb" id="2_si2fh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1pn2"]
 
@@ -9,16 +10,16 @@ script = ExtResource("1_xn6iu")
 intervalo_checagem = 20.0
 chance_de_falha = 0.3
 ferramenta_necessaria = "Radar"
-dano_oxigenio = 0.0
 modelo_normal = NodePath("CSGBox3D")
 modelo_quebrado = NodePath("CSGBox3D2")
 fase_desbloqueio = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1798375259]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=855932831]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27822876, 0, 0)
-size = Vector3(2.3848267, 1, 1)
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1427733313]
+
+[node name="Sketchfab_Scene" parent="CSGBox3D2" unique_id=787324008 instance=ExtResource("2_si2fh")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.28502882, 0.7800082)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=500093499]
 shape = SubResource("BoxShape3D_h1pn2")

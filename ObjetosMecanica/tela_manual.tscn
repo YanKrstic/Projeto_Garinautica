@@ -43,7 +43,26 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer" unique_id=1135083190]
 custom_minimum_size = Vector2(249.1, 651.595)
 layout_mode = 2
-text = "Index do manual"
+text = "CONTROLES:
+
+WASD e espaço para movimentação.
+Botão direito para pegar/largar itens.
+Botão esquerdo para jogar itens.
+“E” para interagir com itens (abri-los) ou com objetos como alavancas, o leme para navegar, a mesa de crafting para alocar/retirar os disquetes e o martelo para executar o craft etc.
+Rotação do mouse em torno do eixo do leme/manivela para navegação.
+“Esc” para o menu de pausa.
+
+COMO RECICLAR:
+
+Vá até a navegação e aperte “E” para interagir, rotacione a manivela para poder coletar os cubos amarelos (lotes de lixo) e evite os vermelhos (quebra uma parede do submarino, perdendo mais oxigênio). Ao coletar os lixos, acione a alavanca do tubo de coleta.
+Alguns lixos podem ser abertos ao interagir com eles (apertando “E”), para saber a composição e o peso de um lixo ou aglomerado de lixos vá até a mesa de análise e ponha o lixo sobre a balança.
+Para criar uma barra de material refinado (nessa versão apenas ferro e plástico) você deve somar exatamente 5 pesos do material puro nos cubos de reciclagem de cada material, caso o lixo seja impuro ou exceda o limite de 5, ele será ejetado de volta.
+Para resolver esse problema temos a prensa, ela quebra os lixos em sucatas de 1 de peso. Exemplo: um lixo que pesa 2 de plástico e 1 de ferro se torna duas sucatas de plástico e uma de ferro.
+
+COMO REPARAR CRISES:
+
+Quando um evento de crise acontece (luzes apagam, o radar fica sem sinal etc) o objeto responsável/atrelado a crise fica com um símbolo de de alerta, para consertar, pegue o disquete que está próximo a ele, leve até a mesa de crafting e coloque o disquete no leitor, em seguida irá mostrar a receita para a ferramenta (o nome e os materiais necessários), ao pôr os materiais necessários na bandeja, interaja com o martelo para fazer o crafting da ferramenta, depois pegue a ferramenta e interaja com o objeto atrelado a crise até repará-lo.
+"
 label_settings = SubResource("LabelSettings_n68cx")
 autowrap_mode = 3
 

@@ -3,7 +3,7 @@ extends Control
 @onready var icone = $IconeSubmarino
 # Certifique-se de que este nome bate exatamente com o nó do seu retângulo preto!
 @onready var tela_morta = $TelaMorta 
-@export var limite_esmagamento: float = 2.5 # Segundos esfregando na parede até morrer
+@export var limite_esmagamento: float = 3 # Segundos esfregando na parede até morrer
 var tempo_esmagado: float = 0.0
 
 @export_group("Movimento e Controles")
@@ -89,7 +89,7 @@ func _process(delta):
 # --- COMANDOS DO RADAR ---
 
 func aplicar_correnteza(forca: float):
-	forca_corrente_atual = forca
+	forca_corrente_atual = forca / 1.5
 
 func mover_submarino(giro_delta: float):
 	icone.position.x += giro_delta * (pixels_por_radiano * multiplicador_direcao)

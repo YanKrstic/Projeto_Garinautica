@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5vaoyv23ao8k"]
 
 [ext_resource type="Script" uid="uid://xypmh0aagfye" path="res://ObjetosSubmarino/Reparaveis/motor_direcao.gd" id="1_ks1e2"]
+[ext_resource type="PackedScene" uid="uid://b3oh4l8rjsgm4" path="res://Assets/alert.glb" id="2_vcc6g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2onmf"]
 albedo_color = Color(0, 1, 1, 1)
@@ -11,7 +12,6 @@ albedo_color = Color(0, 1, 1, 1)
 script = ExtResource("1_ks1e2")
 chance_de_falha = 0.2
 ferramenta_necessaria = "MotorLeme"
-dano_oxigenio = 0.0
 modelo_normal = NodePath("CSGBox3D")
 modelo_quebrado = NodePath("CSGBox3D2")
 
@@ -20,6 +20,9 @@ material = SubResource("StandardMaterial3D_2onmf")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1589315709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 0)
+
+[node name="Sketchfab_Scene" parent="CSGBox3D2" unique_id=787324008 instance=ExtResource("2_vcc6g")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24289703, 0.6173166)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1515004357]
 shape = SubResource("BoxShape3D_ks1e2")

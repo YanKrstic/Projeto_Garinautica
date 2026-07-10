@@ -23,7 +23,7 @@ var total_lixo_reciclado: int = 0
 # --- CONFIGURAÇÕES DE VIDA ---
 var oxigenio_maximo: float = 100.0
 var oxigenio_atual: float = 100.0
-var consumo_base: float = 0.001
+var consumo_base: float = 0.0006
 var vazamento_extra: float = 0.0 
 var multiplicador_filtro: float = 1.0 # 1 -> total normal
 
@@ -113,24 +113,22 @@ func avancar_fase():
 	if fase_atual == 1:
 		fase_atual = 2
 		# Novas exigências da Fase 2
-		cota_metal_requerida = 1
+		cota_metal_requerida = 2
 		cota_plastico_requerida = 1
 		atualizar_hud_cota()
 		
 		# ---> É AQUI QUE VOCÊ CHAMA A FUNÇÃO DA TELA! <---
 		_tocar_mensagem_radio("Você passou da fase 1! Está pronto para descer mas fundo?")
-		get_tree().call_group("radio_cabine", "tocar_mensagem", 2)
 		
 	elif fase_atual == 2:
 		fase_atual = 3
 		# Novas exigências da Fase 3
-		cota_metal_requerida = 1
-		cota_plastico_requerida = 1
+		cota_metal_requerida = 2
+		cota_plastico_requerida = 2
 		atualizar_hud_cota()
 		
 		# ---> E AQUI PARA A FASE 3! <---
 		_tocar_mensagem_radio("Você passou da fase 2! Está pronto para a ultima fase?")
-		get_tree().call_group("radio_cabine", "tocar_mensagem", 3)
 		
 	elif fase_atual == 3:
 			print("VITÓRIA FINAL! Carga máxima atingida.")
