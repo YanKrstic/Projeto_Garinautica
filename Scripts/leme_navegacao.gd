@@ -22,7 +22,7 @@ func interagir_abrir():
 		angulo_anterior_rato = centro_tela.angle_to_point(mouse_pos)
 		
 		if mesh_manivela:
-			mesh_manivela.rotation.z = -angulo_anterior_rato + deg_to_rad(compensacao_visual_graus)
+			mesh_manivela.rotation.x = -angulo_anterior_rato + deg_to_rad(compensacao_visual_graus)
 
 func _process(delta):
 	if player_pilotando != null and player_pilotando.estado_atual == "PILOTANDO":
@@ -45,6 +45,6 @@ func _calcular_giro_mouse():
 			radar_2d.mover_submarino(movimento_real)
 			
 		if mesh_manivela:
-			mesh_manivela.rotation.z = -angulo_atual + deg_to_rad(compensacao_visual_graus)
+			mesh_manivela.rotation.x = -angulo_atual + deg_to_rad(compensacao_visual_graus)
 			
 	angulo_anterior_rato = angulo_atual

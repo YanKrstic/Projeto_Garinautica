@@ -44,7 +44,7 @@ func spawn_obj():
 	
 	get_tree().current_scene.add_child(obj)
 	objs_em_cena.append(obj)
-	$Timer.wait_time = randi_range(3, 9)
+	$Timer.wait_time = randi_range(2, 5)
 	$Timer.start()
 	
 	

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bxfr4ksco003p"]
+
+[ext_resource type="PackedScene" uid="uid://dlhgyfjv46itp" path="res://ModeloItens/ParedeJanela.glb" id="1_vhe80"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdnvm"]
+size = Vector3(0.23487091, 3.111847, 5.9245605)
+
+[node name="ParedeJanela" type="StaticBody3D" unique_id=377509203]
+
+[node name="ParedeJanela" parent="." unique_id=624123016 instance=ExtResource("1_vhe80")]
+transform = Transform3D(0.415, 0, 0, 0, 0.415, 0, 0, 0, 0.415, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1629207325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023853302, 1.5550079, -0.00012207031)
+shape = SubResource("BoxShape3D_vdnvm")

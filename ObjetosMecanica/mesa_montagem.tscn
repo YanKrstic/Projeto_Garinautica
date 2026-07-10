@@ -53,10 +53,10 @@ shape = SubResource("BoxShape3D_hjatv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.060175, 1.7322198, -0.05246544)
 text = "aaaa"
 font = ExtResource("2_vdvia")
-font_size = 35
+font_size = 25
 
 [node name="SlotDisquete" type="Marker3D" parent="." unique_id=752060593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5390232, 0.39240587, 0.90707874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6357409, 0.43181425, 1.1243548)
 
 [node name="PontoSpawn" type="Marker3D" parent="." unique_id=823806359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81664467, 1.4566818, 0.3249855)
