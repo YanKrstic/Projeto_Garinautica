@@ -23,7 +23,7 @@ var total_lixo_reciclado: int = 0
 # --- CONFIGURAÇÕES DE VIDA ---
 var oxigenio_maximo: float = 100.0
 var oxigenio_atual: float = 100.0
-var consumo_base: float = 0.01
+var consumo_base: float = 0.001
 var vazamento_extra: float = 0.0 
 var multiplicador_filtro: float = 1.0 # 1 -> total normal
 

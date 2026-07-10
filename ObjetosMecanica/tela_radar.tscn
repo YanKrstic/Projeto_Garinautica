@@ -15,8 +15,12 @@ offset_right = 512.0
 offset_bottom = 512.0
 script = ExtResource("1_tn2ef")
 pixels_por_radiano = 5.0
-velocidade_esteira = 100.0
-tempo_spawn = 2.0
+velocidade_esteira = 35.0
+tempo_spawn = 4.0
+min_lixo_por_bloco = 2
+max_lixo_por_bloco = 5
+tempo_entre_tuneis = 23.0
+tempo_passagem_tunel = 7.0
 
 [node name="Fundo" type="ColorRect" parent="." unique_id=24090159]
 layout_mode = 0

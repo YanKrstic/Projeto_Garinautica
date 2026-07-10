@@ -5,7 +5,7 @@ class_name ObjetoReparavel
 @export var ferramenta_necessaria: String = "Casco" 
 @export var tempo_reparo: float = 2.5
 # NOVO: O quanto de oxigénio este objeto rouba por segundo quando está quebrado!
-@export var dano_oxigenio: float = 2.0 
+@export var dano_oxigenio: float = 0.0
 
 @export_group("Visuais")
 @export var modelo_normal: Node3D

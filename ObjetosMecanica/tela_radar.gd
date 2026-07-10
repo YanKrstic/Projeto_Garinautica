@@ -7,16 +7,16 @@ extends Control
 var tempo_esmagado: float = 0.0
 
 @export_group("Movimento e Controles")
-@export var pixels_por_radiano: float = 30.0 
+@export var pixels_por_radiano: float = 23.0 
 
 @export_group("Configurações da Esteira")
-@export var velocidade_esteira: float = 120.0 
+@export var velocidade_esteira: float = 10.0 
 @export var tempo_spawn: float = 1.2 
 @export var min_lixo_por_bloco: int = 3
 @export var max_lixo_por_bloco: int = 6
 
 @export_group("Configurações da Fase 3")
-@export var tempo_entre_tuneis: float = 12.0 # De quanto em quanto tempo um túnel pode nascer
+@export var tempo_entre_tuneis: float = 20.0 # De quanto em quanto tempo um túnel pode nascer
 @export var tempo_passagem_tunel: float = 5 # Tempo de pausa para o túnel descer sem lixo no caminho
 
 var cooldown_tunel: float = 0.0

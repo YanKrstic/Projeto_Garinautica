@@ -23,3 +23,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1515004357]
 shape = SubResource("BoxShape3D_ks1e2")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1709178073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.015333, 0)
+text = "Motor do Leme
+"

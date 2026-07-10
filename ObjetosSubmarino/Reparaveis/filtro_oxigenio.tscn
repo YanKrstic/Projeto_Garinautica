@@ -22,3 +22,7 @@ size = Vector3(1, 1.8721924, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1127969333]
 shape = SubResource("BoxShape3D_72s7w")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1658898472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.823313, 0)
+text = "Filtro de Oxigênio"

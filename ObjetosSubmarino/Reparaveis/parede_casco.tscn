@@ -162,7 +162,7 @@ shader_parameter/force_messy = true
 [node name="ParedeCasco" type="StaticBody3D" unique_id=1488084307 node_paths=PackedStringArray("modelo_normal", "modelo_quebrado") groups=["cascos"]]
 script = ExtResource("1_ep42t")
 tempo_reparo = 2.0
-dano_oxigenio = 0.3
+dano_oxigenio = 0.05
 modelo_normal = NodePath("ParedeNormal")
 modelo_quebrado = NodePath("ParedeAberta4glb")
 
