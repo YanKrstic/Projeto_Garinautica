@@ -218,4 +218,10 @@ func reiniciar_partida_completa():
 	# Despausa e recarrega o mapa do zero!
 	get_tree().paused = false
 	
-	
+# Desliga a renderização visual do Singleton
+func esconder_interface() -> void:
+	visible = false
+
+# Liga a renderização visual do Singleton
+func mostrar_interface() -> void:
+	visible = true

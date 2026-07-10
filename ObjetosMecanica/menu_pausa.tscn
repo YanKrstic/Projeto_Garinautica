@@ -44,9 +44,14 @@ layout_mode = 2
 text = "Continuar
 "
 
+[node name="BtnManual" type="Button" parent="PainelUI/VBoxContainer" unique_id=1243957660]
+layout_mode = 2
+text = "Como Jogar"
+
 [node name="BtnSair" type="Button" parent="PainelUI/VBoxContainer" unique_id=1005588522]
 layout_mode = 2
 text = "Sair do Jogo"
 
 [connection signal="pressed" from="PainelUI/VBoxContainer/BtnContinuar" to="." method="_on_btn_continuar_pressed"]
+[connection signal="pressed" from="PainelUI/VBoxContainer/BtnManual" to="." method="_on_btn_manual_pressed"]
 [connection signal="pressed" from="PainelUI/VBoxContainer/BtnSair" to="." method="_on_btn_sair_pressed"]
