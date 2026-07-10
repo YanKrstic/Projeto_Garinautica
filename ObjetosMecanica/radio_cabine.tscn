@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bu6wgiu08msmn"]
+
+[ext_resource type="Script" uid="uid://cjfpcm5ys2vdf" path="res://ObjetosMecanica/radio_cabine.gd" id="1_swrft"]
+[ext_resource type="AudioStream" uid="uid://br7osqyntlhfe" path="res://Audios/fase2.mp3" id="2_db7mv"]
+[ext_resource type="AudioStream" uid="uid://crendi18pru6b" path="res://Audios/fase1.mp3" id="2_gtj52"]
+[ext_resource type="AudioStream" uid="uid://cmcbkagsatuxn" path="res://Audios/fase3.mp3" id="3_gtj52"]
+
+[node name="RadioCabine" type="StaticBody3D" unique_id=76063960]
+script = ExtResource("1_swrft")
+audio_fase1 = ExtResource("2_gtj52")
+audio_fase2 = ExtResource("2_db7mv")
+audio_fase3 = ExtResource("3_gtj52")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1620649484]
+
+[node name="AltoFalante" type="AudioStreamPlayer3D" parent="." unique_id=1501931961]
+unit_size = 2.0

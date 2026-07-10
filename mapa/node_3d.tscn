@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dmjv1u3xm4w46" path="res://Itens/disquetes/radar_disquete_reparo.tscn" id="31_0u0pp"]
 [ext_resource type="PackedScene" uid="uid://dvx3m4fpnktgc" path="res://Itens/disquetes/motor_leme_disquete_reparo.tscn" id="32_jpk8v"]
 [ext_resource type="PackedScene" uid="uid://c5vaoyv23ao8k" path="res://ObjetosSubmarino/Reparaveis/motor_direcao.tscn" id="33_5lmft"]
+[ext_resource type="PackedScene" uid="uid://bu6wgiu08msmn" path="res://ObjetosMecanica/radio_cabine.tscn" id="35_nvk84"]
 
 [sub_resource type="Environment" id="Environment_13x8n"]
 background_mode = 1
@@ -614,6 +615,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.611355, 5.687946, -2.73616
 
 [node name="Disquete5" parent="Disquetes" unique_id=440299835 instance=ExtResource("32_jpk8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2809134, 6.1835, 0)
+
+[node name="RadioCabine" parent="." unique_id=76063960 instance=ExtResource("35_nvk84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.177818, 6.0989256, -20.581123)
 
 [editable path="Trajetos/TrajetoriaCenario"]
 [editable path="Trajetos/TrajetoriaCenario2"]

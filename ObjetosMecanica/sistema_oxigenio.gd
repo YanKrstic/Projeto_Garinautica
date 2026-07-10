@@ -119,6 +119,7 @@ func avancar_fase():
 		
 		# ---> É AQUI QUE VOCÊ CHAMA A FUNÇÃO DA TELA! <---
 		_tocar_mensagem_radio("Você passou da fase 1! Está pronto para descer mas fundo?")
+		get_tree().call_group("radio_cabine", "tocar_mensagem", 2)
 		
 	elif fase_atual == 2:
 		fase_atual = 3
@@ -129,6 +130,7 @@ func avancar_fase():
 		
 		# ---> E AQUI PARA A FASE 3! <---
 		_tocar_mensagem_radio("Você passou da fase 2! Está pronto para a ultima fase?")
+		get_tree().call_group("radio_cabine", "tocar_mensagem", 3)
 		
 	elif fase_atual == 3:
 			print("VITÓRIA FINAL! Carga máxima atingida.")
